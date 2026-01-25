@@ -1,0 +1,8 @@
+numpy
+scipy
+matplotlib
+SymPy
+opencv-python-full
+notebook
+torch
+opencv-python
