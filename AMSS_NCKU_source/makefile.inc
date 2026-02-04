@@ -19,8 +19,12 @@ CUDA_HOME ?= $(CUDA_HOME)
 Cu        = $(CUDA_HOME)/bin/nvcc
 
 # --- Common optimization flags ---
-CXXAPPFLAGS  = -O3 -Wno-deprecated -Dfortran3 -Dnewc
-f90appflags  = -O3 -x f95-cpp-input
+# Enable OpenMP (used by some optional optimizations in TwoPunctures). When
+# no OpenMP pragmas are present, this is typically a no-op.
+OMPFLAGS    = -fopenmp
+
+CXXAPPFLAGS  = -O3 -Wno-deprecated -Dfortran3 -Dnewc $(OMPFLAGS)
+f90appflags  = -O3 -x f95-cpp-input $(OMPFLAGS)
 CUDA_APP_FLAGS = -c -g -O3 --ptxas-options=-v -Dfortran3 -Dnewc
 
 ###############################################################################
@@ -70,6 +74,9 @@ LDFLAGS += \
   $(call mkL,$(MPI_LIBDIRS)) \
   -L$(CUDA_HOME)/lib64 -L$(CUDA_HOME)/targets/x86_64-linux/lib \
   $(call mkL,$(LIBPATH_DIRS))
+
+# Ensure OpenMP runtime is linked when OpenMP is enabled
+LDFLAGS += $(OMPFLAGS)
 
 LDLIBS += \
   $(MPI_LIBS) \

@@ -82,8 +82,12 @@ shutil.rmtree(File_directory, ignore_errors=True)
 ## Create the output directory
 os.mkdir(File_directory)
 
-## Copy the Python input file into the run directory
-shutil.copy("AMSS_NCKU_Input.py", File_directory)
+## Copy the Python input file into the run directory (robust to current working directory)
+input_py_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "AMSS_NCKU_Input.py")
+shutil.copy(input_py_path, File_directory)
+
+print(f" Output directory name = {File_directory}")
+print()
 
 # Generate subdirectories to store various output files
 

@@ -28,6 +28,10 @@ using namespace std;
 
 #include "TwoPunctures.h"
 
+#ifdef _OPENMP
+#include <omp.h>
+#endif
+
 TwoPunctures::TwoPunctures(double mp, double mm, double b,
                            double P_plusx, double P_plusy, double P_plusz,
                            double S_plusx, double S_plusy, double S_plusz,
@@ -881,9 +885,15 @@ double TwoPunctures::norm1(double *v, int n)
   int i;
   double result = -1;
 
+#if defined(_OPENMP)
+#pragma omp parallel for reduction(max : result)
+#endif
   for (i = 0; i < n; i++)
-    if (fabs(v[i]) > result)
-      result = fabs(v[i]);
+  {
+    double const t = fabs(v[i]);
+    if (t > result)
+      result = t;
+  }
 
   return result;
 }
@@ -894,6 +904,9 @@ double TwoPunctures::norm2(double *v, int n)
   int i;
   double result = 0;
 
+#if defined(_OPENMP)
+#pragma omp parallel for reduction(+ : result)
+#endif
   for (i = 0; i < n; i++)
     result += v[i] * v[i];
 
@@ -906,6 +919,9 @@ double TwoPunctures::scalarproduct(double *v, double *w, int n)
   int i;
   double result = 0;
 
+#if defined(_OPENMP)
+#pragma omp parallel for reduction(+ : result)
+#endif
   for (i = 0; i < n; i++)
     result += v[i] * w[i];
 
@@ -1245,6 +1261,9 @@ void TwoPunctures::Newton(int const nvar, int const n1, int const n2, int const 
       F_of_v(nvar, n1, n2, n3, v, F, u);
       dmax = norm_inf(F, ntotal);
     }
+#if defined(_OPENMP)
+#pragma omp parallel for
+#endif
     for (int j = 0; j < ntotal; j++)
       dv.d0[j] = 0;
 
@@ -1256,6 +1275,9 @@ void TwoPunctures::Newton(int const nvar, int const n1, int const n2, int const 
     fflush(stdout);
     ii = bicgstab(nvar, n1, n2, n3, v, dv, 100, dmax * 1.e-3, &normres);
 
+#if defined(_OPENMP)
+#pragma omp parallel for
+#endif
     for (int j = 0; j < ntotal; j++)
       v.d0[j] -= dv.d0[j];
     F_of_v(nvar, n1, n2, n3, v, F, u);
@@ -1290,9 +1312,6 @@ void TwoPunctures::F_of_v(int nvar, int n1, int n2, int n3, derivs v, double *F,
   double al, be, A, B, X, R, x, r, phi, y, z, Am1, *values;
   derivs U;
   double *sources;
-
-  values = dvector(0, nvar - 1);
-  allocate_derivs(&U, nvar);
 
   sources = (double *)calloc(n1 * n2 * n3, sizeof(double));
   if (0)
@@ -1358,12 +1377,24 @@ void TwoPunctures::F_of_v(int nvar, int n1, int n2, int n3, derivs v, double *F,
     debugfile = fopen("res.dat", "w");
     assert(debugfile);
   }
+  /*
+   * Main residual evaluation loop is embarrassingly parallel over (i,j,k).
+   */
+#if defined(_OPENMP)
+#pragma omp parallel for collapse(3) default(none) \
+    shared(nvar, n1, n2, n3, v, F, u, sources, debugfile) \
+    shared(par_b, par_m_plus, par_m_minus, par_P_plus, par_P_minus, par_S_plus, par_S_minus) \
+    private(i, j, k, ivar, indx, al, be, A, B, X, R, x, r, phi, y, z, Am1, psi, psi2, psi4, psi7, r_plus, r_minus)
+#endif
   for (i = 0; i < n1; i++)
   {
     for (j = 0; j < n2; j++)
     {
       for (k = 0; k < n3; k++)
       {
+        double *values = dvector(0, nvar - 1);
+        derivs U;
+        allocate_derivs(&U, nvar);
 
         al = Pih * (2 * i + 1) / n1;
         A = -cos(al);
@@ -1442,6 +1473,9 @@ void TwoPunctures::F_of_v(int nvar, int n1, int n2, int n3, derivs v, double *F,
                   /*(double)F[indx]*/
           );
         }
+
+        free_dvector(values, 0, nvar - 1);
+        free_derivs(&U, nvar);
       }
     }
   }
@@ -1450,8 +1484,6 @@ void TwoPunctures::F_of_v(int nvar, int n1, int n2, int n3, derivs v, double *F,
     fclose(debugfile);
   }
   free(sources);
-  free_dvector(values, 0, nvar - 1);
-  free_derivs(&U, nvar);
 }
 /* --------------------------------------------------------------------------*/
 double TwoPunctures::norm_inf(double const *F, int const ntotal)
@@ -1459,9 +1491,15 @@ double TwoPunctures::norm_inf(double const *F, int const ntotal)
   double dmax = -1;
   {
     double dmax1 = -1;
+#if defined(_OPENMP)
+#pragma omp parallel for reduction(max : dmax1)
+#endif
     for (int j = 0; j < ntotal; j++)
-      if (fabs(F[j]) > dmax1)
-        dmax1 = fabs(F[j]);
+    {
+      double const t = fabs(F[j]);
+      if (t > dmax1)
+        dmax1 = t;
+    }
     if (dmax1 > dmax)
       dmax = dmax1;
   }
@@ -1852,20 +1890,33 @@ void TwoPunctures::J_times_dv(int nvar, int n1, int n2, int n3, derivs dv, doubl
   /*      (u.d1[], u.d2[], u.d3[], u.d11[], u.d12[], u.d13[], u.d22[], u.d23[], u.d33[])*/
   /*      at interior points and at the boundaries "+/-"*/
   int i, j, k, ivar, indx;
-  double al, be, A, B, X, R, x, r, phi, y, z, Am1, *values;
-  derivs dU, U;
+  double al, be, A, B, X, R, x, r, phi, y, z, Am1;
 
   Derivatives_AB3(nvar, n1, n2, n3, dv);
 
-  for (i = 0; i < n1; i++)
+  /*
+   * Embarrassingly parallel over (i,j,k) provided temporaries are thread-private.
+   */
+#if defined(_OPENMP)
+#pragma omp parallel default(none) \
+    shared(nvar, n1, n2, n3, dv, Jdv, u) \
+    private(i, j, k, ivar, indx, al, be, A, B, X, R, x, r, phi, y, z, Am1)
+#endif
   {
-    values = dvector(0, nvar - 1);
+    double *values = dvector(0, nvar - 1);
+    derivs dU, U;
     allocate_derivs(&dU, nvar);
     allocate_derivs(&U, nvar);
-    for (j = 0; j < n2; j++)
+
+#if defined(_OPENMP)
+#pragma omp for collapse(3)
+#endif
+    for (i = 0; i < n1; i++)
     {
-      for (k = 0; k < n3; k++)
+      for (j = 0; j < n2; j++)
       {
+        for (k = 0; k < n3; k++)
+        {
 
         al = Pih * (2 * i + 1) / n1;
         A = -cos(al);
@@ -1913,8 +1964,10 @@ void TwoPunctures::J_times_dv(int nvar, int n1, int n2, int n3, derivs dv, doubl
           indx = Index(ivar, i, j, k, nvar, n1, n2, n3);
           Jdv[indx] = values[ivar] * FAC;
         }
+        }
       }
     }
+
     free_dvector(values, 0, nvar - 1);
     free_derivs(&dU, nvar);
     free_derivs(&U, nvar);

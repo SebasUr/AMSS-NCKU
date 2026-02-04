@@ -1,0 +1,3631 @@
+
+------------------------------------------------------------------------------------------
+
+     Numerical Relativity AMSS-NCKU  
+
+     Author of AMSS-NCKU Code: Zhou-Jian Cao et al. 
+     Author of AMSS-NCKU Python Interface: Xiao Qu 
+
+     AMSS-NCKU is an open source numerical relativity code 
+     It can be used to simulate the dynamical evolution on mergering process of black hole systems, 
+ calculating the variation of gravitational field, black holes' trajectories, and gravitational wave 
+ emissions through directly solving the Einstein field equations  
+
+     This AMSS-NCKU code uses the finite-difference method to evaluate the numerical simulation. The 
+ finite-difference schemes can be chosen as: 2nd order, 4th order, 6th order, 8th order. 
+     The computation equation form in AMSS-NCKU code can be chosen as: BSSN equations, Z4C equations, 
+ BSSN equations coupled with scalars (in f(R) theory), BSSN equations coupled with electromagnetic 
+ fields. 
+     The numerical grid system in this code includes: patch AMR grid, shell-patch AMR grid. 
+
+     Furthermore, This code has fulfilled the CPU and GPU hybrid calculation. 
+
+------------------------------------------------------------------------------------------
+
+ Output directory name = GW150914_1077_128
+
+ Output directory has been generated 
+
+------------------------------------------------------------------------------------------
+
+ Printing the basic parameter and setting in the AMSS-NCKU simulation 
+
+ The number of MPI processes in the AMSS-NCKU simulation =  128
+
+ The form of computational equation  =  BSSN
+ The initial data in this simulation =  Ansorg-TwoPuncture
+
+ Starting evolution time   =  0.0
+ Final evolution time      =  5.0
+ Maximal iteration number  =  10000000
+ Courant factor            =  0.5
+ Strength of dissipation   =  0.15
+ Symmetry of system        =  equatorial-symmetry
+ The Runge-Kutta scheme in the time evolution   =  runge-kutta-45
+ The finite-difference scheme in the simulation =  4th-order
+
+ The static AMR grid type =  Linear
+ The moving AMR grid type =  Linear
+
+ The number of static AMR grid levels =  5
+ The number of moving AMR grid levels =  4
+ The number of total  AMR grid levels =  9
+
+ The grid number of each static AMR grid level =  96
+ The grid number of each moving AMR grid level =  48
+
+ The scale for largest  static AMR grid in X direction =  [-320.  320.]
+ The scale for largest  static AMR grid in Y direction =  [-320.  320.]
+ The scale for largest  static AMR grid in Z direction =  [-320.  320.]
+ The scale for smallest static AMR grid in X direction =  [-20.  20.]
+ The scale for smallest static AMR grid in Y direction =  [-20.  20.]
+ The scale for smallest static AMR grid in Z direction =  [-20.  20.]
+
+ The scale for largest  moving AMR grid =  [-5.  5.]
+ The scale for smallest moving AMR grid =  [-0.625  0.625]
+
+ The coarest resolution for static AMR grid =  6.666666666666667
+ The finest  resolution for static AMR grid =  0.4166666666666667
+ The coarest resolution for moving AMR grid =  0.20833333333333334
+ The finest  resolution for moving AMR grid =  0.026041666666666668
+
+ The time refinement starts from AMR grid level =  4
+ The time interval in each step for coarest AMR grid during time evaluation =  0.4166666666666667
+
+ This simulation only uses the Patch AMR grid structure, the Shell-Patch is not used 
+
+------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------
+
+ Printing the puncture information 
+
+ The information for 1 puncture 
+ Mass(1) =   0.553846,  Charge(1) =   0.000000,  a(1)  =   0.310000
+ X(1)    =   0.000000,  Y(1)      =   4.461538,  Z(1)  =   0.000000
+ Px(1)   =  -0.095302,  Py(1)     =  -0.000845,  Pz(1) =   0.000000
+ Jx(1)   =   0.000000,  Jy(1)     =   0.000000,  Jz(1) =   0.095091
+
+ The information for 2 puncture 
+ Mass(2) =   0.446154,  Charge(2) =   0.000000,  a(2)  =  -0.460000
+ X(2)    =   0.000000,  Y(2)      =  -5.538462,  Z(2)  =   0.000000
+ Px(2)   =   0.095302,  Py(2)     =   0.000845,  Pz(2) =   0.000000
+ Jx(2)   =   0.000000,  Jy(2)     =   0.000000,  Jz(2) =  -0.091564
+
+------------------------------------------------------------------------------------------
+
+ Generating the AMSS-NCKU input parfile for the ABE executable. 
+
+
+ Setting Puncture's position and momentum 
+
+
+ Wirte Down The Grid Information 
+
+ Number of Total Grid Level =  9
+ Number of Static Grid Level =  5
+ Number of Moving Grid Level =  4
+
+
+ Setting the demanded numerical grid 
+
+ adjusting the static gird points, making the original point (0,0,0) to the static gird points 
+
+
+ adjusting the moving gird points, ensuring the alliance of moving grids points and static grids points 
+
+ adjust_puncture[5,0,0] = 0.0 
+ adjust_puncture[5,0,1] = 4.375000000000002 
+ adjust_puncture[5,0,2] = 0.0 
+ adjust_puncture[5,1,0] = 0.0 
+ adjust_puncture[5,1,1] = -5.624999999999999 
+ adjust_puncture[5,1,2] = 0.0 
+ adjust_puncture[6,0,0] = 0.0 
+ adjust_puncture[6,0,1] = 4.479166666666669 
+ adjust_puncture[6,0,2] = 0.0 
+ adjust_puncture[6,1,0] = 0.0 
+ adjust_puncture[6,1,1] = -5.520833333333333 
+ adjust_puncture[6,1,2] = 0.0 
+ adjust_puncture[7,0,0] = 0.0 
+ adjust_puncture[7,0,1] = 4.479166666666669 
+ adjust_puncture[7,0,2] = 0.0 
+ adjust_puncture[7,1,0] = 0.0 
+ adjust_puncture[7,1,1] = -5.520833333333332 
+ adjust_puncture[7,1,2] = 0.0 
+ adjust_puncture[8,0,0] = 0.0 
+ adjust_puncture[8,0,1] = 4.453125000000002 
+ adjust_puncture[8,0,2] = 0.0 
+ adjust_puncture[8,1,0] = 0.0 
+ adjust_puncture[8,1,1] = -5.546874999999998 
+ adjust_puncture[8,1,2] = 0.0 
+
+ The moving grid puncture position adjustment is done 
+
+
+ The input parfile for AMSS-NCKU C++ executable file ABE has been generated. 
+ However, the input relevant to TwoPuncture need to be appended later. 
+
+
+ Schematically plot the numerical grid structure. 
+
+
+ Automatically generating the macro file for AMSS-NCKU C++ executable file ABE 
+ (Based on the finite-difference numerical scheme) 
+
+ AMSS-NCKU macro file macrodef.h has been generated. 
+ AMSS-NCKU macro file macrodef.fh has been generated. 
+
+ Preparing to compile and run the AMSS-NCKU code as requested 
+ Compiling the AMSS-NCKU code based on the generated macro files 
+
+
+ Compiling the AMSS-NCKU executable file ABE/ABEGPU 
+
+mpic++ -O3 -Wno-deprecated -Dfortran3 -Dnewc -c ABE.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o ABE.o
+mpic++ -O3 -Wno-deprecated -Dfortran3 -Dnewc -c Ansorg.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o Ansorg.o
+mpic++ -O3 -Wno-deprecated -Dfortran3 -Dnewc -c Block.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o Block.o
+mpifort -c zbesh.for -o zbesh.o
+mpic++ -O3 -Wno-deprecated -Dfortran3 -Dnewc -c monitor.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o monitor.o
+mpic++ -O3 -Wno-deprecated -Dfortran3 -Dnewc -c Parallel.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o Parallel.o
+mpic++ -O3 -Wno-deprecated -Dfortran3 -Dnewc -c MPatch.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o MPatch.o
+mpic++ -O3 -Wno-deprecated -Dfortran3 -Dnewc -c var.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o var.o
+mpic++ -O3 -Wno-deprecated -Dfortran3 -Dnewc -c cgh.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o cgh.o
+mpic++ -O3 -Wno-deprecated -Dfortran3 -Dnewc -c bssn_class.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o bssn_class.o
+mpic++ -O3 -Wno-deprecated -Dfortran3 -Dnewc -c surface_integral.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o surface_integral.o
+bssn_class.C: In member function ‘virtual void bssn_class::Read_Ansorg()’:
+bssn_class.C:1865:24: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+ 1865 |     Ansorg read_ansorg("Ansorg.psid", order);
+      |                        ^~~~~~~~~~~~~
+mpic++ -O3 -Wno-deprecated -Dfortran3 -Dnewc -c ShellPatch.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o ShellPatch.o
+mpic++ -O3 -Wno-deprecated -Dfortran3 -Dnewc -c bssnEScalar_class.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o bssnEScalar_class.o
+mpic++ -O3 -Wno-deprecated -Dfortran3 -Dnewc -c perf.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o perf.o
+bssnEScalar_class.C: In member function ‘virtual void bssnEScalar_class::Read_Ansorg()’:
+bssnEScalar_class.C:335:24: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+  335 |     Ansorg read_ansorg("Ansorg.psid", order);
+      |                        ^~~~~~~~~~~~~
+mpic++ -O3 -Wno-deprecated -Dfortran3 -Dnewc -c Z4c_class.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o Z4c_class.o
+mpic++ -O3 -Wno-deprecated -Dfortran3 -Dnewc -c NullShellPatch.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o NullShellPatch.o
+Z4c_class.C: In member function ‘void Z4c_class::Check_extrop()’:
+Z4c_class.C:2396:28: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+ 2396 |   SH->Dump_Data(StateList, "extrop", 0, 1);
+      |                            ^~~~~~~~
+mpic++ -O3 -Wno-deprecated -Dfortran3 -Dnewc -c bssnEM_class.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o bssnEM_class.o
+mpic++ -O3 -Wno-deprecated -Dfortran3 -Dnewc -c cpbc_util.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o cpbc_util.o
+mpic++ -O3 -Wno-deprecated -Dfortran3 -Dnewc -c z4c_rhs_point.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o z4c_rhs_point.o
+bssnEM_class.C: In member function ‘virtual void bssnEM_class::Read_Ansorg()’:
+bssnEM_class.C:486:24: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+  486 |     Ansorg read_ansorg("Ansorg.psid", order);
+      |                        ^~~~~~~~~~~~~
+mpic++ -O3 -Wno-deprecated -Dfortran3 -Dnewc -c checkpoint.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o checkpoint.o
+mpic++ -O3 -Wno-deprecated -Dfortran3 -Dnewc -c Parallel_bam.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o Parallel_bam.o
+mpic++ -O3 -Wno-deprecated -Dfortran3 -Dnewc -c scalar_class.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o scalar_class.o
+mpic++ -O3 -Wno-deprecated -Dfortran3 -Dnewc -c transpbh.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o transpbh.o
+mpic++ -O3 -Wno-deprecated -Dfortran3 -Dnewc -c NullShellPatch2.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o NullShellPatch2.o
+mpic++ -O3 -Wno-deprecated -Dfortran3 -Dnewc -c NullShellPatch2_Evo.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o NullShellPatch2_Evo.o
+mpic++ -O3 -Wno-deprecated -Dfortran3 -Dnewc -c writefile_f.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o writefile_f.o
+mpifort -O3 -x f95-cpp-input -c enforce_algebra.f90 -o enforce_algebra.o
+mpifort -O3 -x f95-cpp-input -c fmisc.f90 -o fmisc.o
+mpifort -O3 -x f95-cpp-input -c initial_puncture.f90 -o initial_puncture.o
+mpifort -O3 -x f95-cpp-input -c prolongrestrict.f90 -o prolongrestrict.o
+mpifort -O3 -x f95-cpp-input -c prolongrestrict_cell.f90 -o prolongrestrict_cell.o
+mpifort -O3 -x f95-cpp-input -c prolongrestrict_vertex.f90 -o prolongrestrict_vertex.o
+mpifort -O3 -x f95-cpp-input -c rungekutta4_rout.f90 -o rungekutta4_rout.o
+mpifort -O3 -x f95-cpp-input -c bssn_rhs.f90 -o bssn_rhs.o
+mpifort -O3 -x f95-cpp-input -c diff_new.f90 -o diff_new.o
+mpifort -O3 -x f95-cpp-input -c kodiss.f90 -o kodiss.o
+mpifort -O3 -x f95-cpp-input -c kodiss_sh.f90 -o kodiss_sh.o
+mpifort -O3 -x f95-cpp-input -c lopsidediff.f90 -o lopsidediff.o
+mpifort -O3 -x f95-cpp-input -c sommerfeld_rout.f90 -o sommerfeld_rout.o
+mpifort -O3 -x f95-cpp-input -c getnp4.f90 -o getnp4.o
+mpifort -O3 -x f95-cpp-input -c diff_new_sh.f90 -o diff_new_sh.o
+mpifort -O3 -x f95-cpp-input -c shellfunctions.f90 -o shellfunctions.o
+mpifort -O3 -x f95-cpp-input -c bssn_rhs_ss.f90 -o bssn_rhs_ss.o
+mpifort -O3 -x f95-cpp-input -c Set_Rho_ADM.f90 -o Set_Rho_ADM.o
+mpifort -O3 -x f95-cpp-input -c getnp4EScalar.f90 -o getnp4EScalar.o
+mpifort -O3 -x f95-cpp-input -c bssnEScalar_rhs.f90 -o bssnEScalar_rhs.o
+mpifort -O3 -x f95-cpp-input -c bssn_constraint.f90 -o bssn_constraint.o
+mpifort -O3 -x f95-cpp-input -c ricci_gamma.f90 -o ricci_gamma.o
+mpifort -O3 -x f95-cpp-input -c fadmquantites_bssn.f90 -o fadmquantites_bssn.o
+mpifort -O3 -x f95-cpp-input -c Z4c_rhs.f90 -o Z4c_rhs.o
+mpifort -O3 -x f95-cpp-input -c Z4c_rhs_ss.f90 -o Z4c_rhs_ss.o
+mpifort -O3 -x f95-cpp-input -c point_diff_new_sh.f90 -o point_diff_new_sh.o
+mpifort -O3 -x f95-cpp-input -c cpbc.f90 -o cpbc.o
+mpifort -O3 -x f95-cpp-input -c getnp4old.f90 -o getnp4old.o
+mpifort -O3 -x f95-cpp-input -c NullEvol.f90 -o NullEvol.o
+mpifort -O3 -x f95-cpp-input -c initial_null.f90 -o initial_null.o
+mpifort -O3 -x f95-cpp-input -c initial_maxwell.f90 -o initial_maxwell.o
+mpifort -O3 -x f95-cpp-input -c getnpem2.f90 -o getnpem2.o
+mpifort -O3 -x f95-cpp-input -c empart.f90 -o empart.o
+mpifort -O3 -x f95-cpp-input -c NullNews.f90 -o NullNews.o
+mpifort -O3 -x f95-cpp-input -c fourdcurvature.f90 -o fourdcurvature.o
+mpifort -O3 -x f95-cpp-input -c bssn2adm.f90 -o bssn2adm.o
+mpifort -O3 -x f95-cpp-input -c adm_constraint.f90 -o adm_constraint.o
+mpifort -O3 -x f95-cpp-input -c adm_ricci_gamma.f90 -o adm_ricci_gamma.o
+mpifort -O3 -x f95-cpp-input -c scalar_rhs.f90 -o scalar_rhs.o
+mpifort -O3 -x f95-cpp-input -c initial_scalar.f90 -o initial_scalar.o
+mpifort -O3 -x f95-cpp-input -c NullEvol2.f90 -o NullEvol2.o
+mpifort -O3 -x f95-cpp-input -c initial_null2.f90 -o initial_null2.o
+mpifort -O3 -x f95-cpp-input -c NullNews2.f90 -o NullNews2.o
+mpifort -O3 -x f95-cpp-input -c tool_f.f90 -o tool_f.o
+mpic++ -O3 -Wno-deprecated -Dfortran3 -Dnewc -c expansion.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o expansion.o
+mpic++ -O3 -Wno-deprecated -Dfortran3 -Dnewc -c expansion_Jacobian.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o expansion_Jacobian.o
+mpic++ -O3 -Wno-deprecated -Dfortran3 -Dnewc -c patch.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o patch.o
+patch.C: In static member function ‘static AHFinderDirect::patch::integration_method AHFinderDirect::patch::decode_integration_method(const char*)’:
+patch.C:212:35: warning: control reaches end of non-void function [-Wreturn-type]
+  212 |                         error_exit(ERROR_EXIT,
+      |                         ~~~~~~~~~~^~~~~~~~~~~~
+  213 |                                            "***** patch::decode_integration_method():\n"
+      |                                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  214 |                                            "        unknown method_string=\"%s\"!\n",
+      |                                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  215 |                                            method_string); /*NOTREACHED*/
+      |                                            ~~~~~~~~~~~~~~
+patch.C: In member function ‘virtual fp AHFinderDirect::z_patch::plane_arc_length(const char*, int, int, int, int, int, int, int, AHFinderDirect::patch::integration_method) const’:
+patch.C:399:35: warning: control reaches end of non-void function [-Wreturn-type]
+  399 |                         error_exit(ERROR_EXIT,
+      |                         ~~~~~~~~~~^~~~~~~~~~~~
+  400 |                                            "***** z_patch::plane_arc_length(): %s patch, plane=\"%s\", but\n"
+      |                                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  401 |                                            "                                   this patch doesn't contain that plane!\n",
+      |                                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  402 |                                            name(), plane); /*NOTREACHED*/
+      |                                            ~~~~~~~~~~~~~~
+patch.C: In member function ‘virtual fp AHFinderDirect::x_patch::plane_arc_length(const char*, int, int, int, int, int, int, int, AHFinderDirect::patch::integration_method) const’:
+patch.C:440:35: warning: control reaches end of non-void function [-Wreturn-type]
+  440 |                         error_exit(ERROR_EXIT,
+      |                         ~~~~~~~~~~^~~~~~~~~~~~
+  441 |                                            "***** x_patch::plane_arc_length(): %s patch, plane=\"%s\", but\n"
+      |                                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  442 |                                            "                                   this patch doesn't contain that plane!\n",
+      |                                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  443 |                                            name(), plane); /*NOTREACHED*/
+      |                                            ~~~~~~~~~~~~~~
+patch.C: In member function ‘virtual fp AHFinderDirect::y_patch::plane_arc_length(const char*, int, int, int, int, int, int, int, AHFinderDirect::patch::integration_method) const’:
+patch.C:481:35: warning: control reaches end of non-void function [-Wreturn-type]
+  481 |                         error_exit(ERROR_EXIT,
+      |                         ~~~~~~~~~~^~~~~~~~~~~~
+  482 |                                            "***** y_patch::plane_arc_length(): %s patch, plane=\"%s\", but\n"
+      |                                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  483 |                                            "                                   this patch doesn't contain that plane!\n",
+      |                                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  484 |                                            name(), plane); /*NOTREACHED*/
+      |                                            ~~~~~~~~~~~~~~
+patch.C: In static member function ‘static fp AHFinderDirect::patch::integration_coeff(integration_method, int, int)’:
+patch.C:640:35: warning: control reaches end of non-void function [-Wreturn-type]
+  640 |                         error_exit(ERROR_EXIT,
+      |                         ~~~~~~~~~~^~~~~~~~~~~~
+  641 |                                            "***** patch::integration_coeff(): unknown method=(int)%d!\n"
+      |                                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  642 |                                            "                                  (this should never happen!)\n",
+      |                                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  643 |                                            int(method)); /*NOTREACHED*/
+      |                                            ~~~~~~~~~~~~
+patch.C: In member function ‘AHFinderDirect::ghost_zone& AHFinderDirect::patch::ghost_zone_containing_noncorner_point(int, int) const’:
+patch.C:744:27: warning: control reaches end of non-void function [-Wreturn-type]
+  744 |                 error_exit(ERROR_EXIT,
+      |                 ~~~~~~~~~~^~~~~~~~~~~~
+  745 |                                    "***** patch::ghost_zone_containing_noncorner_point():\n"
+      |                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  746 |                                    "        no ghost zone contains point (this should never happen)!\n"
+      |                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  747 |                                    "        patch=%s irho=%d isigma=%d\n",
+      |                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  748 |                                    name(), irho, isigma); /*NOTREACHED*/
+      |                                    ~~~~~~~~~~~~~~~~~~~~~
+mpic++ -O3 -Wno-deprecated -Dfortran3 -Dnewc -c coords.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o coords.o
+mpic++ -O3 -Wno-deprecated -Dfortran3 -Dnewc -c patch_info.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o patch_info.o
+mpic++ -O3 -Wno-deprecated -Dfortran3 -Dnewc -c patch_interp.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o patch_interp.o
+mpic++ -O3 -Wno-deprecated -Dfortran3 -Dnewc -c patch_system.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o patch_system.o
+mpic++ -O3 -Wno-deprecated -Dfortran3 -Dnewc -c tgrid.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o tgrid.o
+patch_system.C: In static member function ‘static int AHFinderDirect::patch_system::N_patches_of_type(patch_system_type)’:
+patch_system.C:1175:35: warning: control reaches end of non-void function [-Wreturn-type]
+ 1175 |                         error_exit(PANIC_EXIT,
+      |                         ~~~~~~~~~~^~~~~~~~~~~~
+ 1176 |                                            "***** patch_system::N_patches_of_type(): bad type=(int)%d!\n"
+      |                                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 1177 |                                            "                                         (this should never happen!)\n",
+      |                                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 1178 |                                            int(type_in)); /*NOTREACHED*/
+      |                                            ~~~~~~~~~~~~~
+patch_system.C: In static member function ‘static const char* AHFinderDirect::patch_system::name_of_type(patch_system_type)’:
+patch_system.C:1210:35: warning: control reaches end of non-void function [-Wreturn-type]
+ 1210 |                         error_exit(PANIC_EXIT,
+      |                         ~~~~~~~~~~^~~~~~~~~~~~
+ 1211 |                                            "***** patch_system::name_of_type(): bad type=(int)%d!\n"
+      |                                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 1212 |                                            "                                    (this should never happen!)\n",
+      |                                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 1213 |                                            int(type_in)); /*NOTREACHED*/
+      |                                            ~~~~~~~~~~~~~
+patch_system.C: In static member function ‘static AHFinderDirect::patch_system::patch_system_type AHFinderDirect::patch_system::type_of_name(const char*)’:
+patch_system.C:1244:35: warning: control reaches end of non-void function [-Wreturn-type]
+ 1244 |                         error_exit(PANIC_EXIT,
+      |                         ~~~~~~~~~~^~~~~~~~~~~~
+ 1245 |                                            "***** patch_system::type_of_name(): unknown name=\"%s\"!",
+      |                                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 1246 |                                            name_in); /*NOTREACHED*/
+      |                                            ~~~~~~~~
+patch_system.C: In member function ‘const AHFinderDirect::patch& AHFinderDirect::patch_system::plus_or_minus_xyz_patch(bool, char) const’:
+patch_system.C:1271:27: warning: control reaches end of non-void function [-Wreturn-type]
+ 1271 |                 error_exit(ERROR_EXIT,
+      |                 ~~~~~~~~~~^~~~~~~~~~~~
+ 1272 |                                    "***** patch_system::plus_or_minus_xyz_patch():\n"
+      |                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 1273 |                                    "        can't find any %c%c patch!",
+      |                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 1274 |                                    (is_plus ? '+' : '-'), ctype); /*NOTREACHED*/
+      |                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+patch_system.C: In member function ‘int AHFinderDirect::patch_system::patch_number_of_name(const char*) const’:
+patch_system.C:1292:27: warning: control reaches end of non-void function [-Wreturn-type]
+ 1292 |                 error_exit(ERROR_EXIT,
+      |                 ~~~~~~~~~~^~~~~~~~~~~~
+ 1293 |                                    "***** patch_system::patch_number_of_name():\n"
+      |                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 1294 |                                    "        no patch with name \"%s\"!\n",
+      |                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 1295 |                                    name); /*NOTREACHED*/
+      |                                    ~~~~~
+patch_system.C: In member function ‘const AHFinderDirect::patch& AHFinderDirect::patch_system::patch_irho_isigma_of_gpn(int, int&, int&) const’:
+patch_system.C:1337:27: warning: control reaches end of non-void function [-Wreturn-type]
+ 1337 |                 error_exit(PANIC_EXIT,
+      |                 ~~~~~~~~~~^~~~~~~~~~~~
+ 1338 |                                    "***** patch_system::patch_irho_isigma_of_gpn(gpn=%d):\n"
+      |                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 1339 |                                    "        couldn't find any patch! (this should never happen!)\n"
+      |                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 1340 |                                    "        N_grid_points()=%d\n",
+      |                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 1341 |                                    gpn,
+      |                                    ~~~~
+ 1342 |                                    N_grid_points()); /*NOTREACHED*/
+      |                                    ~~~~~~~~~~~~~~~~
+patch_system.C: In member function ‘const AHFinderDirect::patch& AHFinderDirect::patch_system::ghosted_patch_irho_isigma_of_gpn(int, int&, int&) const’:
+patch_system.C:1383:27: warning: control reaches end of non-void function [-Wreturn-type]
+ 1383 |                 error_exit(PANIC_EXIT,
+      |                 ~~~~~~~~~~^~~~~~~~~~~~
+ 1384 |                                    "***** patch_system::ghosted_patch_irho_isigma_of_gpn(gpn=%d):\n"
+      |                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 1385 |                                    "        couldn't find any patch! (this should never happen!)\n"
+      |                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 1386 |                                    "        ghosted_N_grid_points()=%d\n",
+      |                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 1387 |                                    gpn,
+      |                                    ~~~~
+ 1388 |                                    ghosted_N_grid_points()); /*NOTREACHED*/
+      |                                    ~~~~~~~~~~~~~~~~~~~~~~~~
+patch_system.C: In member function ‘const AHFinderDirect::patch* AHFinderDirect::patch_system::patch_containing_local_xyz(fp, fp, fp) const’:
+patch_system.C:1737:35: warning: control reaches end of non-void function [-Wreturn-type]
+ 1737 |                         error_exit(ERROR_EXIT,
+      |                         ~~~~~~~~~~^~~~~~~~~~~~
+ 1738 |                                            "***** patch_system::patch_containing_local_xyz():\n"
+      |                                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 1739 |                                            "        unknown (wierd!) ordering of |x|, |y|, and |z|!\n"
+      |                                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 1740 |                                            "        (this should never happen!)\n"
+      |                                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 1741 |                                            "        [local] (x,y,z)=(%g,%g,%g)\n",
+      |                                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 1742 |                                            double(x), double(y), double(z)); /*NOTREACHED*/
+      |                                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+patch_system.C: In member function ‘const AHFinderDirect::patch_edge& AHFinderDirect::patch_system::synchronize_Jacobian(const AHFinderDirect::ghost_zone&, int, int, int&, int&, int&, int&, AHFinderDirect::jtutil::array1d<double>&) const’:
+patch_system.C:2373:35: warning: control reaches end of non-void function [-Wreturn-type]
+ 2373 |                         error_exit(PANIC_EXIT,
+      |                         ~~~~~~~~~~^~~~~~~~~~~~
+ 2374 |                                            "***** patch_system::synchronize_Jacobian():\n"
+      |                                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 2375 |                                            "        don't know what to do with ghost zone (this should never happen)!\n"
+      |                                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 2376 |                                            "        xgz.my_patch()=\"%s\"    xe=xgz.my_edge()=\"%s\"\n"
+      |                                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 2377 |                                            "        xgz.other_patch()=\"%s\"    xgz.other_edge()=\"%s\"\n"
+      |                                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 2378 |                                            "        xgz.is_symmetry()=(int)%d xgz.is_interpatch()=(int)%d\n"
+      |                                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 2379 |                                            "        x_iperp=%d x_ipar=%d\n"
+      |                                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 2380 |                                            "        xe.ipar_is_in_{min,max}_ipar_corner(x_ipar)=(int){%d,%d}\n"
+      |                                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 2381 |                                            "        xe.ipar_is_in_{corner,noncorner}(x_ipar)=(int){%d,%d}\n",
+      |                                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 2382 |                                            xgz.my_patch().name(), xe.name(),
+      |                                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 2383 |                                            xgz.other_patch().name(), xgz.other_edge().name(),
+      |                                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 2384 |                                            int(xgz.is_symmetry()), int(xgz.is_interpatch()),
+      |                                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 2385 |                                            x_iperp, x_ipar,
+      |                                            ~~~~~~~~~~~~~~~~
+ 2386 |                                            xe.ipar_is_in_min_ipar_corner(x_ipar),
+      |                                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 2387 |                                            xe.ipar_is_in_max_ipar_corner(x_ipar),
+      |                                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 2388 |                                            xe.ipar_is_in_corner(x_ipar),
+      |                                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 2389 |                                            xe.ipar_is_in_noncorner(x_ipar)); /*NOTREACHED*/
+      |                                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+mpic++ -O3 -Wno-deprecated -Dfortran3 -Dnewc -c fd_grid.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o fd_grid.o
+mpic++ -O3 -Wno-deprecated -Dfortran3 -Dnewc -c ghost_zone.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o ghost_zone.o
+mpic++ -O3 -Wno-deprecated -Dfortran3 -Dnewc -c array.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o array.o
+mpic++ -O3 -Wno-deprecated -Dfortran3 -Dnewc -c round.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o round.o
+mpic++ -O3 -Wno-deprecated -Dfortran3 -Dnewc -c norm.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o norm.o
+mpic++ -O3 -Wno-deprecated -Dfortran3 -Dnewc -c fuzzy.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o fuzzy.o
+mpic++ -O3 -Wno-deprecated -Dfortran3 -Dnewc -c error_exit.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o error_exit.o
+mpic++ -O3 -Wno-deprecated -Dfortran3 -Dnewc -c miscfp.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o miscfp.o
+mpic++ -O3 -Wno-deprecated -Dfortran3 -Dnewc -c linear_map.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o linear_map.o
+mpic++ -O3 -Wno-deprecated -Dfortran3 -Dnewc -c cpm_map.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o cpm_map.o
+mpic++ -O3 -Wno-deprecated -Dfortran3 -Dnewc -c BH_diagnostics.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o BH_diagnostics.o
+mpic++ -O3 -Wno-deprecated -Dfortran3 -Dnewc -c setup.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o setup.o
+mpic++ -O3 -Wno-deprecated -Dfortran3 -Dnewc -c horizon_sequence.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o horizon_sequence.o
+mpic++ -O3 -Wno-deprecated -Dfortran3 -Dnewc -c find_horizons.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o find_horizons.o
+mpic++ -O3 -Wno-deprecated -Dfortran3 -Dnewc -c initial_guess.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o initial_guess.o
+mpic++ -O3 -Wno-deprecated -Dfortran3 -Dnewc -c Newton.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o Newton.o
+mpic++ -O3 -Wno-deprecated -Dfortran3 -Dnewc -c Jacobian.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o Jacobian.o
+mpifort -O3 -x f95-cpp-input -c ilucg.f90 -o ilucg.o
+mpic++ -O3 -Wno-deprecated -Dfortran3 -Dnewc -c IntPnts0.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o IntPnts0.o
+mpic++ -O3 -Wno-deprecated -Dfortran3 -Dnewc -c IntPnts.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o IntPnts.o
+mpic++ -O3 -Wno-deprecated -Dfortran3 -Dnewc -c misc.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o misc.o
+mpic++ -O3 -Wno-deprecated -Dfortran3 -Dnewc -o ABE ABE.o Ansorg.o Block.o misc.o monitor.o Parallel.o MPatch.o var.o cgh.o bssn_class.o surface_integral.o ShellPatch.o bssnEScalar_class.o perf.o Z4c_class.o NullShellPatch.o bssnEM_class.o cpbc_util.o z4c_rhs_point.o checkpoint.o Parallel_bam.o scalar_class.o transpbh.o NullShellPatch2.o NullShellPatch2_Evo.o writefile_f.o enforce_algebra.o fmisc.o initial_puncture.o prolongrestrict.o prolongrestrict_cell.o prolongrestrict_vertex.o rungekutta4_rout.o bssn_rhs.o diff_new.o kodiss.o kodiss_sh.o lopsidediff.o sommerfeld_rout.o getnp4.o diff_new_sh.o shellfunctions.o bssn_rhs_ss.o Set_Rho_ADM.o getnp4EScalar.o bssnEScalar_rhs.o bssn_constraint.o ricci_gamma.o fadmquantites_bssn.o Z4c_rhs.o Z4c_rhs_ss.o point_diff_new_sh.o cpbc.o getnp4old.o NullEvol.o initial_null.o initial_maxwell.o getnpem2.o empart.o NullNews.o fourdcurvature.o bssn2adm.o adm_constraint.o adm_ricci_gamma.o scalar_rhs.o initial_scalar.o NullEvol2.o initial_null2.o NullNews2.o tool_f.o zbesh.o expansion.o expansion_Jacobian.o patch.o coords.o patch_info.o patch_interp.o patch_system.o tgrid.o fd_grid.o ghost_zone.o array.o round.o norm.o fuzzy.o error_exit.o miscfp.o linear_map.o cpm_map.o BH_diagnostics.o setup.o horizon_sequence.o find_horizons.o initial_guess.o Newton.o Jacobian.o ilucg.o IntPnts0.o IntPnts.o   -lmpi   -lcudart -lgfortran -lquadmath
+
+ Compilation of the AMSS-NCKU executable file ABE is finished 
+
+
+ Compiling the AMSS-NCKU executable file TwoPunctureABE 
+
+mpic++ -O3 -Wno-deprecated -Dfortran3 -Dnewc -c TwoPunctureABE.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o TwoPunctureABE.o
+TwoPunctureABE.C: In function ‘int main(int, char**)’:
+TwoPunctureABE.C:213:13: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+  213 |   ADM->Save("Ansorg.psid");
+      |             ^~~~~~~~~~~~~
+mpic++ -O3 -Wno-deprecated -Dfortran3 -Dnewc -c TwoPunctures.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o TwoPunctures.o
+mpic++ -O3 -Wno-deprecated -Dfortran3 -Dnewc -o TwoPunctureABE TwoPunctureABE.o TwoPunctures.o    -lmpi   -lcudart -lgfortran -lquadmath
+
+ Compilation of the AMSS-NCKU executable file TwoPunctureABE is finished 
+
+
+
+ Initial data is chosen as Ansorg-TwoPuncture
+
+
+ Automatically generating the input parfile for the TwoPunctureABE executable 
+
+
+ The input parfile for the TwoPunctureABE executable has been generated. 
+
+
+
+
+ Running the AMSS-NCKU executable file TwoPunctureABE 
+
+///////////////////////////////////////////////////////////////
+     mp     = -1
+     mm     = -1
+     b      = 5
+  P_plusx   = -0.000845415
+  P_plusy   = 0.0953015
+  P_plusz   = 0
+  P_minusx  = 0.000845415
+  P_minusy  = -0.0953015
+  P_minusz  = 0
+  S_plusx   = 0
+  S_plusy   = -0
+  S_plusz   = 0.0950911
+  S_minusx  = 0
+  S_minusy  = -0
+  S_minusz  = -0.0915645
+     Mp     = 0.553846
+     Mm     = 0.446154
+   admtol   = 1e-08
+ Newtontol  = 5e-12
+    nA      = 50
+    nB      = 50
+   nphi     = 26
+Newtonmaxit = 50
+///////////////////////////////////////////////////////////////
+Attempting to find bare masses.
+Target ADM masses: M_p=0.553846 and M_m=0.446154
+ADM mass tolerance: 1e-08
+Bare masses: mp=-1, mm=-1
+Newton: it=0 	 |F|=8.116007e-02
+bare mass: mp=0.553846 	 mm=0.446154
+bicgstab:  itmax 100, tol 8.116007e-05
+bicgstab:     0   1.366e+00
+bicgstab:     1   4.256e+00   1.069e+00   0.000e+00   5.233e-01
+bicgstab:     2   6.633e+00   3.158e+00   4.084e-02   6.106e-01
+bicgstab:     3   3.581e+00   8.311e-01   3.694e-01   6.584e-01
+bicgstab:     4   1.274e+00   9.982e-01   2.470e-01   5.270e-01
+bicgstab:     5   1.339e+00   3.287e+00   2.260e-01   4.272e-01
+bicgstab:     6   1.312e-01   2.004e-01  -3.652e+00   2.448e+00
+bicgstab:     7   9.817e-03   1.243e+00  -9.975e-02   4.477e-01
+bicgstab:     8   1.698e-03   1.272e+00   1.953e-01   9.239e-01
+bicgstab:     9   7.728e-04   1.087e+00   4.785e-01   1.048e+00
+bicgstab:    10   4.820e-04   1.101e+00   3.316e-01   8.663e-01
+bicgstab:    11   2.111e-04   1.009e+00   3.637e-01   1.070e+00
+bicgstab:    12   6.988e-05   1.333e+00   3.293e-01   4.434e-01
+Newton: it=1 	 |F|=1.149742e-03 
+ADM mass error: M_p_err=1.54193, M_m_err=1.46829
+Bare masses: mp=0.52329, mm=0.406224
+Newton: it=0 	 |F|=3.875643e-02
+bare mass: mp=0.52329 	 mm=0.406224
+bicgstab:  itmax 100, tol 3.875643e-05
+bicgstab:     0   5.945e-01
+bicgstab:     1   1.665e+00   1.056e+00   0.000e+00   5.479e-01
+bicgstab:     2   2.381e+00   3.082e+00   3.689e-02   5.523e-01
+bicgstab:     3   1.199e+00   8.967e-01   2.866e-01   6.091e-01
+bicgstab:     4   2.743e+00  -3.782e+00   1.151e-01   4.187e-01
+bicgstab:     5   3.316e-02  -1.187e-01  -4.740e+01   2.090e+00
+bicgstab:     6   2.495e-02   2.193e+00  -7.808e-03   1.579e+00
+bicgstab:     7   9.583e-03   8.010e-01   5.470e-01   9.374e-01
+bicgstab:     8   3.277e-03   1.104e+00   1.358e-01   5.262e-01
+bicgstab:     9   4.372e-04   1.227e+00   5.417e-01   5.506e-01
+bicgstab:    10   2.465e-04   1.056e+00   3.276e-01   2.239e+00
+bicgstab:    11   4.380e-05   1.127e+00   4.671e-01   4.438e-01
+bicgstab:    12   2.680e-05   9.705e-01   2.322e-01   4.438e-01
+Newton: it=1 	 |F|=1.824401e-04 
+ADM mass error: M_p_err=0.00465719, M_m_err=0.0113011
+Bare masses: mp=0.519168, mm=0.396261
+Newton: it=0 	 |F|=1.258694e-02
+bare mass: mp=0.519168 	 mm=0.396261
+bicgstab:  itmax 100, tol 1.258694e-05
+bicgstab:     0   1.849e-01
+bicgstab:     1   5.065e-01   1.054e+00   0.000e+00   5.547e-01
+bicgstab:     2   7.039e-01   3.032e+00   3.651e-02   5.426e-01
+bicgstab:     3   3.561e-01   7.788e-01   3.136e-01   7.672e-01
+bicgstab:     4   1.091e-01   1.113e+00   1.694e-01   4.465e-01
+bicgstab:     5   8.703e-02  -2.726e-01   8.994e-02   9.502e-01
+bicgstab:     6   3.147e-02  -3.174e+00  -2.005e+00   1.340e+00
+bicgstab:     7   1.208e-02   8.920e-01  -6.591e-01   1.550e+00
+bicgstab:     8   3.508e-03   1.069e+00   1.180e-01   4.626e-01
+bicgstab:     9   5.706e-04   1.360e+00   5.533e-01   6.261e-01
+bicgstab:    10   4.245e-04   1.015e+00   3.497e-01   1.970e+00
+bicgstab:    11   1.068e-04   1.191e+00   4.740e-01   4.247e-01
+bicgstab:    12   1.864e-05   7.743e-01   1.840e-01   2.152e+00
+bicgstab:    13   5.051e-06   1.829e+00   3.480e-01   4.089e-01
+Newton: it=1 	 |F|=1.741310e-05 
+ADM mass error: M_p_err=0.000750389, M_m_err=0.00338687
+Bare masses: mp=0.518538, mm=0.393286
+Newton: it=0 	 |F|=4.045363e-03
+bare mass: mp=0.518538 	 mm=0.393286
+bicgstab:  itmax 100, tol 4.045363e-06
+bicgstab:     0   5.824e-02
+bicgstab:     1   1.585e-01   1.053e+00   0.000e+00   5.568e-01
+bicgstab:     2   2.169e-01   2.959e+00   3.591e-02   5.432e-01
+bicgstab:     3   1.098e-01   7.436e-01   3.340e-01   8.466e-01
+bicgstab:     4   3.622e-02   1.031e+00   1.846e-01   4.676e-01
+bicgstab:     5   2.254e-02   2.429e+00   2.309e-01   4.200e-01
+bicgstab:     6   2.231e-03   1.933e-01  -1.588e+00   2.398e+00
+bicgstab:     7   3.882e-04   1.650e+00  -1.984e-01   4.993e-01
+bicgstab:     8   1.944e-04   1.367e+00   2.160e-01   1.710e+00
+bicgstab:     9   6.187e-05   1.134e+00   7.193e-01   6.893e-01
+bicgstab:    10   3.108e-05   9.294e-01   1.739e-01   1.124e+00
+bicgstab:    11   4.901e-06   1.503e+00   4.809e-01   4.850e-01
+bicgstab:    12   7.279e-07   8.138e-01   2.940e-01   4.850e-01
+Newton: it=1 	 |F|=1.719848e-06 
+ADM mass error: M_p_err=0.000129657, M_m_err=0.00105376
+Bare masses: mp=0.518439, mm=0.392361
+Newton: it=0 	 |F|=1.285940e-03
+bare mass: mp=0.518439 	 mm=0.392361
+bicgstab:  itmax 100, tol 1.285940e-06
+bicgstab:     0   1.841e-02
+bicgstab:     1   5.001e-02   1.053e+00   0.000e+00   5.574e-01
+bicgstab:     2   6.823e-02   2.955e+00   3.595e-02   5.422e-01
+bicgstab:     3   3.408e-02   7.181e-01   3.474e-01   9.137e-01
+bicgstab:     4   1.170e-02   9.678e-01   1.850e-01   4.893e-01
+bicgstab:     5   5.765e-04   1.299e+00   2.633e-01   4.017e-01
+bicgstab:     6   2.680e-04   1.413e+00   6.493e-01   2.358e+00
+bicgstab:     7   1.512e-04  -3.139e-01   6.078e-02   4.027e-01
+bicgstab:     8   3.006e-05  -1.428e+00  -2.406e+00   4.667e+00
+bicgstab:     9   1.161e-05   1.547e+00  -3.503e-01   2.086e+00
+bicgstab:    10   3.029e-06   9.270e-01   2.185e-01   8.175e-01
+bicgstab:    11   1.017e-06   1.571e+00   4.583e-01   8.212e-01
+Newton: it=1 	 |F|=1.767400e-07 
+ADM mass error: M_p_err=2.45898e-05, M_m_err=0.000331604
+Bare masses: mp=0.518423, mm=0.39207
+Newton: it=0 	 |F|=4.074719e-04
+bare mass: mp=0.518423 	 mm=0.39207
+bicgstab:  itmax 100, tol 4.074719e-07
+bicgstab:     0   5.823e-03
+bicgstab:     1   1.581e-02   1.053e+00   0.000e+00   5.576e-01
+bicgstab:     2   2.174e-02   3.039e+00   3.538e-02   5.369e-01
+bicgstab:     3   2.484e-02  -9.909e-01   1.041e-01   4.396e-01
+bicgstab:     4   6.225e-04  -4.100e-01  -7.094e+00   2.314e+00
+bicgstab:     5   2.148e-04   1.244e+00  -3.300e-02   4.900e-01
+bicgstab:     6   7.921e-05   1.484e+00   4.860e-01   1.646e+00
+bicgstab:     7   4.070e-05   8.206e-01   4.154e-01   7.683e-01
+bicgstab:     8   1.896e-05   1.445e+00   2.053e-01   5.958e-01
+bicgstab:     9   5.878e-06   9.960e-01   7.958e-01   2.013e+00
+bicgstab:    10   2.807e-06   9.088e-01   1.307e-01   4.863e-01
+bicgstab:    11   4.224e-07   1.673e+00   5.164e-01   4.910e-01
+bicgstab:    12   1.603e-07   6.956e-01   2.767e-01   4.910e-01
+Newton: it=1 	 |F|=3.513462e-08 
+ADM mass error: M_p_err=5.26252e-06, M_m_err=0.000104717
+Bare masses: mp=0.518421, mm=0.391978
+Newton: it=0 	 |F|=1.289665e-04
+bare mass: mp=0.518421 	 mm=0.391978
+bicgstab:  itmax 100, tol 1.289665e-07
+bicgstab:     0   1.842e-03
+bicgstab:     1   5.000e-03   1.053e+00   0.000e+00   5.577e-01
+bicgstab:     2   6.842e-03   2.993e+00   3.610e-02   5.395e-01
+bicgstab:     3   3.454e-03   7.755e-01   3.077e-01   7.747e-01
+bicgstab:     4   9.849e-04   1.179e+00   1.607e-01   4.358e-01
+bicgstab:     5   5.337e-04   3.433e-02  -2.317e-02   1.422e+00
+bicgstab:     6   2.135e-04   2.257e+01  -8.813e-01   8.253e-01
+bicgstab:     7   7.567e-05   8.931e-01   5.400e+00   1.905e+00
+bicgstab:     8   1.662e-05   1.194e+00   1.425e-01   4.280e-01
+bicgstab:     9   3.228e-06   1.235e+00   6.667e-01   1.488e+00
+bicgstab:    10   1.957e-06   9.332e-01   2.320e-01   6.085e-01
+bicgstab:    11   6.826e-07   1.454e+00   4.808e-01   1.036e+00
+bicgstab:    12   2.655e-07   7.272e-01   2.435e-01   6.402e-01
+bicgstab:    13   1.801e-07   2.496e+00   3.541e-01   6.544e-01
+bicgstab:    14   4.646e-08   9.413e-01  -1.024e+00   4.167e-01
+Newton: it=1 	 |F|=8.469336e-09 
+ADM mass error: M_p_err=1.27996e-06, M_m_err=3.31055e-05
+Bare masses: mp=0.51842, mm=0.391949
+Newton: it=0 	 |F|=4.080309e-05
+bare mass: mp=0.51842 	 mm=0.391949
+bicgstab:  itmax 100, tol 4.080309e-08
+bicgstab:     0   5.827e-04
+bicgstab:     1   1.582e-03   1.053e+00   0.000e+00   5.577e-01
+bicgstab:     2   2.162e-03   2.985e+00   3.602e-02   5.399e-01
+bicgstab:     3   1.093e-03   7.743e-01   3.088e-01   7.774e-01
+bicgstab:     4   3.144e-04   1.173e+00   1.626e-01   4.369e-01
+bicgstab:     5   1.805e-04   5.888e-03  -3.580e-03   1.349e+00
+bicgstab:     6   6.903e-05   1.304e+02  -9.795e-01   8.596e-01
+bicgstab:     7   2.511e-05   9.002e-01   3.032e+01   1.889e+00
+bicgstab:     8   5.476e-06   1.235e+00   1.498e-01   4.285e-01
+bicgstab:     9   1.003e-06   1.199e+00   6.900e-01   1.685e+00
+bicgstab:    10   5.408e-07   9.327e-01   2.107e-01   5.573e-01
+bicgstab:    11   1.439e-07   1.487e+00   4.889e-01   1.467e+00
+bicgstab:    12   4.589e-08   7.352e-01   2.493e-01   5.456e-01
+bicgstab:    13   4.142e-08   2.466e+00   3.735e-01   5.610e-01
+bicgstab:    14   1.758e-08   8.027e-01  -1.143e+00   5.610e-01
+Newton: it=1 	 |F|=2.803887e-09 
+ADM mass error: M_p_err=3.45656e-07, M_m_err=1.04695e-05
+Bare masses: mp=0.51842, mm=0.39194
+Newton: it=0 	 |F|=1.290727e-05
+bare mass: mp=0.51842 	 mm=0.39194
+bicgstab:  itmax 100, tol 1.290727e-08
+bicgstab:     0   1.843e-04
+bicgstab:     1   5.002e-04   1.053e+00   0.000e+00   5.577e-01
+bicgstab:     2   6.843e-04   2.992e+00   3.595e-02   5.394e-01
+bicgstab:     3   3.450e-04   8.393e-01   2.829e-01   6.752e-01
+bicgstab:     4   5.481e-04   6.018e+00   1.219e-01   4.000e-01
+bicgstab:     5   4.852e-06   7.053e-02  -6.265e+01   2.118e+00
+bicgstab:     6   5.335e-06   2.110e+00  -4.096e-03   1.697e+00
+bicgstab:     7   2.114e-06   8.421e-01   5.865e-01   5.814e-01
+bicgstab:     8   8.730e-07   1.264e+00   1.590e-01   7.548e-01
+bicgstab:     9   2.455e-07   1.151e+00   7.151e-01   9.758e-01
+bicgstab:    10   1.402e-07   9.232e-01   1.939e-01   7.969e-01
+bicgstab:    11   3.854e-08   1.520e+00   4.916e-01   5.972e-01
+bicgstab:    12   1.458e-08   7.247e-01   2.627e-01   9.594e-01
+bicgstab:    13   1.415e-08   2.541e+00   3.700e-01   5.585e-01
+bicgstab:    14   7.494e-09   7.893e-01  -1.294e+00   5.585e-01
+Newton: it=1 	 |F|=1.037764e-09 
+ADM mass error: M_p_err=1.00264e-07, M_m_err=3.31129e-06
+Bare masses: mp=0.51842, mm=0.391937
+Newton: it=0 	 |F|=4.082715e-06
+bare mass: mp=0.51842 	 mm=0.391937
+bicgstab:  itmax 100, tol 4.082715e-09
+bicgstab:     0   5.830e-05
+bicgstab:     1   1.582e-04   1.053e+00   0.000e+00   5.578e-01
+bicgstab:     2   2.184e-04   3.077e+00   3.582e-02   5.346e-01
+bicgstab:     3   2.958e-04  -1.624e+00   1.146e-01   4.220e-01
+bicgstab:     4   3.135e-06  -2.418e-01  -1.379e+01   2.290e+00
+bicgstab:     5   1.996e-06   1.241e+00  -1.324e-02   6.731e-01
+bicgstab:     6   9.121e-07   1.606e+00   5.089e-01   1.251e+00
+bicgstab:     7   4.030e-07   8.076e-01   4.684e-01   9.535e-01
+bicgstab:     8   1.986e-07   1.273e+00   1.639e-01   5.369e-01
+bicgstab:     9   5.977e-08   1.127e+00   7.252e-01   2.181e+00
+bicgstab:    10   2.604e-08   9.355e-01   1.888e-01   4.580e-01
+bicgstab:    11   4.060e-09   1.503e+00   5.069e-01   5.308e-01
+Newton: it=1 	 |F|=8.225950e-10 
+ADM mass error: M_p_err=3.02972e-08, M_m_err=1.04732e-06
+Bare masses: mp=0.51842, mm=0.391936
+Newton: it=0 	 |F|=1.291353e-06
+bare mass: mp=0.51842 	 mm=0.391936
+bicgstab:  itmax 100, tol 1.291353e-09
+bicgstab:     0   1.844e-05
+bicgstab:     1   5.004e-05   1.053e+00   0.000e+00   5.578e-01
+bicgstab:     2   6.836e-05   2.977e+00   3.621e-02   5.403e-01
+bicgstab:     3   3.344e-05   6.966e-01   3.566e-01   9.780e-01
+bicgstab:     4   1.176e-05   9.083e-01   1.793e-01   5.165e-01
+bicgstab:     5   1.628e-06   1.140e+00   2.575e-01   4.364e-01
+bicgstab:     6   8.962e-07   1.371e+00   6.831e-01   2.323e+00
+bicgstab:     7   1.121e-07   7.323e-01   3.977e-01   4.107e-01
+bicgstab:     8   3.367e-08   1.123e+00   1.501e-01   4.146e+00
+bicgstab:     9   1.899e-08   1.200e+00   6.848e-01   8.010e-01
+bicgstab:    10   5.665e-09   9.321e-01   2.681e-01   8.834e-01
+bicgstab:    11   1.361e-09   1.376e+00   4.798e-01   7.824e-01
+bicgstab:    12   8.632e-10   7.046e-01   2.130e-01   5.639e-01
+Newton: it=1 	 |F|=1.968086e-10 
+ADM mass error: M_p_err=9.40025e-09, M_m_err=3.31263e-07
+Bare masses: mp=0.51842, mm=0.391936
+Newton: it=0 	 |F|=4.084543e-07
+bare mass: mp=0.51842 	 mm=0.391936
+bicgstab:  itmax 100, tol 4.084543e-10
+bicgstab:     0   5.832e-06
+bicgstab:     1   1.583e-05   1.053e+00   0.000e+00   5.578e-01
+bicgstab:     2   2.184e-05   3.070e+00   3.617e-02   5.350e-01
+bicgstab:     3   6.430e-06   1.596e+00   1.895e-01   4.241e-01
+bicgstab:     4   5.471e-07   2.063e-01  -2.089e+00   2.274e+00
+bicgstab:     5   2.038e-07   1.399e+00  -4.531e-02   5.097e-01
+bicgstab:     6   7.401e-08   1.777e+00   5.429e-01   1.512e+00
+bicgstab:     7   3.320e-08   7.960e-01   5.359e-01   8.352e-01
+bicgstab:     8   1.900e-08   1.081e+00   1.216e-01   7.487e-01
+bicgstab:     9   6.892e-09   1.362e+00   6.148e-01   9.315e-01
+bicgstab:    10   3.040e-09   9.635e-01   3.173e-01   6.195e-01
+bicgstab:    11   4.887e-10   1.312e+00   4.800e-01   5.231e-01
+bicgstab:    12   3.308e-10   6.594e-01   1.736e-01   5.231e-01
+Newton: it=1 	 |F|=7.927854e-11 
+ADM mass error: M_p_err=2.93877e-09, M_m_err=1.04776e-07
+Bare masses: mp=0.51842, mm=0.391936
+Newton: it=0 	 |F|=1.291919e-07
+bare mass: mp=0.51842 	 mm=0.391936
+bicgstab:  itmax 100, tol 1.291919e-10
+bicgstab:     0   1.845e-06
+bicgstab:     1   5.007e-06   1.053e+00   0.000e+00   5.578e-01
+bicgstab:     2   6.878e-06   3.028e+00   3.637e-02   5.374e-01
+bicgstab:     3   3.450e-06   7.974e-01   2.920e-01   7.334e-01
+bicgstab:     4   6.800e-07   1.429e+00   1.390e-01   4.155e-01
+bicgstab:     5   1.142e-07   2.101e-01  -7.180e-01   2.109e+00
+bicgstab:     6   7.175e-08   3.261e+00  -2.060e-01   7.593e-01
+bicgstab:     7   2.152e-08   8.392e-01   9.138e-01   1.908e+00
+bicgstab:     8   6.801e-09   9.831e-01   1.008e-01   4.283e-01
+bicgstab:     9   1.804e-09   1.573e+00   5.302e-01   1.944e+00
+bicgstab:    10   5.632e-10   9.868e-01   4.561e-01   4.370e-01
+bicgstab:    11   1.076e-10   1.181e+00   4.529e-01   1.963e+00
+Newton: it=1 	 |F|=1.592855e-11 
+ADM mass error: M_p_err=9.23958e-10, M_m_err=3.31406e-08
+Bare masses: mp=0.51842, mm=0.391936
+Newton: it=0 	 |F|=4.086377e-08
+bare mass: mp=0.51842 	 mm=0.391936
+bicgstab:  itmax 100, tol 4.086377e-11
+bicgstab:     0   5.835e-07
+bicgstab:     1   1.584e-06   1.053e+00   0.000e+00   5.578e-01
+bicgstab:     2   2.206e-06   3.159e+00   3.579e-02   5.302e-01
+bicgstab:     3   1.514e-06   9.780e-02  -4.708e-02   9.590e-01
+bicgstab:     4   3.499e-07   4.277e+00  -6.708e-01   1.355e+00
+bicgstab:     5   4.589e-08   1.167e+00   6.576e-01   4.064e-01
+bicgstab:     6   6.038e-09   1.590e+00   5.125e-01   2.458e+00
+bicgstab:     7   3.602e-09   8.010e-01   4.646e-01   1.119e+00
+bicgstab:     8   1.776e-09   1.258e+00   1.582e-01   5.342e-01
+bicgstab:     9   6.417e-10   1.143e+00   7.192e-01   5.970e-01
+bicgstab:    10   3.282e-10   9.436e-01   1.989e-01   1.682e+00
+bicgstab:    11   3.704e-11   1.469e+00   5.127e-01   3.288e-01
+Newton: it=1 	 |F|=6.965460e-12 
+ADM mass error: M_p_err=2.90948e-10, M_m_err=1.04822e-08
+Bare masses: mp=0.51842, mm=0.391936
+Newton: it=0 	 |F|=1.292487e-08
+bare mass: mp=0.51842 	 mm=0.391936
+bicgstab:  itmax 100, tol 1.292487e-11
+bicgstab:     0   1.846e-07
+bicgstab:     1   5.008e-07   1.052e+00   0.000e+00   5.577e-01
+bicgstab:     2   6.812e-07   2.943e+00   3.549e-02   5.424e-01
+bicgstab:     3   3.479e-07   8.278e-01   2.920e-01   6.927e-01
+bicgstab:     4   4.125e-08   2.249e+00   1.499e-01   4.010e-01
+bicgstab:     5   5.057e-09   1.803e-01  -4.149e+00   2.124e+00
+bicgstab:     6   5.553e-09   2.134e+00  -5.104e-02   1.701e+00
+bicgstab:     7   2.330e-09   8.601e-01   5.482e-01   5.725e-01
+bicgstab:     8   8.755e-10   1.456e+00   1.977e-01   6.555e-01
+bicgstab:     9   2.176e-10   1.009e+00   8.009e-01   1.669e+00
+bicgstab:    10   1.145e-10   8.966e-01   1.303e-01   5.748e-01
+bicgstab:    11   2.077e-11   1.724e+00   5.060e-01   6.707e-01
+bicgstab:    12   1.061e-11   6.690e-01   2.756e-01   6.707e-01
+Newton: it=1 	 |F|=3.362859e-12 
+ADM mass error: M_p_err=9.21601e-11, M_m_err=3.31537e-09
+Found bare masses resulted Mp = 0.553846 and Mm = 0.446154
+Newton: it=0 	 |F|=4.087967e-09
+bare mass: mp=0.51842 	 mm=0.391936
+bicgstab:  itmax 100, tol 4.087967e-12
+bicgstab:     0   5.837e-08
+bicgstab:     1   1.584e-07   1.053e+00   0.000e+00   5.578e-01
+bicgstab:     2   2.184e-07   3.062e+00   3.635e-02   5.355e-01
+bicgstab:     3   1.007e-07   1.033e+00   2.320e-01   5.239e-01
+bicgstab:     4   5.221e-08   1.904e-01  -1.640e-01   1.475e+00
+bicgstab:     5   6.544e-09   2.206e+00  -3.343e-01   4.374e-01
+bicgstab:     6   1.469e-09   1.935e+00   7.197e-01   2.256e+00
+bicgstab:     7   3.452e-10   7.917e-01   5.837e-01   5.262e-01
+bicgstab:     8   1.862e-10   9.703e-01   9.883e-02   1.458e+00
+bicgstab:     9   6.118e-11   1.588e+00   5.310e-01   5.259e-01
+bicgstab:    10   2.003e-11   9.957e-01   4.810e-01   1.050e+00
+bicgstab:    11   6.396e-12   1.143e+00   4.525e-01   5.545e-01
+bicgstab:    12   2.417e-12   4.148e-01   7.499e-02   2.821e+00
+Newton: it=1 	 |F|=1.543882e-12 
+The two puncture masses are mp = 0.51842 and mm = 0.391936
+                   resulted Mp = 0.553846 and Mm = 0.446154
+The total ADM mass is 0.989946
+===============================================================
+Initial data is successfully producede!!
+
+ The TwoPunctureABE simulation is finished 
+
+
+ Successfully copy all AMSS-NCKU input parfile to target dictionary. 
+
+
+
+
+ Running the AMSS-NCKU executable file ABE/ABEGPU 
+
+
+ /////////////////////////////////////////////////////////////// 
+ AMSS-NCKU Begin !!! 
+ /////////////////////////////////////////////////////////////// 
+
+                                 new run
+   simulation with cpu numbers = 128
+               simulation time = (0, 5)
+ simulation steps for this run = 10000000
+                Courant number = 0.5
+            Initial Data Type: Numerical Ansorg TwoPuncture
+             Symmetry setting: Equatorial
+ Courant = 0.5
+ artificial dissipation for shell patches = 0.15
+ artificial dissipation for fixed levels = 0.15
+ artificial dissipation for moving levels = 0.15
+ Dumpt Time = 100
+ Check Time = 100
+ Analysis Time = 0.1
+ Analysis level = 0
+ checkfile = bssn.chk
+ fourth order finite difference is used
+///////////////////////////////////////////////////////////////
+-----------------------------------------------------------------------
+ spherical integration for wave form extraction with Gauss method      
+ N_phi   = 384
+ N_theta = 192
+-----------------------------------------------------------------------
+ chitiny = 1e-05
+ time refinement start from level #3
+ checkpoint class created 
+ BSSN class successfully created 
+ you have setted 167 grid functions.
+
+ cgh has levels: 9
+
+ level #0 has boxes: 1
+ #0 box is  (-320:320,-320:320,0:320).
+ level #1 has boxes: 1
+ #0 box is  (-160:160,-160:160,0:160).
+ level #2 has boxes: 1
+ #0 box is  (-80:80,-80:80,0:80).
+ level #3 has boxes: 1
+ #0 box is  (-40:40,-40:40,0:40).
+ level #4 has boxes: 1
+ #0 box is  (-20:20,-20:20,0:20).
+ level #5 has boxes: 2
+ #0 box is  (-5:5,-0.625:9.375,0:5).
+ #1 box is  (-5:5,-10.625:-0.625,0:5).
+ level #6 has boxes: 2
+ #0 box is  (-2.5:2.5,1.97917:6.97917,0:2.5).
+ #1 box is  (-2.5:2.5,-8.02083:-3.02083,0:2.5).
+ level #7 has boxes: 2
+ #0 box is  (-1.25:1.25,3.22917:5.72917,0:1.25).
+ #1 box is  (-1.25:1.25,-6.77083:-4.27083,0:1.25).
+ level #8 has boxes: 2
+ #0 box is  (-0.625:0.625,3.82812:5.07812,0:0.625).
+ #1 box is  (-0.625:0.625,-6.17188:-4.92188,0:0.625).
+
+ moving levels are lev #5--8
+
+ belong to level 0
+ shape: [96,96,48] resolution: [6.66667,6.66667,6.66667]
+ range:(-320:320,-320:320,0:320)
+ belong to level 1
+ shape: [96,96,48] resolution: [3.33333,3.33333,3.33333]
+ range:(-160:160,-160:160,0:160)
+ belong to level 2
+ shape: [96,96,48] resolution: [1.66667,1.66667,1.66667]
+ range:(-80:80,-80:80,0:80)
+ belong to level 3
+ shape: [96,96,48] resolution: [0.833333,0.833333,0.833333]
+ range:(-40:40,-40:40,0:40)
+ belong to level 4
+ shape: [96,96,48] resolution: [0.416667,0.416667,0.416667]
+ range:(-20:20,-20:20,0:20)
+ belong to level 5
+ shape: [48,96,24] resolution: [0.208333,0.208333,0.208333]
+ range:(-5:5,-10.625:9.375,0:5)
+ belong to level 6
+ shape: [48,48,24] resolution: [0.104167,0.104167,0.104167]
+ range:(-2.5:2.5,1.97917:6.97917,0:2.5)
+ belong to level 6
+ shape: [48,48,24] resolution: [0.104167,0.104167,0.104167]
+ range:(-2.5:2.5,-8.02083:-3.02083,0:2.5)
+ belong to level 7
+ shape: [48,48,24] resolution: [0.0520833,0.0520833,0.0520833]
+ range:(-1.25:1.25,3.22917:5.72917,0:1.25)
+ belong to level 7
+ shape: [48,48,24] resolution: [0.0520833,0.0520833,0.0520833]
+ range:(-1.25:1.25,-6.77083:-4.27083,0:1.25)
+ belong to level 8
+ shape: [48,48,24] resolution: [0.0260417,0.0260417,0.0260417]
+ range:(-0.625:0.625,3.82812:5.07812,0:0.625)
+ belong to level 8
+ shape: [48,48,24] resolution: [0.0260417,0.0260417,0.0260417]
+ range:(-0.625:0.625,-6.17188:-4.92188,0:0.625)
+
+ initial information of 2 Black Hole(s) 
+        Mass           x           y           z              Px              Py          Pz          Sx          Sy          Sz
+     0.51842           0     4.46154           0      -0.0953015    -0.000845415           0           0           0   0.0950911
+    0.391936           0    -5.53846           0       0.0953015     0.000845415           0           0           0  -0.0915645
+
+ Read initial data from Ansorg's solver, please be sure the input parameters for black holes are puncture parameters!! 
+
+  reading data from Ansorg.psid
+  found data with dimensions 50 x 50 x 26 = 65000
+  bhx1 = 0
+  bhy1 = 4.46154
+  bhz1 = 0
+  bhx2 = 0
+  bhy2 = -5.53846
+  bhz2 = 0
+  read 65000 data lines
+
+
+ Before Evolve, it takes 1.34978 seconds
+
+
+ Timestep # 1: integrating to time: 0.416667    Computer used 15.4644 seconds! 
+ Memory usage: current 3.549e+04/277.3/3.549e+04MB, peak 3.549e+04/277.3/3.549e+04MB
+
+ puncture position: no. 0 = (-0.00133515 4.46153 1.40621e-09)
+ puncture position: no. 1 = (0.00303045 -5.5384 7.13936e-08)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 2: integrating to time: 0.833333    Computer used 16.5403 seconds! 
+ Memory usage: current 3.663e+04/286.2/3.663e+04MB, peak 3.663e+04/286.2/3.663e+04MB
+
+ puncture position: no. 0 = (-0.0115119 4.46147 3.18205e-09)
+ puncture position: no. 1 = (0.0206168 -5.53805 3.46215e-08)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 3: integrating to time: 1.25    Computer used 15.5072 seconds! 
+ Memory usage: current 3.716e+04/290.3/3.716e+04MB, peak 3.716e+04/290.3/3.716e+04MB
+
+ puncture position: no. 0 = (-0.029844 4.46122 1.23941e-08)
+ puncture position: no. 1 = (0.0486361 -5.53743 1.04331e-07)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 4: integrating to time: 1.66667    Computer used 15.3357 seconds! 
+ Memory usage: current 3.758e+04/293.6/3.758e+04MB, peak 3.758e+04/293.6/3.758e+04MB
+
+ puncture position: no. 0 = (-0.0532202 4.46075 2.97806e-08)
+ puncture position: no. 1 = (0.082376 -5.53632 9.48886e-07)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 5: integrating to time: 2.08333    Computer used 16.431 seconds! 
+ Memory usage: current 3.788e+04/296/3.788e+04MB, peak 3.788e+04/296/3.788e+04MB
+
+ puncture position: no. 0 = (-0.0799732 4.46009 1.38676e-07)
+ puncture position: no. 1 = (0.119446 -5.53453 2.45993e-06)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 6: integrating to time: 2.5    Computer used 15.6817 seconds! 
+ Memory usage: current 3.825e+04/298.8/3.825e+04MB, peak 3.825e+04/298.8/3.825e+04MB
+
+ puncture position: no. 0 = (-0.109148 4.45926 1.59409e-07)
+ puncture position: no. 1 = (0.158526 -5.53154 3.03427e-06)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 7: integrating to time: 2.91667    Computer used 15.6484 seconds! 
+ Memory usage: current 3.843e+04/300.3/3.843e+04MB, peak 3.843e+04/300.3/3.843e+04MB
+
+ puncture position: no. 0 = (-0.139962 4.45804 4.2381e-06)
+ puncture position: no. 1 = (0.198675 -5.5275 5.33122e-06)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 8: integrating to time: 3.33333    Computer used 15.5045 seconds! 
+ Memory usage: current 3.86e+04/301.6/3.86e+04MB, peak 3.86e+04/301.6/3.86e+04MB
+
+ puncture position: no. 0 = (-0.171774 4.45544 1.23511e-05)
+ puncture position: no. 1 = (0.240809 -5.52368 2.28823e-06)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 9: integrating to time: 3.75    Computer used 15.4853 seconds! 
+ Memory usage: current 3.881e+04/303.2/3.881e+04MB, peak 3.881e+04/303.2/3.881e+04MB
+
+ puncture position: no. 0 = (-0.204588 4.45437 3.53138e-06)
+ puncture position: no. 1 = (0.283942 -5.52006 1.61768e-06)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 10: integrating to time: 4.16667    Computer used 15.6274 seconds! 
+ Memory usage: current 3.892e+04/304.1/3.892e+04MB, peak 3.892e+04/304.1/3.892e+04MB
+
+ puncture position: no. 0 = (-0.238301 4.45271 2.65872e-06)
+ puncture position: no. 1 = (0.327893 -5.51638 1.07707e-06)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 11: integrating to time: 4.58333    Computer used 16.1206 seconds! 
+ Memory usage: current 3.904e+04/305/3.904e+04MB, peak 3.904e+04/305/3.904e+04MB
+
+ puncture position: no. 0 = (-0.272875 4.45017 1.85377e-06)
+ puncture position: no. 1 = (0.372377 -5.51239 4.84317e-07)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 12: integrating to time: 5    Computer used 16.313 seconds! 
+ Memory usage: current 3.914e+04/305.8/3.914e+04MB, peak 3.914e+04/305.8/3.914e+04MB
+
+ puncture position: no. 0 = (-0.308116 4.44695 9.65973e-07)
+ puncture position: no. 1 = (0.417151 -5.50795 1.40221e-07)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 13: integrating to time: 5.41667    Computer used 15.6821 seconds! 
+
+ Total Evolve Time: 206.478 seconds!
+ Total Running Time: 207.828 seconds!
+
+
+ =============================================================== 
+ Simulation is successfully done!! 
+ =============================================================== 
+
+ This run used 207.829 seconds! 
+
+
+ The ABE/ABEGPU simulation is finished 
+
+
+ Plotting the txt and binary results data from the AMSS-NCKU simulation 
+
+
+ Plotting the black holes' trajectory (2D plot)
+
+ Corresponding data file =  GW150914_1077_128/AMSS_NCKU_output/binary_output/bssn_BH.dat
+
+ Black holes' trajectory plot has been finished (2D plot)
+
+
+ Plotting the black holes' trajectory (3D plot) 
+
+ Corresponding data file =  GW150914_1077_128/AMSS_NCKU_output/binary_output/bssn_BH.dat
+
+ Black holes' trajectory plot has been finished (3D plot)
+
+
+ Plotting the black hole relative distance 
+
+ Corresponding data file =  GW150914_1077_128/AMSS_NCKU_output/binary_output/bssn_BH.dat
+
+ black hole relative distance plot has been finished 
+
+
+ Plotting the Weyl conformal component Psi4 
+
+ corresponding data file =  GW150914_1077_128/AMSS_NCKU_output/binary_output/bssn_psi4.dat
+
+ Begin the Weyl conformal Psi4 plot for detector number =  0
+ The Weyl Conformal component Psi4 plot has been finished   detector number  0
+
+
+Plotting the gravitational-wave strain amplitude h
+
+The corresponding data file is GW150914_1077_128/AMSS_NCKU_output/binary_output/bssn_psi4.dat
+
+
+Plotting gravitational-wave data for detector no. 0
+Gravitational-wave plot for detector no. 0 finished.
+
+ Begin the Weyl conformal Psi4 plot for detector number =  1
+ The Weyl Conformal component Psi4 plot has been finished   detector number  1
+
+
+Plotting gravitational-wave data for detector no. 1
+Gravitational-wave plot for detector no. 1 finished.
+
+ Begin the Weyl conformal Psi4 plot for detector number =  2
+ The Weyl Conformal component Psi4 plot has been finished   detector number  2
+
+
+Plotting gravitational-wave data for detector no. 2
+Gravitational-wave plot for detector no. 2 finished.
+
+ Begin the Weyl conformal Psi4 plot for detector number =  3
+ The Weyl Conformal component Psi4 plot has been finished   detector number  3
+
+
+Plotting gravitational-wave data for detector no. 3
+Gravitational-wave plot for detector no. 3 finished.
+
+ Begin the Weyl conformal Psi4 plot for detector number =  4
+ The Weyl Conformal component Psi4 plot has been finished   detector number  4
+
+
+Plotting gravitational-wave data for detector no. 4
+Gravitational-wave plot for detector no. 4 finished.
+
+ Begin the Weyl conformal Psi4 plot for detector number =  5
+ The Weyl Conformal component Psi4 plot has been finished   detector number  5
+
+
+Plotting gravitational-wave data for detector no. 5
+Gravitational-wave plot for detector no. 5 finished.
+
+ Begin the Weyl conformal Psi4 plot for detector number =  6
+ The Weyl Conformal component Psi4 plot has been finished   detector number  6
+
+
+Plotting gravitational-wave data for detector no. 6
+Gravitational-wave plot for detector no. 6 finished.
+
+ Begin the Weyl conformal Psi4 plot for detector number =  7
+ The Weyl Conformal component Psi4 plot has been finished   detector number  7
+
+
+Plotting gravitational-wave data for detector no. 7
+Gravitational-wave plot for detector no. 7 finished.
+
+ Begin the Weyl conformal Psi4 plot for detector number =  8
+ The Weyl Conformal component Psi4 plot has been finished   detector number  8
+
+
+Plotting gravitational-wave data for detector no. 8
+Gravitational-wave plot for detector no. 8 finished.
+
+ Begin the Weyl conformal Psi4 plot for detector number =  9
+ The Weyl Conformal component Psi4 plot has been finished   detector number  9
+
+
+Plotting gravitational-wave data for detector no. 9
+Gravitational-wave plot for detector no. 9 finished.
+
+ Begin the Weyl conformal Psi4 plot for detector number =  10
+ The Weyl Conformal component Psi4 plot has been finished   detector number  10
+
+
+Plotting gravitational-wave data for detector no. 10
+Gravitational-wave plot for detector no. 10 finished.
+
+ Begin the Weyl conformal Psi4 plot for detector number =  11
+ The Weyl Conformal component Psi4 plot has been finished   detector number  11
+
+
+ The Weyl conformal component Psi4 plots have been finished 
+
+
+Plotting gravitational-wave data for detector no. 11
+Gravitational-wave plot for detector no. 11 finished.
+
+All gravitational-wave strain amplitude plots finished.
+
+
+ Plotting the ADM mass and angular momentum 
+
+ corresponding data file =  GW150914_1077_128/AMSS_NCKU_output/binary_output/bssn_ADMQs.dat
+
+ Begin the ADM momentum plot for detector number =   0
+ ADM momentum plot has been finished, detector number =   0
+
+ Begin the ADM momentum plot for detector number =   1
+ ADM momentum plot has been finished, detector number =   1
+
+ Begin the ADM momentum plot for detector number =   2
+ ADM momentum plot has been finished, detector number =   2
+
+ Begin the ADM momentum plot for detector number =   3
+ ADM momentum plot has been finished, detector number =   3
+
+ Begin the ADM momentum plot for detector number =   4
+ ADM momentum plot has been finished, detector number =   4
+
+ Begin the ADM momentum plot for detector number =   5
+ ADM momentum plot has been finished, detector number =   5
+
+ Begin the ADM momentum plot for detector number =   6
+ ADM momentum plot has been finished, detector number =   6
+
+ Begin the ADM momentum plot for detector number =   7
+ ADM momentum plot has been finished, detector number =   7
+
+ Begin the ADM momentum plot for detector number =   8
+ ADM momentum plot has been finished, detector number =   8
+
+ Begin the ADM momentum plot for detector number =   9
+ ADM momentum plot has been finished, detector number =   9
+
+ Begin the ADM momentum plot for detector number =   10
+ ADM momentum plot has been finished, detector number =   10
+
+ Begin the ADM momentum plot for detector number =   11
+ ADM momentum plot has been finished, detector number =   11
+
+ The ADM mass and augular momentum plots have been finished 
+
+
+ Plotting the constraint violation for each grid level
+
+ corresponding data file =  GW150914_1077_128/AMSS_NCKU_output/binary_output/bssn_constraint.dat
+
+ Begin the constraint violation plot for grid level number =   0
+ Constraint violation plot has been finished, grid level number =  0
+
+ Begin the constraint violation plot for grid level number =   1
+ Constraint violation plot has been finished, grid level number =  1
+
+ Begin the constraint violation plot for grid level number =   2
+ Constraint violation plot has been finished, grid level number =  2
+
+ Begin the constraint violation plot for grid level number =   3
+ Constraint violation plot has been finished, grid level number =  3
+
+ Begin the constraint violation plot for grid level number =   4
+ Constraint violation plot has been finished, grid level number =  4
+
+ Begin the constraint violation plot for grid level number =   5
+ Constraint violation plot has been finished, grid level number =  5
+
+ Begin the constraint violation plot for grid level number =   6
+ Constraint violation plot has been finished, grid level number =  6
+
+ Begin the constraint violation plot for grid level number =   7
+ Constraint violation plot has been finished, grid level number =  7
+
+ Begin the constraint violation plot for grid level number =   8
+ Constraint violation plot has been finished, grid level number =  8
+
+ Constraint violation plot has been finished 
+
+
+ Reading AMSS-NCKU Binary Data From Output 
+
+ List of binary data 
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev00-00_Cons_Ham_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev00-00_Cons_Px_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev00-00_Cons_Py_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev00-00_Cons_Pz_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev00-00_Lap0_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev00-00_gxx0_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev00-00_gxy0_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev00-00_gxz0_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev00-00_gyy0_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev00-00_gyz0_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev00-00_gzz0_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev00-00_phi0_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev00-00_trK0_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev01-00_Cons_Ham_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev01-00_Cons_Px_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev01-00_Cons_Py_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev01-00_Cons_Pz_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev01-00_Lap0_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev01-00_gxx0_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev01-00_gxy0_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev01-00_gxz0_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev01-00_gyy0_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev01-00_gyz0_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev01-00_gzz0_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev01-00_phi0_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev01-00_trK0_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev02-00_Cons_Ham_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev02-00_Cons_Px_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev02-00_Cons_Py_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev02-00_Cons_Pz_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev02-00_Lap0_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev02-00_gxx0_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev02-00_gxy0_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev02-00_gxz0_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev02-00_gyy0_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev02-00_gyz0_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev02-00_gzz0_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev02-00_phi0_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev02-00_trK0_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev03-00_Cons_Ham_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev03-00_Cons_Px_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev03-00_Cons_Py_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev03-00_Cons_Pz_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev03-00_Lap0_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev03-00_gxx0_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev03-00_gxy0_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev03-00_gxz0_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev03-00_gyy0_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev03-00_gyz0_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev03-00_gzz0_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev03-00_phi0_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev03-00_trK0_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev04-00_Cons_Ham_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev04-00_Cons_Px_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev04-00_Cons_Py_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev04-00_Cons_Pz_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev04-00_Lap0_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev04-00_gxx0_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev04-00_gxy0_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev04-00_gxz0_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev04-00_gyy0_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev04-00_gyz0_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev04-00_gzz0_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev04-00_phi0_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev04-00_trK0_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev05-00_Cons_Ham_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev05-00_Cons_Px_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev05-00_Cons_Py_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev05-00_Cons_Pz_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev05-00_Lap0_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev05-00_gxx0_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev05-00_gxy0_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev05-00_gxz0_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev05-00_gyy0_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev05-00_gyz0_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev05-00_gzz0_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev05-00_phi0_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev05-00_trK0_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev06-00_Cons_Ham_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev06-00_Cons_Px_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev06-00_Cons_Py_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev06-00_Cons_Pz_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev06-00_Lap0_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev06-00_gxx0_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev06-00_gxy0_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev06-00_gxz0_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev06-00_gyy0_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev06-00_gyz0_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev06-00_gzz0_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev06-00_phi0_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev06-00_trK0_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev06-01_Cons_Ham_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev06-01_Cons_Px_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev06-01_Cons_Py_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev06-01_Cons_Pz_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev06-01_Lap0_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev06-01_gxx0_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev06-01_gxy0_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev06-01_gxz0_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev06-01_gyy0_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev06-01_gyz0_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev06-01_gzz0_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev06-01_phi0_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev06-01_trK0_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev07-00_Cons_Ham_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev07-00_Cons_Px_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev07-00_Cons_Py_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev07-00_Cons_Pz_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev07-00_Lap0_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev07-00_gxx0_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev07-00_gxy0_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev07-00_gxz0_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev07-00_gyy0_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev07-00_gyz0_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev07-00_gzz0_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev07-00_phi0_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev07-00_trK0_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev07-01_Cons_Ham_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev07-01_Cons_Px_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev07-01_Cons_Py_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev07-01_Cons_Pz_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev07-01_Lap0_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev07-01_gxx0_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev07-01_gxy0_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev07-01_gxz0_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev07-01_gyy0_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev07-01_gyz0_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev07-01_gzz0_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev07-01_phi0_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev07-01_trK0_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev08-00_Cons_Ham_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev08-00_Cons_Px_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev08-00_Cons_Py_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev08-00_Cons_Pz_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev08-00_Lap0_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev08-00_gxx0_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev08-00_gxy0_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev08-00_gxz0_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev08-00_gyy0_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev08-00_gyz0_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev08-00_gzz0_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev08-00_phi0_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev08-00_trK0_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev08-01_Cons_Ham_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev08-01_Cons_Px_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev08-01_Cons_Py_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev08-01_Cons_Pz_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev08-01_Lap0_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev08-01_gxx0_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev08-01_gxy0_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev08-01_gxz0_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev08-01_gyy0_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev08-01_gyz0_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev08-01_gzz0_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev08-01_phi0_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev08-01_trK0_00000.bin
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev00-00_Cons_Ham_00000.bin
+
+reading binary data from file = Lev00-00_Cons_Ham_00000.bin
+obtained data shape  = (442368,)
+obtained data size   = 442368
+obtained data points = 96 * 96 * 48 = 442368
+coordinate minimum = [np.float64(-320.0), np.float64(-320.0), np.float64(0.0)]
+coordinate maximum = [np.float64(320.0), np.float64(320.0), np.float64(320.0)]
+grid point         = [np.int32(96), np.int32(96), np.int32(48)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev00-00_Cons_Ham_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev00-00_Cons_Px_00000.bin
+
+reading binary data from file = Lev00-00_Cons_Px_00000.bin
+obtained data shape  = (442368,)
+obtained data size   = 442368
+obtained data points = 96 * 96 * 48 = 442368
+coordinate minimum = [np.float64(-320.0), np.float64(-320.0), np.float64(0.0)]
+coordinate maximum = [np.float64(320.0), np.float64(320.0), np.float64(320.0)]
+grid point         = [np.int32(96), np.int32(96), np.int32(48)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev00-00_Cons_Px_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev00-00_Cons_Py_00000.bin
+
+reading binary data from file = Lev00-00_Cons_Py_00000.bin
+obtained data shape  = (442368,)
+obtained data size   = 442368
+obtained data points = 96 * 96 * 48 = 442368
+coordinate minimum = [np.float64(-320.0), np.float64(-320.0), np.float64(0.0)]
+coordinate maximum = [np.float64(320.0), np.float64(320.0), np.float64(320.0)]
+grid point         = [np.int32(96), np.int32(96), np.int32(48)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev00-00_Cons_Py_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev00-00_Cons_Pz_00000.bin
+
+reading binary data from file = Lev00-00_Cons_Pz_00000.bin
+obtained data shape  = (442368,)
+obtained data size   = 442368
+obtained data points = 96 * 96 * 48 = 442368
+coordinate minimum = [np.float64(-320.0), np.float64(-320.0), np.float64(0.0)]
+coordinate maximum = [np.float64(320.0), np.float64(320.0), np.float64(320.0)]
+grid point         = [np.int32(96), np.int32(96), np.int32(48)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev00-00_Cons_Pz_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev00-00_Lap0_00000.bin
+
+reading binary data from file = Lev00-00_Lap0_00000.bin
+obtained data shape  = (442368,)
+obtained data size   = 442368
+obtained data points = 96 * 96 * 48 = 442368
+coordinate minimum = [np.float64(-320.0), np.float64(-320.0), np.float64(0.0)]
+coordinate maximum = [np.float64(320.0), np.float64(320.0), np.float64(320.0)]
+grid point         = [np.int32(96), np.int32(96), np.int32(48)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev00-00_Lap0_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev00-00_gxx0_00000.bin
+
+reading binary data from file = Lev00-00_gxx0_00000.bin
+obtained data shape  = (442368,)
+obtained data size   = 442368
+obtained data points = 96 * 96 * 48 = 442368
+coordinate minimum = [np.float64(-320.0), np.float64(-320.0), np.float64(0.0)]
+coordinate maximum = [np.float64(320.0), np.float64(320.0), np.float64(320.0)]
+grid point         = [np.int32(96), np.int32(96), np.int32(48)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev00-00_gxx0_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev00-00_gxy0_00000.bin
+
+reading binary data from file = Lev00-00_gxy0_00000.bin
+obtained data shape  = (442368,)
+obtained data size   = 442368
+obtained data points = 96 * 96 * 48 = 442368
+coordinate minimum = [np.float64(-320.0), np.float64(-320.0), np.float64(0.0)]
+coordinate maximum = [np.float64(320.0), np.float64(320.0), np.float64(320.0)]
+grid point         = [np.int32(96), np.int32(96), np.int32(48)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev00-00_gxy0_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev00-00_gxz0_00000.bin
+
+reading binary data from file = Lev00-00_gxz0_00000.bin
+obtained data shape  = (442368,)
+obtained data size   = 442368
+obtained data points = 96 * 96 * 48 = 442368
+coordinate minimum = [np.float64(-320.0), np.float64(-320.0), np.float64(0.0)]
+coordinate maximum = [np.float64(320.0), np.float64(320.0), np.float64(320.0)]
+grid point         = [np.int32(96), np.int32(96), np.int32(48)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev00-00_gxz0_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev00-00_gyy0_00000.bin
+
+reading binary data from file = Lev00-00_gyy0_00000.bin
+obtained data shape  = (442368,)
+obtained data size   = 442368
+obtained data points = 96 * 96 * 48 = 442368
+coordinate minimum = [np.float64(-320.0), np.float64(-320.0), np.float64(0.0)]
+coordinate maximum = [np.float64(320.0), np.float64(320.0), np.float64(320.0)]
+grid point         = [np.int32(96), np.int32(96), np.int32(48)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev00-00_gyy0_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev00-00_gyz0_00000.bin
+
+reading binary data from file = Lev00-00_gyz0_00000.bin
+obtained data shape  = (442368,)
+obtained data size   = 442368
+obtained data points = 96 * 96 * 48 = 442368
+coordinate minimum = [np.float64(-320.0), np.float64(-320.0), np.float64(0.0)]
+coordinate maximum = [np.float64(320.0), np.float64(320.0), np.float64(320.0)]
+grid point         = [np.int32(96), np.int32(96), np.int32(48)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev00-00_gyz0_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev00-00_gzz0_00000.bin
+
+reading binary data from file = Lev00-00_gzz0_00000.bin
+obtained data shape  = (442368,)
+obtained data size   = 442368
+obtained data points = 96 * 96 * 48 = 442368
+coordinate minimum = [np.float64(-320.0), np.float64(-320.0), np.float64(0.0)]
+coordinate maximum = [np.float64(320.0), np.float64(320.0), np.float64(320.0)]
+grid point         = [np.int32(96), np.int32(96), np.int32(48)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev00-00_gzz0_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev00-00_phi0_00000.bin
+
+reading binary data from file = Lev00-00_phi0_00000.bin
+obtained data shape  = (442368,)
+obtained data size   = 442368
+obtained data points = 96 * 96 * 48 = 442368
+coordinate minimum = [np.float64(-320.0), np.float64(-320.0), np.float64(0.0)]
+coordinate maximum = [np.float64(320.0), np.float64(320.0), np.float64(320.0)]
+grid point         = [np.int32(96), np.int32(96), np.int32(48)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev00-00_phi0_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev00-00_trK0_00000.bin
+
+reading binary data from file = Lev00-00_trK0_00000.bin
+obtained data shape  = (442368,)
+obtained data size   = 442368
+obtained data points = 96 * 96 * 48 = 442368
+coordinate minimum = [np.float64(-320.0), np.float64(-320.0), np.float64(0.0)]
+coordinate maximum = [np.float64(320.0), np.float64(320.0), np.float64(320.0)]
+grid point         = [np.int32(96), np.int32(96), np.int32(48)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev00-00_trK0_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev01-00_Cons_Ham_00000.bin
+
+reading binary data from file = Lev01-00_Cons_Ham_00000.bin
+obtained data shape  = (629856,)
+obtained data size   = 629856
+obtained data points = 108 * 108 * 54 = 629856
+coordinate minimum = [np.float64(-180.0), np.float64(-180.0), np.float64(0.0)]
+coordinate maximum = [np.float64(180.0), np.float64(180.0), np.float64(180.0)]
+grid point         = [np.int32(108), np.int32(108), np.int32(54)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev01-00_Cons_Ham_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev01-00_Cons_Px_00000.bin
+
+reading binary data from file = Lev01-00_Cons_Px_00000.bin
+obtained data shape  = (629856,)
+obtained data size   = 629856
+obtained data points = 108 * 108 * 54 = 629856
+coordinate minimum = [np.float64(-180.0), np.float64(-180.0), np.float64(0.0)]
+coordinate maximum = [np.float64(180.0), np.float64(180.0), np.float64(180.0)]
+grid point         = [np.int32(108), np.int32(108), np.int32(54)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev01-00_Cons_Px_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev01-00_Cons_Py_00000.bin
+
+reading binary data from file = Lev01-00_Cons_Py_00000.bin
+obtained data shape  = (629856,)
+obtained data size   = 629856
+obtained data points = 108 * 108 * 54 = 629856
+coordinate minimum = [np.float64(-180.0), np.float64(-180.0), np.float64(0.0)]
+coordinate maximum = [np.float64(180.0), np.float64(180.0), np.float64(180.0)]
+grid point         = [np.int32(108), np.int32(108), np.int32(54)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev01-00_Cons_Py_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev01-00_Cons_Pz_00000.bin
+
+reading binary data from file = Lev01-00_Cons_Pz_00000.bin
+obtained data shape  = (629856,)
+obtained data size   = 629856
+obtained data points = 108 * 108 * 54 = 629856
+coordinate minimum = [np.float64(-180.0), np.float64(-180.0), np.float64(0.0)]
+coordinate maximum = [np.float64(180.0), np.float64(180.0), np.float64(180.0)]
+grid point         = [np.int32(108), np.int32(108), np.int32(54)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev01-00_Cons_Pz_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev01-00_Lap0_00000.bin
+
+reading binary data from file = Lev01-00_Lap0_00000.bin
+obtained data shape  = (629856,)
+obtained data size   = 629856
+obtained data points = 108 * 108 * 54 = 629856
+coordinate minimum = [np.float64(-180.0), np.float64(-180.0), np.float64(0.0)]
+coordinate maximum = [np.float64(180.0), np.float64(180.0), np.float64(180.0)]
+grid point         = [np.int32(108), np.int32(108), np.int32(54)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev01-00_Lap0_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev01-00_gxx0_00000.bin
+
+reading binary data from file = Lev01-00_gxx0_00000.bin
+obtained data shape  = (629856,)
+obtained data size   = 629856
+obtained data points = 108 * 108 * 54 = 629856
+coordinate minimum = [np.float64(-180.0), np.float64(-180.0), np.float64(0.0)]
+coordinate maximum = [np.float64(180.0), np.float64(180.0), np.float64(180.0)]
+grid point         = [np.int32(108), np.int32(108), np.int32(54)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev01-00_gxx0_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev01-00_gxy0_00000.bin
+
+reading binary data from file = Lev01-00_gxy0_00000.bin
+obtained data shape  = (629856,)
+obtained data size   = 629856
+obtained data points = 108 * 108 * 54 = 629856
+coordinate minimum = [np.float64(-180.0), np.float64(-180.0), np.float64(0.0)]
+coordinate maximum = [np.float64(180.0), np.float64(180.0), np.float64(180.0)]
+grid point         = [np.int32(108), np.int32(108), np.int32(54)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev01-00_gxy0_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev01-00_gxz0_00000.bin
+
+reading binary data from file = Lev01-00_gxz0_00000.bin
+obtained data shape  = (629856,)
+obtained data size   = 629856
+obtained data points = 108 * 108 * 54 = 629856
+coordinate minimum = [np.float64(-180.0), np.float64(-180.0), np.float64(0.0)]
+coordinate maximum = [np.float64(180.0), np.float64(180.0), np.float64(180.0)]
+grid point         = [np.int32(108), np.int32(108), np.int32(54)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev01-00_gxz0_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev01-00_gyy0_00000.bin
+
+reading binary data from file = Lev01-00_gyy0_00000.bin
+obtained data shape  = (629856,)
+obtained data size   = 629856
+obtained data points = 108 * 108 * 54 = 629856
+coordinate minimum = [np.float64(-180.0), np.float64(-180.0), np.float64(0.0)]
+coordinate maximum = [np.float64(180.0), np.float64(180.0), np.float64(180.0)]
+grid point         = [np.int32(108), np.int32(108), np.int32(54)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev01-00_gyy0_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev01-00_gyz0_00000.bin
+
+reading binary data from file = Lev01-00_gyz0_00000.bin
+obtained data shape  = (629856,)
+obtained data size   = 629856
+obtained data points = 108 * 108 * 54 = 629856
+coordinate minimum = [np.float64(-180.0), np.float64(-180.0), np.float64(0.0)]
+coordinate maximum = [np.float64(180.0), np.float64(180.0), np.float64(180.0)]
+grid point         = [np.int32(108), np.int32(108), np.int32(54)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev01-00_gyz0_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev01-00_gzz0_00000.bin
+
+reading binary data from file = Lev01-00_gzz0_00000.bin
+obtained data shape  = (629856,)
+obtained data size   = 629856
+obtained data points = 108 * 108 * 54 = 629856
+coordinate minimum = [np.float64(-180.0), np.float64(-180.0), np.float64(0.0)]
+coordinate maximum = [np.float64(180.0), np.float64(180.0), np.float64(180.0)]
+grid point         = [np.int32(108), np.int32(108), np.int32(54)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev01-00_gzz0_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev01-00_phi0_00000.bin
+
+reading binary data from file = Lev01-00_phi0_00000.bin
+obtained data shape  = (629856,)
+obtained data size   = 629856
+obtained data points = 108 * 108 * 54 = 629856
+coordinate minimum = [np.float64(-180.0), np.float64(-180.0), np.float64(0.0)]
+coordinate maximum = [np.float64(180.0), np.float64(180.0), np.float64(180.0)]
+grid point         = [np.int32(108), np.int32(108), np.int32(54)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev01-00_phi0_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev01-00_trK0_00000.bin
+
+reading binary data from file = Lev01-00_trK0_00000.bin
+obtained data shape  = (629856,)
+obtained data size   = 629856
+obtained data points = 108 * 108 * 54 = 629856
+coordinate minimum = [np.float64(-180.0), np.float64(-180.0), np.float64(0.0)]
+coordinate maximum = [np.float64(180.0), np.float64(180.0), np.float64(180.0)]
+grid point         = [np.int32(108), np.int32(108), np.int32(54)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev01-00_trK0_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev02-00_Cons_Ham_00000.bin
+
+reading binary data from file = Lev02-00_Cons_Ham_00000.bin
+obtained data shape  = (629856,)
+obtained data size   = 629856
+obtained data points = 108 * 108 * 54 = 629856
+coordinate minimum = [np.float64(-90.0), np.float64(-90.0), np.float64(0.0)]
+coordinate maximum = [np.float64(90.0), np.float64(90.0), np.float64(90.0)]
+grid point         = [np.int32(108), np.int32(108), np.int32(54)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev02-00_Cons_Ham_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev02-00_Cons_Px_00000.bin
+
+reading binary data from file = Lev02-00_Cons_Px_00000.bin
+obtained data shape  = (629856,)
+obtained data size   = 629856
+obtained data points = 108 * 108 * 54 = 629856
+coordinate minimum = [np.float64(-90.0), np.float64(-90.0), np.float64(0.0)]
+coordinate maximum = [np.float64(90.0), np.float64(90.0), np.float64(90.0)]
+grid point         = [np.int32(108), np.int32(108), np.int32(54)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev02-00_Cons_Px_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev02-00_Cons_Py_00000.bin
+
+reading binary data from file = Lev02-00_Cons_Py_00000.bin
+obtained data shape  = (629856,)
+obtained data size   = 629856
+obtained data points = 108 * 108 * 54 = 629856
+coordinate minimum = [np.float64(-90.0), np.float64(-90.0), np.float64(0.0)]
+coordinate maximum = [np.float64(90.0), np.float64(90.0), np.float64(90.0)]
+grid point         = [np.int32(108), np.int32(108), np.int32(54)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev02-00_Cons_Py_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev02-00_Cons_Pz_00000.bin
+
+reading binary data from file = Lev02-00_Cons_Pz_00000.bin
+obtained data shape  = (629856,)
+obtained data size   = 629856
+obtained data points = 108 * 108 * 54 = 629856
+coordinate minimum = [np.float64(-90.0), np.float64(-90.0), np.float64(0.0)]
+coordinate maximum = [np.float64(90.0), np.float64(90.0), np.float64(90.0)]
+grid point         = [np.int32(108), np.int32(108), np.int32(54)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev02-00_Cons_Pz_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev02-00_Lap0_00000.bin
+
+reading binary data from file = Lev02-00_Lap0_00000.bin
+obtained data shape  = (629856,)
+obtained data size   = 629856
+obtained data points = 108 * 108 * 54 = 629856
+coordinate minimum = [np.float64(-90.0), np.float64(-90.0), np.float64(0.0)]
+coordinate maximum = [np.float64(90.0), np.float64(90.0), np.float64(90.0)]
+grid point         = [np.int32(108), np.int32(108), np.int32(54)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev02-00_Lap0_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev02-00_gxx0_00000.bin
+
+reading binary data from file = Lev02-00_gxx0_00000.bin
+obtained data shape  = (629856,)
+obtained data size   = 629856
+obtained data points = 108 * 108 * 54 = 629856
+coordinate minimum = [np.float64(-90.0), np.float64(-90.0), np.float64(0.0)]
+coordinate maximum = [np.float64(90.0), np.float64(90.0), np.float64(90.0)]
+grid point         = [np.int32(108), np.int32(108), np.int32(54)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev02-00_gxx0_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev02-00_gxy0_00000.bin
+
+reading binary data from file = Lev02-00_gxy0_00000.bin
+obtained data shape  = (629856,)
+obtained data size   = 629856
+obtained data points = 108 * 108 * 54 = 629856
+coordinate minimum = [np.float64(-90.0), np.float64(-90.0), np.float64(0.0)]
+coordinate maximum = [np.float64(90.0), np.float64(90.0), np.float64(90.0)]
+grid point         = [np.int32(108), np.int32(108), np.int32(54)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev02-00_gxy0_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev02-00_gxz0_00000.bin
+
+reading binary data from file = Lev02-00_gxz0_00000.bin
+obtained data shape  = (629856,)
+obtained data size   = 629856
+obtained data points = 108 * 108 * 54 = 629856
+coordinate minimum = [np.float64(-90.0), np.float64(-90.0), np.float64(0.0)]
+coordinate maximum = [np.float64(90.0), np.float64(90.0), np.float64(90.0)]
+grid point         = [np.int32(108), np.int32(108), np.int32(54)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev02-00_gxz0_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev02-00_gyy0_00000.bin
+
+reading binary data from file = Lev02-00_gyy0_00000.bin
+obtained data shape  = (629856,)
+obtained data size   = 629856
+obtained data points = 108 * 108 * 54 = 629856
+coordinate minimum = [np.float64(-90.0), np.float64(-90.0), np.float64(0.0)]
+coordinate maximum = [np.float64(90.0), np.float64(90.0), np.float64(90.0)]
+grid point         = [np.int32(108), np.int32(108), np.int32(54)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev02-00_gyy0_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev02-00_gyz0_00000.bin
+
+reading binary data from file = Lev02-00_gyz0_00000.bin
+obtained data shape  = (629856,)
+obtained data size   = 629856
+obtained data points = 108 * 108 * 54 = 629856
+coordinate minimum = [np.float64(-90.0), np.float64(-90.0), np.float64(0.0)]
+coordinate maximum = [np.float64(90.0), np.float64(90.0), np.float64(90.0)]
+grid point         = [np.int32(108), np.int32(108), np.int32(54)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev02-00_gyz0_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev02-00_gzz0_00000.bin
+
+reading binary data from file = Lev02-00_gzz0_00000.bin
+obtained data shape  = (629856,)
+obtained data size   = 629856
+obtained data points = 108 * 108 * 54 = 629856
+coordinate minimum = [np.float64(-90.0), np.float64(-90.0), np.float64(0.0)]
+coordinate maximum = [np.float64(90.0), np.float64(90.0), np.float64(90.0)]
+grid point         = [np.int32(108), np.int32(108), np.int32(54)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev02-00_gzz0_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev02-00_phi0_00000.bin
+
+reading binary data from file = Lev02-00_phi0_00000.bin
+obtained data shape  = (629856,)
+obtained data size   = 629856
+obtained data points = 108 * 108 * 54 = 629856
+coordinate minimum = [np.float64(-90.0), np.float64(-90.0), np.float64(0.0)]
+coordinate maximum = [np.float64(90.0), np.float64(90.0), np.float64(90.0)]
+grid point         = [np.int32(108), np.int32(108), np.int32(54)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev02-00_phi0_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev02-00_trK0_00000.bin
+
+reading binary data from file = Lev02-00_trK0_00000.bin
+obtained data shape  = (629856,)
+obtained data size   = 629856
+obtained data points = 108 * 108 * 54 = 629856
+coordinate minimum = [np.float64(-90.0), np.float64(-90.0), np.float64(0.0)]
+coordinate maximum = [np.float64(90.0), np.float64(90.0), np.float64(90.0)]
+grid point         = [np.int32(108), np.int32(108), np.int32(54)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev02-00_trK0_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev03-00_Cons_Ham_00000.bin
+
+reading binary data from file = Lev03-00_Cons_Ham_00000.bin
+obtained data shape  = (629856,)
+obtained data size   = 629856
+obtained data points = 108 * 108 * 54 = 629856
+coordinate minimum = [np.float64(-45.0), np.float64(-45.0), np.float64(0.0)]
+coordinate maximum = [np.float64(45.0), np.float64(45.0), np.float64(45.0)]
+grid point         = [np.int32(108), np.int32(108), np.int32(54)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev03-00_Cons_Ham_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev03-00_Cons_Px_00000.bin
+
+reading binary data from file = Lev03-00_Cons_Px_00000.bin
+obtained data shape  = (629856,)
+obtained data size   = 629856
+obtained data points = 108 * 108 * 54 = 629856
+coordinate minimum = [np.float64(-45.0), np.float64(-45.0), np.float64(0.0)]
+coordinate maximum = [np.float64(45.0), np.float64(45.0), np.float64(45.0)]
+grid point         = [np.int32(108), np.int32(108), np.int32(54)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev03-00_Cons_Px_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev03-00_Cons_Py_00000.bin
+
+reading binary data from file = Lev03-00_Cons_Py_00000.bin
+obtained data shape  = (629856,)
+obtained data size   = 629856
+obtained data points = 108 * 108 * 54 = 629856
+coordinate minimum = [np.float64(-45.0), np.float64(-45.0), np.float64(0.0)]
+coordinate maximum = [np.float64(45.0), np.float64(45.0), np.float64(45.0)]
+grid point         = [np.int32(108), np.int32(108), np.int32(54)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev03-00_Cons_Py_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev03-00_Cons_Pz_00000.bin
+
+reading binary data from file = Lev03-00_Cons_Pz_00000.bin
+obtained data shape  = (629856,)
+obtained data size   = 629856
+obtained data points = 108 * 108 * 54 = 629856
+coordinate minimum = [np.float64(-45.0), np.float64(-45.0), np.float64(0.0)]
+coordinate maximum = [np.float64(45.0), np.float64(45.0), np.float64(45.0)]
+grid point         = [np.int32(108), np.int32(108), np.int32(54)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev03-00_Cons_Pz_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev03-00_Lap0_00000.bin
+
+reading binary data from file = Lev03-00_Lap0_00000.bin
+obtained data shape  = (629856,)
+obtained data size   = 629856
+obtained data points = 108 * 108 * 54 = 629856
+coordinate minimum = [np.float64(-45.0), np.float64(-45.0), np.float64(0.0)]
+coordinate maximum = [np.float64(45.0), np.float64(45.0), np.float64(45.0)]
+grid point         = [np.int32(108), np.int32(108), np.int32(54)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev03-00_Lap0_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev03-00_gxx0_00000.bin
+
+reading binary data from file = Lev03-00_gxx0_00000.bin
+obtained data shape  = (629856,)
+obtained data size   = 629856
+obtained data points = 108 * 108 * 54 = 629856
+coordinate minimum = [np.float64(-45.0), np.float64(-45.0), np.float64(0.0)]
+coordinate maximum = [np.float64(45.0), np.float64(45.0), np.float64(45.0)]
+grid point         = [np.int32(108), np.int32(108), np.int32(54)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev03-00_gxx0_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev03-00_gxy0_00000.bin
+
+reading binary data from file = Lev03-00_gxy0_00000.bin
+obtained data shape  = (629856,)
+obtained data size   = 629856
+obtained data points = 108 * 108 * 54 = 629856
+coordinate minimum = [np.float64(-45.0), np.float64(-45.0), np.float64(0.0)]
+coordinate maximum = [np.float64(45.0), np.float64(45.0), np.float64(45.0)]
+grid point         = [np.int32(108), np.int32(108), np.int32(54)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev03-00_gxy0_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev03-00_gxz0_00000.bin
+
+reading binary data from file = Lev03-00_gxz0_00000.bin
+obtained data shape  = (629856,)
+obtained data size   = 629856
+obtained data points = 108 * 108 * 54 = 629856
+coordinate minimum = [np.float64(-45.0), np.float64(-45.0), np.float64(0.0)]
+coordinate maximum = [np.float64(45.0), np.float64(45.0), np.float64(45.0)]
+grid point         = [np.int32(108), np.int32(108), np.int32(54)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev03-00_gxz0_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev03-00_gyy0_00000.bin
+
+reading binary data from file = Lev03-00_gyy0_00000.bin
+obtained data shape  = (629856,)
+obtained data size   = 629856
+obtained data points = 108 * 108 * 54 = 629856
+coordinate minimum = [np.float64(-45.0), np.float64(-45.0), np.float64(0.0)]
+coordinate maximum = [np.float64(45.0), np.float64(45.0), np.float64(45.0)]
+grid point         = [np.int32(108), np.int32(108), np.int32(54)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev03-00_gyy0_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev03-00_gyz0_00000.bin
+
+reading binary data from file = Lev03-00_gyz0_00000.bin
+obtained data shape  = (629856,)
+obtained data size   = 629856
+obtained data points = 108 * 108 * 54 = 629856
+coordinate minimum = [np.float64(-45.0), np.float64(-45.0), np.float64(0.0)]
+coordinate maximum = [np.float64(45.0), np.float64(45.0), np.float64(45.0)]
+grid point         = [np.int32(108), np.int32(108), np.int32(54)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev03-00_gyz0_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev03-00_gzz0_00000.bin
+
+reading binary data from file = Lev03-00_gzz0_00000.bin
+obtained data shape  = (629856,)
+obtained data size   = 629856
+obtained data points = 108 * 108 * 54 = 629856
+coordinate minimum = [np.float64(-45.0), np.float64(-45.0), np.float64(0.0)]
+coordinate maximum = [np.float64(45.0), np.float64(45.0), np.float64(45.0)]
+grid point         = [np.int32(108), np.int32(108), np.int32(54)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev03-00_gzz0_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev03-00_phi0_00000.bin
+
+reading binary data from file = Lev03-00_phi0_00000.bin
+obtained data shape  = (629856,)
+obtained data size   = 629856
+obtained data points = 108 * 108 * 54 = 629856
+coordinate minimum = [np.float64(-45.0), np.float64(-45.0), np.float64(0.0)]
+coordinate maximum = [np.float64(45.0), np.float64(45.0), np.float64(45.0)]
+grid point         = [np.int32(108), np.int32(108), np.int32(54)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev03-00_phi0_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev03-00_trK0_00000.bin
+
+reading binary data from file = Lev03-00_trK0_00000.bin
+obtained data shape  = (629856,)
+obtained data size   = 629856
+obtained data points = 108 * 108 * 54 = 629856
+coordinate minimum = [np.float64(-45.0), np.float64(-45.0), np.float64(0.0)]
+coordinate maximum = [np.float64(45.0), np.float64(45.0), np.float64(45.0)]
+grid point         = [np.int32(108), np.int32(108), np.int32(54)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev03-00_trK0_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev04-00_Cons_Ham_00000.bin
+
+reading binary data from file = Lev04-00_Cons_Ham_00000.bin
+obtained data shape  = (629856,)
+obtained data size   = 629856
+obtained data points = 108 * 108 * 54 = 629856
+coordinate minimum = [np.float64(-22.5), np.float64(-22.5), np.float64(0.0)]
+coordinate maximum = [np.float64(22.5), np.float64(22.5), np.float64(22.5)]
+grid point         = [np.int32(108), np.int32(108), np.int32(54)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev04-00_Cons_Ham_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev04-00_Cons_Px_00000.bin
+
+reading binary data from file = Lev04-00_Cons_Px_00000.bin
+obtained data shape  = (629856,)
+obtained data size   = 629856
+obtained data points = 108 * 108 * 54 = 629856
+coordinate minimum = [np.float64(-22.5), np.float64(-22.5), np.float64(0.0)]
+coordinate maximum = [np.float64(22.5), np.float64(22.5), np.float64(22.5)]
+grid point         = [np.int32(108), np.int32(108), np.int32(54)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev04-00_Cons_Px_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev04-00_Cons_Py_00000.bin
+
+reading binary data from file = Lev04-00_Cons_Py_00000.bin
+obtained data shape  = (629856,)
+obtained data size   = 629856
+obtained data points = 108 * 108 * 54 = 629856
+coordinate minimum = [np.float64(-22.5), np.float64(-22.5), np.float64(0.0)]
+coordinate maximum = [np.float64(22.5), np.float64(22.5), np.float64(22.5)]
+grid point         = [np.int32(108), np.int32(108), np.int32(54)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev04-00_Cons_Py_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev04-00_Cons_Pz_00000.bin
+
+reading binary data from file = Lev04-00_Cons_Pz_00000.bin
+obtained data shape  = (629856,)
+obtained data size   = 629856
+obtained data points = 108 * 108 * 54 = 629856
+coordinate minimum = [np.float64(-22.5), np.float64(-22.5), np.float64(0.0)]
+coordinate maximum = [np.float64(22.5), np.float64(22.5), np.float64(22.5)]
+grid point         = [np.int32(108), np.int32(108), np.int32(54)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev04-00_Cons_Pz_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev04-00_Lap0_00000.bin
+
+reading binary data from file = Lev04-00_Lap0_00000.bin
+obtained data shape  = (629856,)
+obtained data size   = 629856
+obtained data points = 108 * 108 * 54 = 629856
+coordinate minimum = [np.float64(-22.5), np.float64(-22.5), np.float64(0.0)]
+coordinate maximum = [np.float64(22.5), np.float64(22.5), np.float64(22.5)]
+grid point         = [np.int32(108), np.int32(108), np.int32(54)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev04-00_Lap0_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev04-00_gxx0_00000.bin
+
+reading binary data from file = Lev04-00_gxx0_00000.bin
+obtained data shape  = (629856,)
+obtained data size   = 629856
+obtained data points = 108 * 108 * 54 = 629856
+coordinate minimum = [np.float64(-22.5), np.float64(-22.5), np.float64(0.0)]
+coordinate maximum = [np.float64(22.5), np.float64(22.5), np.float64(22.5)]
+grid point         = [np.int32(108), np.int32(108), np.int32(54)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev04-00_gxx0_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev04-00_gxy0_00000.bin
+
+reading binary data from file = Lev04-00_gxy0_00000.bin
+obtained data shape  = (629856,)
+obtained data size   = 629856
+obtained data points = 108 * 108 * 54 = 629856
+coordinate minimum = [np.float64(-22.5), np.float64(-22.5), np.float64(0.0)]
+coordinate maximum = [np.float64(22.5), np.float64(22.5), np.float64(22.5)]
+grid point         = [np.int32(108), np.int32(108), np.int32(54)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev04-00_gxy0_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev04-00_gxz0_00000.bin
+
+reading binary data from file = Lev04-00_gxz0_00000.bin
+obtained data shape  = (629856,)
+obtained data size   = 629856
+obtained data points = 108 * 108 * 54 = 629856
+coordinate minimum = [np.float64(-22.5), np.float64(-22.5), np.float64(0.0)]
+coordinate maximum = [np.float64(22.5), np.float64(22.5), np.float64(22.5)]
+grid point         = [np.int32(108), np.int32(108), np.int32(54)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev04-00_gxz0_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev04-00_gyy0_00000.bin
+
+reading binary data from file = Lev04-00_gyy0_00000.bin
+obtained data shape  = (629856,)
+obtained data size   = 629856
+obtained data points = 108 * 108 * 54 = 629856
+coordinate minimum = [np.float64(-22.5), np.float64(-22.5), np.float64(0.0)]
+coordinate maximum = [np.float64(22.5), np.float64(22.5), np.float64(22.5)]
+grid point         = [np.int32(108), np.int32(108), np.int32(54)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev04-00_gyy0_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev04-00_gyz0_00000.bin
+
+reading binary data from file = Lev04-00_gyz0_00000.bin
+obtained data shape  = (629856,)
+obtained data size   = 629856
+obtained data points = 108 * 108 * 54 = 629856
+coordinate minimum = [np.float64(-22.5), np.float64(-22.5), np.float64(0.0)]
+coordinate maximum = [np.float64(22.5), np.float64(22.5), np.float64(22.5)]
+grid point         = [np.int32(108), np.int32(108), np.int32(54)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev04-00_gyz0_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev04-00_gzz0_00000.bin
+
+reading binary data from file = Lev04-00_gzz0_00000.bin
+obtained data shape  = (629856,)
+obtained data size   = 629856
+obtained data points = 108 * 108 * 54 = 629856
+coordinate minimum = [np.float64(-22.5), np.float64(-22.5), np.float64(0.0)]
+coordinate maximum = [np.float64(22.5), np.float64(22.5), np.float64(22.5)]
+grid point         = [np.int32(108), np.int32(108), np.int32(54)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev04-00_gzz0_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev04-00_phi0_00000.bin
+
+reading binary data from file = Lev04-00_phi0_00000.bin
+obtained data shape  = (629856,)
+obtained data size   = 629856
+obtained data points = 108 * 108 * 54 = 629856
+coordinate minimum = [np.float64(-22.5), np.float64(-22.5), np.float64(0.0)]
+coordinate maximum = [np.float64(22.5), np.float64(22.5), np.float64(22.5)]
+grid point         = [np.int32(108), np.int32(108), np.int32(54)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev04-00_phi0_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev04-00_trK0_00000.bin
+
+reading binary data from file = Lev04-00_trK0_00000.bin
+obtained data shape  = (629856,)
+obtained data size   = 629856
+obtained data points = 108 * 108 * 54 = 629856
+coordinate minimum = [np.float64(-22.5), np.float64(-22.5), np.float64(0.0)]
+coordinate maximum = [np.float64(22.5), np.float64(22.5), np.float64(22.5)]
+grid point         = [np.int32(108), np.int32(108), np.int32(54)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev04-00_trK0_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev05-00_Cons_Ham_00000.bin
+
+reading binary data from file = Lev05-00_Cons_Ham_00000.bin
+obtained data shape  = (194400,)
+obtained data size   = 194400
+obtained data points = 60 * 108 * 30 = 194400
+coordinate minimum = [np.float64(-6.25), np.float64(-11.875), np.float64(0.0)]
+coordinate maximum = [np.float64(6.25), np.float64(10.625), np.float64(6.25)]
+grid point         = [np.int32(60), np.int32(108), np.int32(30)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev05-00_Cons_Ham_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev05-00_Cons_Px_00000.bin
+
+reading binary data from file = Lev05-00_Cons_Px_00000.bin
+obtained data shape  = (194400,)
+obtained data size   = 194400
+obtained data points = 60 * 108 * 30 = 194400
+coordinate minimum = [np.float64(-6.25), np.float64(-11.875), np.float64(0.0)]
+coordinate maximum = [np.float64(6.25), np.float64(10.625), np.float64(6.25)]
+grid point         = [np.int32(60), np.int32(108), np.int32(30)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev05-00_Cons_Px_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev05-00_Cons_Py_00000.bin
+
+reading binary data from file = Lev05-00_Cons_Py_00000.bin
+obtained data shape  = (194400,)
+obtained data size   = 194400
+obtained data points = 60 * 108 * 30 = 194400
+coordinate minimum = [np.float64(-6.25), np.float64(-11.875), np.float64(0.0)]
+coordinate maximum = [np.float64(6.25), np.float64(10.625), np.float64(6.25)]
+grid point         = [np.int32(60), np.int32(108), np.int32(30)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev05-00_Cons_Py_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev05-00_Cons_Pz_00000.bin
+
+reading binary data from file = Lev05-00_Cons_Pz_00000.bin
+obtained data shape  = (194400,)
+obtained data size   = 194400
+obtained data points = 60 * 108 * 30 = 194400
+coordinate minimum = [np.float64(-6.25), np.float64(-11.875), np.float64(0.0)]
+coordinate maximum = [np.float64(6.25), np.float64(10.625), np.float64(6.25)]
+grid point         = [np.int32(60), np.int32(108), np.int32(30)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev05-00_Cons_Pz_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev05-00_Lap0_00000.bin
+
+reading binary data from file = Lev05-00_Lap0_00000.bin
+obtained data shape  = (194400,)
+obtained data size   = 194400
+obtained data points = 60 * 108 * 30 = 194400
+coordinate minimum = [np.float64(-6.25), np.float64(-11.875), np.float64(0.0)]
+coordinate maximum = [np.float64(6.25), np.float64(10.625), np.float64(6.25)]
+grid point         = [np.int32(60), np.int32(108), np.int32(30)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev05-00_Lap0_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev05-00_gxx0_00000.bin
+
+reading binary data from file = Lev05-00_gxx0_00000.bin
+obtained data shape  = (194400,)
+obtained data size   = 194400
+obtained data points = 60 * 108 * 30 = 194400
+coordinate minimum = [np.float64(-6.25), np.float64(-11.875), np.float64(0.0)]
+coordinate maximum = [np.float64(6.25), np.float64(10.625), np.float64(6.25)]
+grid point         = [np.int32(60), np.int32(108), np.int32(30)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev05-00_gxx0_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev05-00_gxy0_00000.bin
+
+reading binary data from file = Lev05-00_gxy0_00000.bin
+obtained data shape  = (194400,)
+obtained data size   = 194400
+obtained data points = 60 * 108 * 30 = 194400
+coordinate minimum = [np.float64(-6.25), np.float64(-11.875), np.float64(0.0)]
+coordinate maximum = [np.float64(6.25), np.float64(10.625), np.float64(6.25)]
+grid point         = [np.int32(60), np.int32(108), np.int32(30)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev05-00_gxy0_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev05-00_gxz0_00000.bin
+
+reading binary data from file = Lev05-00_gxz0_00000.bin
+obtained data shape  = (194400,)
+obtained data size   = 194400
+obtained data points = 60 * 108 * 30 = 194400
+coordinate minimum = [np.float64(-6.25), np.float64(-11.875), np.float64(0.0)]
+coordinate maximum = [np.float64(6.25), np.float64(10.625), np.float64(6.25)]
+grid point         = [np.int32(60), np.int32(108), np.int32(30)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev05-00_gxz0_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev05-00_gyy0_00000.bin
+
+reading binary data from file = Lev05-00_gyy0_00000.bin
+obtained data shape  = (194400,)
+obtained data size   = 194400
+obtained data points = 60 * 108 * 30 = 194400
+coordinate minimum = [np.float64(-6.25), np.float64(-11.875), np.float64(0.0)]
+coordinate maximum = [np.float64(6.25), np.float64(10.625), np.float64(6.25)]
+grid point         = [np.int32(60), np.int32(108), np.int32(30)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev05-00_gyy0_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev05-00_gyz0_00000.bin
+
+reading binary data from file = Lev05-00_gyz0_00000.bin
+obtained data shape  = (194400,)
+obtained data size   = 194400
+obtained data points = 60 * 108 * 30 = 194400
+coordinate minimum = [np.float64(-6.25), np.float64(-11.875), np.float64(0.0)]
+coordinate maximum = [np.float64(6.25), np.float64(10.625), np.float64(6.25)]
+grid point         = [np.int32(60), np.int32(108), np.int32(30)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev05-00_gyz0_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev05-00_gzz0_00000.bin
+
+reading binary data from file = Lev05-00_gzz0_00000.bin
+obtained data shape  = (194400,)
+obtained data size   = 194400
+obtained data points = 60 * 108 * 30 = 194400
+coordinate minimum = [np.float64(-6.25), np.float64(-11.875), np.float64(0.0)]
+coordinate maximum = [np.float64(6.25), np.float64(10.625), np.float64(6.25)]
+grid point         = [np.int32(60), np.int32(108), np.int32(30)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev05-00_gzz0_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev05-00_phi0_00000.bin
+
+reading binary data from file = Lev05-00_phi0_00000.bin
+obtained data shape  = (194400,)
+obtained data size   = 194400
+obtained data points = 60 * 108 * 30 = 194400
+coordinate minimum = [np.float64(-6.25), np.float64(-11.875), np.float64(0.0)]
+coordinate maximum = [np.float64(6.25), np.float64(10.625), np.float64(6.25)]
+grid point         = [np.int32(60), np.int32(108), np.int32(30)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev05-00_phi0_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev05-00_trK0_00000.bin
+
+reading binary data from file = Lev05-00_trK0_00000.bin
+obtained data shape  = (194400,)
+obtained data size   = 194400
+obtained data points = 60 * 108 * 30 = 194400
+coordinate minimum = [np.float64(-6.25), np.float64(-11.875), np.float64(0.0)]
+coordinate maximum = [np.float64(6.25), np.float64(10.625), np.float64(6.25)]
+grid point         = [np.int32(60), np.int32(108), np.int32(30)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev05-00_trK0_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev06-00_Cons_Ham_00000.bin
+
+reading binary data from file = Lev06-00_Cons_Ham_00000.bin
+obtained data shape  = (108000,)
+obtained data size   = 108000
+obtained data points = 60 * 60 * 30 = 108000
+coordinate minimum = [np.float64(-3.125), np.float64(1.3541666666666927), np.float64(0.0)]
+coordinate maximum = [np.float64(3.125), np.float64(7.604166666666622), np.float64(3.125)]
+grid point         = [np.int32(60), np.int32(60), np.int32(30)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev06-00_Cons_Ham_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev06-00_Cons_Px_00000.bin
+
+reading binary data from file = Lev06-00_Cons_Px_00000.bin
+obtained data shape  = (108000,)
+obtained data size   = 108000
+obtained data points = 60 * 60 * 30 = 108000
+coordinate minimum = [np.float64(-3.125), np.float64(1.3541666666666927), np.float64(0.0)]
+coordinate maximum = [np.float64(3.125), np.float64(7.604166666666622), np.float64(3.125)]
+grid point         = [np.int32(60), np.int32(60), np.int32(30)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev06-00_Cons_Px_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev06-00_Cons_Py_00000.bin
+
+reading binary data from file = Lev06-00_Cons_Py_00000.bin
+obtained data shape  = (108000,)
+obtained data size   = 108000
+obtained data points = 60 * 60 * 30 = 108000
+coordinate minimum = [np.float64(-3.125), np.float64(1.3541666666666927), np.float64(0.0)]
+coordinate maximum = [np.float64(3.125), np.float64(7.604166666666622), np.float64(3.125)]
+grid point         = [np.int32(60), np.int32(60), np.int32(30)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev06-00_Cons_Py_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev06-00_Cons_Pz_00000.bin
+
+reading binary data from file = Lev06-00_Cons_Pz_00000.bin
+obtained data shape  = (108000,)
+obtained data size   = 108000
+obtained data points = 60 * 60 * 30 = 108000
+coordinate minimum = [np.float64(-3.125), np.float64(1.3541666666666927), np.float64(0.0)]
+coordinate maximum = [np.float64(3.125), np.float64(7.604166666666622), np.float64(3.125)]
+grid point         = [np.int32(60), np.int32(60), np.int32(30)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev06-00_Cons_Pz_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev06-00_Lap0_00000.bin
+
+reading binary data from file = Lev06-00_Lap0_00000.bin
+obtained data shape  = (108000,)
+obtained data size   = 108000
+obtained data points = 60 * 60 * 30 = 108000
+coordinate minimum = [np.float64(-3.125), np.float64(1.3541666666666927), np.float64(0.0)]
+coordinate maximum = [np.float64(3.125), np.float64(7.604166666666622), np.float64(3.125)]
+grid point         = [np.int32(60), np.int32(60), np.int32(30)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev06-00_Lap0_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev06-00_gxx0_00000.bin
+
+reading binary data from file = Lev06-00_gxx0_00000.bin
+obtained data shape  = (108000,)
+obtained data size   = 108000
+obtained data points = 60 * 60 * 30 = 108000
+coordinate minimum = [np.float64(-3.125), np.float64(1.3541666666666927), np.float64(0.0)]
+coordinate maximum = [np.float64(3.125), np.float64(7.604166666666622), np.float64(3.125)]
+grid point         = [np.int32(60), np.int32(60), np.int32(30)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev06-00_gxx0_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev06-00_gxy0_00000.bin
+
+reading binary data from file = Lev06-00_gxy0_00000.bin
+obtained data shape  = (108000,)
+obtained data size   = 108000
+obtained data points = 60 * 60 * 30 = 108000
+coordinate minimum = [np.float64(-3.125), np.float64(1.3541666666666927), np.float64(0.0)]
+coordinate maximum = [np.float64(3.125), np.float64(7.604166666666622), np.float64(3.125)]
+grid point         = [np.int32(60), np.int32(60), np.int32(30)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev06-00_gxy0_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev06-00_gxz0_00000.bin
+
+reading binary data from file = Lev06-00_gxz0_00000.bin
+obtained data shape  = (108000,)
+obtained data size   = 108000
+obtained data points = 60 * 60 * 30 = 108000
+coordinate minimum = [np.float64(-3.125), np.float64(1.3541666666666927), np.float64(0.0)]
+coordinate maximum = [np.float64(3.125), np.float64(7.604166666666622), np.float64(3.125)]
+grid point         = [np.int32(60), np.int32(60), np.int32(30)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev06-00_gxz0_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev06-00_gyy0_00000.bin
+
+reading binary data from file = Lev06-00_gyy0_00000.bin
+obtained data shape  = (108000,)
+obtained data size   = 108000
+obtained data points = 60 * 60 * 30 = 108000
+coordinate minimum = [np.float64(-3.125), np.float64(1.3541666666666927), np.float64(0.0)]
+coordinate maximum = [np.float64(3.125), np.float64(7.604166666666622), np.float64(3.125)]
+grid point         = [np.int32(60), np.int32(60), np.int32(30)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev06-00_gyy0_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev06-00_gyz0_00000.bin
+
+reading binary data from file = Lev06-00_gyz0_00000.bin
+obtained data shape  = (108000,)
+obtained data size   = 108000
+obtained data points = 60 * 60 * 30 = 108000
+coordinate minimum = [np.float64(-3.125), np.float64(1.3541666666666927), np.float64(0.0)]
+coordinate maximum = [np.float64(3.125), np.float64(7.604166666666622), np.float64(3.125)]
+grid point         = [np.int32(60), np.int32(60), np.int32(30)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev06-00_gyz0_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev06-00_gzz0_00000.bin
+
+reading binary data from file = Lev06-00_gzz0_00000.bin
+obtained data shape  = (108000,)
+obtained data size   = 108000
+obtained data points = 60 * 60 * 30 = 108000
+coordinate minimum = [np.float64(-3.125), np.float64(1.3541666666666927), np.float64(0.0)]
+coordinate maximum = [np.float64(3.125), np.float64(7.604166666666622), np.float64(3.125)]
+grid point         = [np.int32(60), np.int32(60), np.int32(30)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev06-00_gzz0_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev06-00_phi0_00000.bin
+
+reading binary data from file = Lev06-00_phi0_00000.bin
+obtained data shape  = (108000,)
+obtained data size   = 108000
+obtained data points = 60 * 60 * 30 = 108000
+coordinate minimum = [np.float64(-3.125), np.float64(1.3541666666666927), np.float64(0.0)]
+coordinate maximum = [np.float64(3.125), np.float64(7.604166666666622), np.float64(3.125)]
+grid point         = [np.int32(60), np.int32(60), np.int32(30)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev06-00_phi0_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev06-00_trK0_00000.bin
+
+reading binary data from file = Lev06-00_trK0_00000.bin
+obtained data shape  = (108000,)
+obtained data size   = 108000
+obtained data points = 60 * 60 * 30 = 108000
+coordinate minimum = [np.float64(-3.125), np.float64(1.3541666666666927), np.float64(0.0)]
+coordinate maximum = [np.float64(3.125), np.float64(7.604166666666622), np.float64(3.125)]
+grid point         = [np.int32(60), np.int32(60), np.int32(30)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev06-00_trK0_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev06-01_Cons_Ham_00000.bin
+
+reading binary data from file = Lev06-01_Cons_Ham_00000.bin
+obtained data shape  = (108000,)
+obtained data size   = 108000
+obtained data points = 60 * 60 * 30 = 108000
+coordinate minimum = [np.float64(-3.125), np.float64(-8.645833333333307), np.float64(0.0)]
+coordinate maximum = [np.float64(3.125), np.float64(-2.3958333333333783), np.float64(3.125)]
+grid point         = [np.int32(60), np.int32(60), np.int32(30)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev06-01_Cons_Ham_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev06-01_Cons_Px_00000.bin
+
+reading binary data from file = Lev06-01_Cons_Px_00000.bin
+obtained data shape  = (108000,)
+obtained data size   = 108000
+obtained data points = 60 * 60 * 30 = 108000
+coordinate minimum = [np.float64(-3.125), np.float64(-8.645833333333307), np.float64(0.0)]
+coordinate maximum = [np.float64(3.125), np.float64(-2.3958333333333783), np.float64(3.125)]
+grid point         = [np.int32(60), np.int32(60), np.int32(30)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev06-01_Cons_Px_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev06-01_Cons_Py_00000.bin
+
+reading binary data from file = Lev06-01_Cons_Py_00000.bin
+obtained data shape  = (108000,)
+obtained data size   = 108000
+obtained data points = 60 * 60 * 30 = 108000
+coordinate minimum = [np.float64(-3.125), np.float64(-8.645833333333307), np.float64(0.0)]
+coordinate maximum = [np.float64(3.125), np.float64(-2.3958333333333783), np.float64(3.125)]
+grid point         = [np.int32(60), np.int32(60), np.int32(30)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev06-01_Cons_Py_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev06-01_Cons_Pz_00000.bin
+
+reading binary data from file = Lev06-01_Cons_Pz_00000.bin
+obtained data shape  = (108000,)
+obtained data size   = 108000
+obtained data points = 60 * 60 * 30 = 108000
+coordinate minimum = [np.float64(-3.125), np.float64(-8.645833333333307), np.float64(0.0)]
+coordinate maximum = [np.float64(3.125), np.float64(-2.3958333333333783), np.float64(3.125)]
+grid point         = [np.int32(60), np.int32(60), np.int32(30)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev06-01_Cons_Pz_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev06-01_Lap0_00000.bin
+
+reading binary data from file = Lev06-01_Lap0_00000.bin
+obtained data shape  = (108000,)
+obtained data size   = 108000
+obtained data points = 60 * 60 * 30 = 108000
+coordinate minimum = [np.float64(-3.125), np.float64(-8.645833333333307), np.float64(0.0)]
+coordinate maximum = [np.float64(3.125), np.float64(-2.3958333333333783), np.float64(3.125)]
+grid point         = [np.int32(60), np.int32(60), np.int32(30)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev06-01_Lap0_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev06-01_gxx0_00000.bin
+
+reading binary data from file = Lev06-01_gxx0_00000.bin
+obtained data shape  = (108000,)
+obtained data size   = 108000
+obtained data points = 60 * 60 * 30 = 108000
+coordinate minimum = [np.float64(-3.125), np.float64(-8.645833333333307), np.float64(0.0)]
+coordinate maximum = [np.float64(3.125), np.float64(-2.3958333333333783), np.float64(3.125)]
+grid point         = [np.int32(60), np.int32(60), np.int32(30)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev06-01_gxx0_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev06-01_gxy0_00000.bin
+
+reading binary data from file = Lev06-01_gxy0_00000.bin
+obtained data shape  = (108000,)
+obtained data size   = 108000
+obtained data points = 60 * 60 * 30 = 108000
+coordinate minimum = [np.float64(-3.125), np.float64(-8.645833333333307), np.float64(0.0)]
+coordinate maximum = [np.float64(3.125), np.float64(-2.3958333333333783), np.float64(3.125)]
+grid point         = [np.int32(60), np.int32(60), np.int32(30)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev06-01_gxy0_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev06-01_gxz0_00000.bin
+
+reading binary data from file = Lev06-01_gxz0_00000.bin
+obtained data shape  = (108000,)
+obtained data size   = 108000
+obtained data points = 60 * 60 * 30 = 108000
+coordinate minimum = [np.float64(-3.125), np.float64(-8.645833333333307), np.float64(0.0)]
+coordinate maximum = [np.float64(3.125), np.float64(-2.3958333333333783), np.float64(3.125)]
+grid point         = [np.int32(60), np.int32(60), np.int32(30)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev06-01_gxz0_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev06-01_gyy0_00000.bin
+
+reading binary data from file = Lev06-01_gyy0_00000.bin
+obtained data shape  = (108000,)
+obtained data size   = 108000
+obtained data points = 60 * 60 * 30 = 108000
+coordinate minimum = [np.float64(-3.125), np.float64(-8.645833333333307), np.float64(0.0)]
+coordinate maximum = [np.float64(3.125), np.float64(-2.3958333333333783), np.float64(3.125)]
+grid point         = [np.int32(60), np.int32(60), np.int32(30)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev06-01_gyy0_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev06-01_gyz0_00000.bin
+
+reading binary data from file = Lev06-01_gyz0_00000.bin
+obtained data shape  = (108000,)
+obtained data size   = 108000
+obtained data points = 60 * 60 * 30 = 108000
+coordinate minimum = [np.float64(-3.125), np.float64(-8.645833333333307), np.float64(0.0)]
+coordinate maximum = [np.float64(3.125), np.float64(-2.3958333333333783), np.float64(3.125)]
+grid point         = [np.int32(60), np.int32(60), np.int32(30)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev06-01_gyz0_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev06-01_gzz0_00000.bin
+
+reading binary data from file = Lev06-01_gzz0_00000.bin
+obtained data shape  = (108000,)
+obtained data size   = 108000
+obtained data points = 60 * 60 * 30 = 108000
+coordinate minimum = [np.float64(-3.125), np.float64(-8.645833333333307), np.float64(0.0)]
+coordinate maximum = [np.float64(3.125), np.float64(-2.3958333333333783), np.float64(3.125)]
+grid point         = [np.int32(60), np.int32(60), np.int32(30)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev06-01_gzz0_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev06-01_phi0_00000.bin
+
+reading binary data from file = Lev06-01_phi0_00000.bin
+obtained data shape  = (108000,)
+obtained data size   = 108000
+obtained data points = 60 * 60 * 30 = 108000
+coordinate minimum = [np.float64(-3.125), np.float64(-8.645833333333307), np.float64(0.0)]
+coordinate maximum = [np.float64(3.125), np.float64(-2.3958333333333783), np.float64(3.125)]
+grid point         = [np.int32(60), np.int32(60), np.int32(30)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev06-01_phi0_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev06-01_trK0_00000.bin
+
+reading binary data from file = Lev06-01_trK0_00000.bin
+obtained data shape  = (108000,)
+obtained data size   = 108000
+obtained data points = 60 * 60 * 30 = 108000
+coordinate minimum = [np.float64(-3.125), np.float64(-8.645833333333307), np.float64(0.0)]
+coordinate maximum = [np.float64(3.125), np.float64(-2.3958333333333783), np.float64(3.125)]
+grid point         = [np.int32(60), np.int32(60), np.int32(30)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev06-01_trK0_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev07-00_Cons_Ham_00000.bin
+
+reading binary data from file = Lev07-00_Cons_Ham_00000.bin
+obtained data shape  = (108000,)
+obtained data size   = 108000
+obtained data points = 60 * 60 * 30 = 108000
+coordinate minimum = [np.float64(-1.5625), np.float64(2.9166666666666927), np.float64(0.0)]
+coordinate maximum = [np.float64(1.5625), np.float64(6.041666666666622), np.float64(1.5625)]
+grid point         = [np.int32(60), np.int32(60), np.int32(30)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev07-00_Cons_Ham_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev07-00_Cons_Px_00000.bin
+
+reading binary data from file = Lev07-00_Cons_Px_00000.bin
+obtained data shape  = (108000,)
+obtained data size   = 108000
+obtained data points = 60 * 60 * 30 = 108000
+coordinate minimum = [np.float64(-1.5625), np.float64(2.9166666666666927), np.float64(0.0)]
+coordinate maximum = [np.float64(1.5625), np.float64(6.041666666666622), np.float64(1.5625)]
+grid point         = [np.int32(60), np.int32(60), np.int32(30)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev07-00_Cons_Px_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev07-00_Cons_Py_00000.bin
+
+reading binary data from file = Lev07-00_Cons_Py_00000.bin
+obtained data shape  = (108000,)
+obtained data size   = 108000
+obtained data points = 60 * 60 * 30 = 108000
+coordinate minimum = [np.float64(-1.5625), np.float64(2.9166666666666927), np.float64(0.0)]
+coordinate maximum = [np.float64(1.5625), np.float64(6.041666666666622), np.float64(1.5625)]
+grid point         = [np.int32(60), np.int32(60), np.int32(30)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev07-00_Cons_Py_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev07-00_Cons_Pz_00000.bin
+
+reading binary data from file = Lev07-00_Cons_Pz_00000.bin
+obtained data shape  = (108000,)
+obtained data size   = 108000
+obtained data points = 60 * 60 * 30 = 108000
+coordinate minimum = [np.float64(-1.5625), np.float64(2.9166666666666927), np.float64(0.0)]
+coordinate maximum = [np.float64(1.5625), np.float64(6.041666666666622), np.float64(1.5625)]
+grid point         = [np.int32(60), np.int32(60), np.int32(30)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev07-00_Cons_Pz_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev07-00_Lap0_00000.bin
+
+reading binary data from file = Lev07-00_Lap0_00000.bin
+obtained data shape  = (108000,)
+obtained data size   = 108000
+obtained data points = 60 * 60 * 30 = 108000
+coordinate minimum = [np.float64(-1.5625), np.float64(2.9166666666666927), np.float64(0.0)]
+coordinate maximum = [np.float64(1.5625), np.float64(6.041666666666622), np.float64(1.5625)]
+grid point         = [np.int32(60), np.int32(60), np.int32(30)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev07-00_Lap0_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev07-00_gxx0_00000.bin
+
+reading binary data from file = Lev07-00_gxx0_00000.bin
+obtained data shape  = (108000,)
+obtained data size   = 108000
+obtained data points = 60 * 60 * 30 = 108000
+coordinate minimum = [np.float64(-1.5625), np.float64(2.9166666666666927), np.float64(0.0)]
+coordinate maximum = [np.float64(1.5625), np.float64(6.041666666666622), np.float64(1.5625)]
+grid point         = [np.int32(60), np.int32(60), np.int32(30)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev07-00_gxx0_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev07-00_gxy0_00000.bin
+
+reading binary data from file = Lev07-00_gxy0_00000.bin
+obtained data shape  = (108000,)
+obtained data size   = 108000
+obtained data points = 60 * 60 * 30 = 108000
+coordinate minimum = [np.float64(-1.5625), np.float64(2.9166666666666927), np.float64(0.0)]
+coordinate maximum = [np.float64(1.5625), np.float64(6.041666666666622), np.float64(1.5625)]
+grid point         = [np.int32(60), np.int32(60), np.int32(30)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev07-00_gxy0_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev07-00_gxz0_00000.bin
+
+reading binary data from file = Lev07-00_gxz0_00000.bin
+obtained data shape  = (108000,)
+obtained data size   = 108000
+obtained data points = 60 * 60 * 30 = 108000
+coordinate minimum = [np.float64(-1.5625), np.float64(2.9166666666666927), np.float64(0.0)]
+coordinate maximum = [np.float64(1.5625), np.float64(6.041666666666622), np.float64(1.5625)]
+grid point         = [np.int32(60), np.int32(60), np.int32(30)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev07-00_gxz0_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev07-00_gyy0_00000.bin
+
+reading binary data from file = Lev07-00_gyy0_00000.bin
+obtained data shape  = (108000,)
+obtained data size   = 108000
+obtained data points = 60 * 60 * 30 = 108000
+coordinate minimum = [np.float64(-1.5625), np.float64(2.9166666666666927), np.float64(0.0)]
+coordinate maximum = [np.float64(1.5625), np.float64(6.041666666666622), np.float64(1.5625)]
+grid point         = [np.int32(60), np.int32(60), np.int32(30)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev07-00_gyy0_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev07-00_gyz0_00000.bin
+
+reading binary data from file = Lev07-00_gyz0_00000.bin
+obtained data shape  = (108000,)
+obtained data size   = 108000
+obtained data points = 60 * 60 * 30 = 108000
+coordinate minimum = [np.float64(-1.5625), np.float64(2.9166666666666927), np.float64(0.0)]
+coordinate maximum = [np.float64(1.5625), np.float64(6.041666666666622), np.float64(1.5625)]
+grid point         = [np.int32(60), np.int32(60), np.int32(30)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev07-00_gyz0_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev07-00_gzz0_00000.bin
+
+reading binary data from file = Lev07-00_gzz0_00000.bin
+obtained data shape  = (108000,)
+obtained data size   = 108000
+obtained data points = 60 * 60 * 30 = 108000
+coordinate minimum = [np.float64(-1.5625), np.float64(2.9166666666666927), np.float64(0.0)]
+coordinate maximum = [np.float64(1.5625), np.float64(6.041666666666622), np.float64(1.5625)]
+grid point         = [np.int32(60), np.int32(60), np.int32(30)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev07-00_gzz0_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev07-00_phi0_00000.bin
+
+reading binary data from file = Lev07-00_phi0_00000.bin
+obtained data shape  = (108000,)
+obtained data size   = 108000
+obtained data points = 60 * 60 * 30 = 108000
+coordinate minimum = [np.float64(-1.5625), np.float64(2.9166666666666927), np.float64(0.0)]
+coordinate maximum = [np.float64(1.5625), np.float64(6.041666666666622), np.float64(1.5625)]
+grid point         = [np.int32(60), np.int32(60), np.int32(30)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev07-00_phi0_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev07-00_trK0_00000.bin
+
+reading binary data from file = Lev07-00_trK0_00000.bin
+obtained data shape  = (108000,)
+obtained data size   = 108000
+obtained data points = 60 * 60 * 30 = 108000
+coordinate minimum = [np.float64(-1.5625), np.float64(2.9166666666666927), np.float64(0.0)]
+coordinate maximum = [np.float64(1.5625), np.float64(6.041666666666622), np.float64(1.5625)]
+grid point         = [np.int32(60), np.int32(60), np.int32(30)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev07-00_trK0_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev07-01_Cons_Ham_00000.bin
+
+reading binary data from file = Lev07-01_Cons_Ham_00000.bin
+obtained data shape  = (108000,)
+obtained data size   = 108000
+obtained data points = 60 * 60 * 30 = 108000
+coordinate minimum = [np.float64(-1.5625), np.float64(-7.083333333333307), np.float64(0.0)]
+coordinate maximum = [np.float64(1.5625), np.float64(-3.9583333333333783), np.float64(1.5625)]
+grid point         = [np.int32(60), np.int32(60), np.int32(30)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev07-01_Cons_Ham_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev07-01_Cons_Px_00000.bin
+
+reading binary data from file = Lev07-01_Cons_Px_00000.bin
+obtained data shape  = (108000,)
+obtained data size   = 108000
+obtained data points = 60 * 60 * 30 = 108000
+coordinate minimum = [np.float64(-1.5625), np.float64(-7.083333333333307), np.float64(0.0)]
+coordinate maximum = [np.float64(1.5625), np.float64(-3.9583333333333783), np.float64(1.5625)]
+grid point         = [np.int32(60), np.int32(60), np.int32(30)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev07-01_Cons_Px_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev07-01_Cons_Py_00000.bin
+
+reading binary data from file = Lev07-01_Cons_Py_00000.bin
+obtained data shape  = (108000,)
+obtained data size   = 108000
+obtained data points = 60 * 60 * 30 = 108000
+coordinate minimum = [np.float64(-1.5625), np.float64(-7.083333333333307), np.float64(0.0)]
+coordinate maximum = [np.float64(1.5625), np.float64(-3.9583333333333783), np.float64(1.5625)]
+grid point         = [np.int32(60), np.int32(60), np.int32(30)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev07-01_Cons_Py_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev07-01_Cons_Pz_00000.bin
+
+reading binary data from file = Lev07-01_Cons_Pz_00000.bin
+obtained data shape  = (108000,)
+obtained data size   = 108000
+obtained data points = 60 * 60 * 30 = 108000
+coordinate minimum = [np.float64(-1.5625), np.float64(-7.083333333333307), np.float64(0.0)]
+coordinate maximum = [np.float64(1.5625), np.float64(-3.9583333333333783), np.float64(1.5625)]
+grid point         = [np.int32(60), np.int32(60), np.int32(30)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev07-01_Cons_Pz_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev07-01_Lap0_00000.bin
+
+reading binary data from file = Lev07-01_Lap0_00000.bin
+obtained data shape  = (108000,)
+obtained data size   = 108000
+obtained data points = 60 * 60 * 30 = 108000
+coordinate minimum = [np.float64(-1.5625), np.float64(-7.083333333333307), np.float64(0.0)]
+coordinate maximum = [np.float64(1.5625), np.float64(-3.9583333333333783), np.float64(1.5625)]
+grid point         = [np.int32(60), np.int32(60), np.int32(30)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev07-01_Lap0_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev07-01_gxx0_00000.bin
+
+reading binary data from file = Lev07-01_gxx0_00000.bin
+obtained data shape  = (108000,)
+obtained data size   = 108000
+obtained data points = 60 * 60 * 30 = 108000
+coordinate minimum = [np.float64(-1.5625), np.float64(-7.083333333333307), np.float64(0.0)]
+coordinate maximum = [np.float64(1.5625), np.float64(-3.9583333333333783), np.float64(1.5625)]
+grid point         = [np.int32(60), np.int32(60), np.int32(30)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev07-01_gxx0_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev07-01_gxy0_00000.bin
+
+reading binary data from file = Lev07-01_gxy0_00000.bin
+obtained data shape  = (108000,)
+obtained data size   = 108000
+obtained data points = 60 * 60 * 30 = 108000
+coordinate minimum = [np.float64(-1.5625), np.float64(-7.083333333333307), np.float64(0.0)]
+coordinate maximum = [np.float64(1.5625), np.float64(-3.9583333333333783), np.float64(1.5625)]
+grid point         = [np.int32(60), np.int32(60), np.int32(30)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev07-01_gxy0_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev07-01_gxz0_00000.bin
+
+reading binary data from file = Lev07-01_gxz0_00000.bin
+obtained data shape  = (108000,)
+obtained data size   = 108000
+obtained data points = 60 * 60 * 30 = 108000
+coordinate minimum = [np.float64(-1.5625), np.float64(-7.083333333333307), np.float64(0.0)]
+coordinate maximum = [np.float64(1.5625), np.float64(-3.9583333333333783), np.float64(1.5625)]
+grid point         = [np.int32(60), np.int32(60), np.int32(30)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev07-01_gxz0_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev07-01_gyy0_00000.bin
+
+reading binary data from file = Lev07-01_gyy0_00000.bin
+obtained data shape  = (108000,)
+obtained data size   = 108000
+obtained data points = 60 * 60 * 30 = 108000
+coordinate minimum = [np.float64(-1.5625), np.float64(-7.083333333333307), np.float64(0.0)]
+coordinate maximum = [np.float64(1.5625), np.float64(-3.9583333333333783), np.float64(1.5625)]
+grid point         = [np.int32(60), np.int32(60), np.int32(30)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev07-01_gyy0_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev07-01_gyz0_00000.bin
+
+reading binary data from file = Lev07-01_gyz0_00000.bin
+obtained data shape  = (108000,)
+obtained data size   = 108000
+obtained data points = 60 * 60 * 30 = 108000
+coordinate minimum = [np.float64(-1.5625), np.float64(-7.083333333333307), np.float64(0.0)]
+coordinate maximum = [np.float64(1.5625), np.float64(-3.9583333333333783), np.float64(1.5625)]
+grid point         = [np.int32(60), np.int32(60), np.int32(30)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev07-01_gyz0_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev07-01_gzz0_00000.bin
+
+reading binary data from file = Lev07-01_gzz0_00000.bin
+obtained data shape  = (108000,)
+obtained data size   = 108000
+obtained data points = 60 * 60 * 30 = 108000
+coordinate minimum = [np.float64(-1.5625), np.float64(-7.083333333333307), np.float64(0.0)]
+coordinate maximum = [np.float64(1.5625), np.float64(-3.9583333333333783), np.float64(1.5625)]
+grid point         = [np.int32(60), np.int32(60), np.int32(30)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev07-01_gzz0_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev07-01_phi0_00000.bin
+
+reading binary data from file = Lev07-01_phi0_00000.bin
+obtained data shape  = (108000,)
+obtained data size   = 108000
+obtained data points = 60 * 60 * 30 = 108000
+coordinate minimum = [np.float64(-1.5625), np.float64(-7.083333333333307), np.float64(0.0)]
+coordinate maximum = [np.float64(1.5625), np.float64(-3.9583333333333783), np.float64(1.5625)]
+grid point         = [np.int32(60), np.int32(60), np.int32(30)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev07-01_phi0_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev07-01_trK0_00000.bin
+
+reading binary data from file = Lev07-01_trK0_00000.bin
+obtained data shape  = (108000,)
+obtained data size   = 108000
+obtained data points = 60 * 60 * 30 = 108000
+coordinate minimum = [np.float64(-1.5625), np.float64(-7.083333333333307), np.float64(0.0)]
+coordinate maximum = [np.float64(1.5625), np.float64(-3.9583333333333783), np.float64(1.5625)]
+grid point         = [np.int32(60), np.int32(60), np.int32(30)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev07-01_trK0_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev08-00_Cons_Ham_00000.bin
+
+reading binary data from file = Lev08-00_Cons_Ham_00000.bin
+obtained data shape  = (108000,)
+obtained data size   = 108000
+obtained data points = 60 * 60 * 30 = 108000
+coordinate minimum = [np.float64(-0.78125), np.float64(3.671875), np.float64(0.0)]
+coordinate maximum = [np.float64(0.78125), np.float64(5.234375), np.float64(0.78125)]
+grid point         = [np.int32(60), np.int32(60), np.int32(30)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev08-00_Cons_Ham_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev08-00_Cons_Px_00000.bin
+
+reading binary data from file = Lev08-00_Cons_Px_00000.bin
+obtained data shape  = (108000,)
+obtained data size   = 108000
+obtained data points = 60 * 60 * 30 = 108000
+coordinate minimum = [np.float64(-0.78125), np.float64(3.671875), np.float64(0.0)]
+coordinate maximum = [np.float64(0.78125), np.float64(5.234375), np.float64(0.78125)]
+grid point         = [np.int32(60), np.int32(60), np.int32(30)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev08-00_Cons_Px_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev08-00_Cons_Py_00000.bin
+
+reading binary data from file = Lev08-00_Cons_Py_00000.bin
+obtained data shape  = (108000,)
+obtained data size   = 108000
+obtained data points = 60 * 60 * 30 = 108000
+coordinate minimum = [np.float64(-0.78125), np.float64(3.671875), np.float64(0.0)]
+coordinate maximum = [np.float64(0.78125), np.float64(5.234375), np.float64(0.78125)]
+grid point         = [np.int32(60), np.int32(60), np.int32(30)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev08-00_Cons_Py_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev08-00_Cons_Pz_00000.bin
+
+reading binary data from file = Lev08-00_Cons_Pz_00000.bin
+obtained data shape  = (108000,)
+obtained data size   = 108000
+obtained data points = 60 * 60 * 30 = 108000
+coordinate minimum = [np.float64(-0.78125), np.float64(3.671875), np.float64(0.0)]
+coordinate maximum = [np.float64(0.78125), np.float64(5.234375), np.float64(0.78125)]
+grid point         = [np.int32(60), np.int32(60), np.int32(30)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev08-00_Cons_Pz_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev08-00_Lap0_00000.bin
+
+reading binary data from file = Lev08-00_Lap0_00000.bin
+obtained data shape  = (108000,)
+obtained data size   = 108000
+obtained data points = 60 * 60 * 30 = 108000
+coordinate minimum = [np.float64(-0.78125), np.float64(3.671875), np.float64(0.0)]
+coordinate maximum = [np.float64(0.78125), np.float64(5.234375), np.float64(0.78125)]
+grid point         = [np.int32(60), np.int32(60), np.int32(30)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev08-00_Lap0_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev08-00_gxx0_00000.bin
+
+reading binary data from file = Lev08-00_gxx0_00000.bin
+obtained data shape  = (108000,)
+obtained data size   = 108000
+obtained data points = 60 * 60 * 30 = 108000
+coordinate minimum = [np.float64(-0.78125), np.float64(3.671875), np.float64(0.0)]
+coordinate maximum = [np.float64(0.78125), np.float64(5.234375), np.float64(0.78125)]
+grid point         = [np.int32(60), np.int32(60), np.int32(30)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev08-00_gxx0_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev08-00_gxy0_00000.bin
+
+reading binary data from file = Lev08-00_gxy0_00000.bin
+obtained data shape  = (108000,)
+obtained data size   = 108000
+obtained data points = 60 * 60 * 30 = 108000
+coordinate minimum = [np.float64(-0.78125), np.float64(3.671875), np.float64(0.0)]
+coordinate maximum = [np.float64(0.78125), np.float64(5.234375), np.float64(0.78125)]
+grid point         = [np.int32(60), np.int32(60), np.int32(30)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev08-00_gxy0_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev08-00_gxz0_00000.bin
+
+reading binary data from file = Lev08-00_gxz0_00000.bin
+obtained data shape  = (108000,)
+obtained data size   = 108000
+obtained data points = 60 * 60 * 30 = 108000
+coordinate minimum = [np.float64(-0.78125), np.float64(3.671875), np.float64(0.0)]
+coordinate maximum = [np.float64(0.78125), np.float64(5.234375), np.float64(0.78125)]
+grid point         = [np.int32(60), np.int32(60), np.int32(30)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev08-00_gxz0_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev08-00_gyy0_00000.bin
+
+reading binary data from file = Lev08-00_gyy0_00000.bin
+obtained data shape  = (108000,)
+obtained data size   = 108000
+obtained data points = 60 * 60 * 30 = 108000
+coordinate minimum = [np.float64(-0.78125), np.float64(3.671875), np.float64(0.0)]
+coordinate maximum = [np.float64(0.78125), np.float64(5.234375), np.float64(0.78125)]
+grid point         = [np.int32(60), np.int32(60), np.int32(30)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev08-00_gyy0_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev08-00_gyz0_00000.bin
+
+reading binary data from file = Lev08-00_gyz0_00000.bin
+obtained data shape  = (108000,)
+obtained data size   = 108000
+obtained data points = 60 * 60 * 30 = 108000
+coordinate minimum = [np.float64(-0.78125), np.float64(3.671875), np.float64(0.0)]
+coordinate maximum = [np.float64(0.78125), np.float64(5.234375), np.float64(0.78125)]
+grid point         = [np.int32(60), np.int32(60), np.int32(30)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev08-00_gyz0_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev08-00_gzz0_00000.bin
+
+reading binary data from file = Lev08-00_gzz0_00000.bin
+obtained data shape  = (108000,)
+obtained data size   = 108000
+obtained data points = 60 * 60 * 30 = 108000
+coordinate minimum = [np.float64(-0.78125), np.float64(3.671875), np.float64(0.0)]
+coordinate maximum = [np.float64(0.78125), np.float64(5.234375), np.float64(0.78125)]
+grid point         = [np.int32(60), np.int32(60), np.int32(30)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev08-00_gzz0_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev08-00_phi0_00000.bin
+
+reading binary data from file = Lev08-00_phi0_00000.bin
+obtained data shape  = (108000,)
+obtained data size   = 108000
+obtained data points = 60 * 60 * 30 = 108000
+coordinate minimum = [np.float64(-0.78125), np.float64(3.671875), np.float64(0.0)]
+coordinate maximum = [np.float64(0.78125), np.float64(5.234375), np.float64(0.78125)]
+grid point         = [np.int32(60), np.int32(60), np.int32(30)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev08-00_phi0_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev08-00_trK0_00000.bin
+
+reading binary data from file = Lev08-00_trK0_00000.bin
+obtained data shape  = (108000,)
+obtained data size   = 108000
+obtained data points = 60 * 60 * 30 = 108000
+coordinate minimum = [np.float64(-0.78125), np.float64(3.671875), np.float64(0.0)]
+coordinate maximum = [np.float64(0.78125), np.float64(5.234375), np.float64(0.78125)]
+grid point         = [np.int32(60), np.int32(60), np.int32(30)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev08-00_trK0_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev08-01_Cons_Ham_00000.bin
+
+reading binary data from file = Lev08-01_Cons_Ham_00000.bin
+obtained data shape  = (108000,)
+obtained data size   = 108000
+obtained data points = 60 * 60 * 30 = 108000
+coordinate minimum = [np.float64(-0.78125), np.float64(-6.328125), np.float64(0.0)]
+coordinate maximum = [np.float64(0.78125), np.float64(-4.765625), np.float64(0.78125)]
+grid point         = [np.int32(60), np.int32(60), np.int32(30)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev08-01_Cons_Ham_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev08-01_Cons_Px_00000.bin
+
+reading binary data from file = Lev08-01_Cons_Px_00000.bin
+obtained data shape  = (108000,)
+obtained data size   = 108000
+obtained data points = 60 * 60 * 30 = 108000
+coordinate minimum = [np.float64(-0.78125), np.float64(-6.328125), np.float64(0.0)]
+coordinate maximum = [np.float64(0.78125), np.float64(-4.765625), np.float64(0.78125)]
+grid point         = [np.int32(60), np.int32(60), np.int32(30)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev08-01_Cons_Px_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev08-01_Cons_Py_00000.bin
+
+reading binary data from file = Lev08-01_Cons_Py_00000.bin
+obtained data shape  = (108000,)
+obtained data size   = 108000
+obtained data points = 60 * 60 * 30 = 108000
+coordinate minimum = [np.float64(-0.78125), np.float64(-6.328125), np.float64(0.0)]
+coordinate maximum = [np.float64(0.78125), np.float64(-4.765625), np.float64(0.78125)]
+grid point         = [np.int32(60), np.int32(60), np.int32(30)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev08-01_Cons_Py_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev08-01_Cons_Pz_00000.bin
+
+reading binary data from file = Lev08-01_Cons_Pz_00000.bin
+obtained data shape  = (108000,)
+obtained data size   = 108000
+obtained data points = 60 * 60 * 30 = 108000
+coordinate minimum = [np.float64(-0.78125), np.float64(-6.328125), np.float64(0.0)]
+coordinate maximum = [np.float64(0.78125), np.float64(-4.765625), np.float64(0.78125)]
+grid point         = [np.int32(60), np.int32(60), np.int32(30)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev08-01_Cons_Pz_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev08-01_Lap0_00000.bin
+
+reading binary data from file = Lev08-01_Lap0_00000.bin
+obtained data shape  = (108000,)
+obtained data size   = 108000
+obtained data points = 60 * 60 * 30 = 108000
+coordinate minimum = [np.float64(-0.78125), np.float64(-6.328125), np.float64(0.0)]
+coordinate maximum = [np.float64(0.78125), np.float64(-4.765625), np.float64(0.78125)]
+grid point         = [np.int32(60), np.int32(60), np.int32(30)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev08-01_Lap0_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev08-01_gxx0_00000.bin
+
+reading binary data from file = Lev08-01_gxx0_00000.bin
+obtained data shape  = (108000,)
+obtained data size   = 108000
+obtained data points = 60 * 60 * 30 = 108000
+coordinate minimum = [np.float64(-0.78125), np.float64(-6.328125), np.float64(0.0)]
+coordinate maximum = [np.float64(0.78125), np.float64(-4.765625), np.float64(0.78125)]
+grid point         = [np.int32(60), np.int32(60), np.int32(30)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev08-01_gxx0_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev08-01_gxy0_00000.bin
+
+reading binary data from file = Lev08-01_gxy0_00000.bin
+obtained data shape  = (108000,)
+obtained data size   = 108000
+obtained data points = 60 * 60 * 30 = 108000
+coordinate minimum = [np.float64(-0.78125), np.float64(-6.328125), np.float64(0.0)]
+coordinate maximum = [np.float64(0.78125), np.float64(-4.765625), np.float64(0.78125)]
+grid point         = [np.int32(60), np.int32(60), np.int32(30)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev08-01_gxy0_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev08-01_gxz0_00000.bin
+
+reading binary data from file = Lev08-01_gxz0_00000.bin
+obtained data shape  = (108000,)
+obtained data size   = 108000
+obtained data points = 60 * 60 * 30 = 108000
+coordinate minimum = [np.float64(-0.78125), np.float64(-6.328125), np.float64(0.0)]
+coordinate maximum = [np.float64(0.78125), np.float64(-4.765625), np.float64(0.78125)]
+grid point         = [np.int32(60), np.int32(60), np.int32(30)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev08-01_gxz0_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev08-01_gyy0_00000.bin
+
+reading binary data from file = Lev08-01_gyy0_00000.bin
+obtained data shape  = (108000,)
+obtained data size   = 108000
+obtained data points = 60 * 60 * 30 = 108000
+coordinate minimum = [np.float64(-0.78125), np.float64(-6.328125), np.float64(0.0)]
+coordinate maximum = [np.float64(0.78125), np.float64(-4.765625), np.float64(0.78125)]
+grid point         = [np.int32(60), np.int32(60), np.int32(30)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev08-01_gyy0_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev08-01_gyz0_00000.bin
+
+reading binary data from file = Lev08-01_gyz0_00000.bin
+obtained data shape  = (108000,)
+obtained data size   = 108000
+obtained data points = 60 * 60 * 30 = 108000
+coordinate minimum = [np.float64(-0.78125), np.float64(-6.328125), np.float64(0.0)]
+coordinate maximum = [np.float64(0.78125), np.float64(-4.765625), np.float64(0.78125)]
+grid point         = [np.int32(60), np.int32(60), np.int32(30)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev08-01_gyz0_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev08-01_gzz0_00000.bin
+
+reading binary data from file = Lev08-01_gzz0_00000.bin
+obtained data shape  = (108000,)
+obtained data size   = 108000
+obtained data points = 60 * 60 * 30 = 108000
+coordinate minimum = [np.float64(-0.78125), np.float64(-6.328125), np.float64(0.0)]
+coordinate maximum = [np.float64(0.78125), np.float64(-4.765625), np.float64(0.78125)]
+grid point         = [np.int32(60), np.int32(60), np.int32(30)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev08-01_gzz0_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev08-01_phi0_00000.bin
+
+reading binary data from file = Lev08-01_phi0_00000.bin
+obtained data shape  = (108000,)
+obtained data size   = 108000
+obtained data points = 60 * 60 * 30 = 108000
+coordinate minimum = [np.float64(-0.78125), np.float64(-6.328125), np.float64(0.0)]
+coordinate maximum = [np.float64(0.78125), np.float64(-4.765625), np.float64(0.78125)]
+grid point         = [np.int32(60), np.int32(60), np.int32(30)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev08-01_phi0_00000.bin plot has finished
+
+GW150914_1077_128/AMSS_NCKU_output/binary_output/Lev08-01_trK0_00000.bin
+
+reading binary data from file = Lev08-01_trK0_00000.bin
+obtained data shape  = (108000,)
+obtained data size   = 108000
+obtained data points = 60 * 60 * 30 = 108000
+coordinate minimum = [np.float64(-0.78125), np.float64(-6.328125), np.float64(0.0)]
+coordinate maximum = [np.float64(0.78125), np.float64(-4.765625), np.float64(0.78125)]
+grid point         = [np.int32(60), np.int32(60), np.int32(30)]
+
+Data file read successfully. Plotting data.
+
+binary data file = Lev08-01_trK0_00000.bin plot has finished
+
+
+ Binary Data Plot Has been Finished 
+
+
+ This Program Cost = 814.5172247886658 Seconds 
+
+
+ The AMSS-NCKU-Python simulation is successfully finished, thanks for using !!! 
+
