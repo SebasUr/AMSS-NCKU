@@ -18,8 +18,10 @@ import numpy
 ## You can override this at runtime by setting environment variable AMSS_OUTPUT_DIR.
 ## Example: export AMSS_OUTPUT_DIR="GW150914_${SLURM_JOB_ID}"
 File_directory   = os.environ.get("AMSS_OUTPUT_DIR", "GW150914")
-Output_directory = "binary_output"
-MPI_processes    = 128  ## Pure MPI (optimal for this problem)
+Output_directory = "binary_output"               ## binary data file directory
+                                                 ## The file directory name should not be too long
+MPI_processes    = 128                             ## number of mpi processes used in the simulation
+                                                 ## Updated for optimal MPI+OpenMP: 2 nodes × 16 ranks/node = 32
 
 GPU_Calculation  = "no"                          ## Use GPU or not 
                                                  ## (prefer "no" in the current version, because the GPU part may have bugs when integrated in this Python interface)

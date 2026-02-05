@@ -70,11 +70,8 @@
   fz = ZEO
 
 !$omp parallel do collapse(3) default(shared) private(i,j,k) schedule(static)
-!DIR$ SIMD
   do k=1,ex(3)-1
-!DIR$ VECTOR ALIGNED
   do j=1,ex(2)-1
-!DIR$ IVDEP
   do i=1,ex(1)-1
 ! x direction   
         if(i+1 <= imax .and. i-1 >= imin)then
@@ -98,7 +95,7 @@
 
       fz(i,j,k)=d2dz*(-fh(i,j,k-1)+fh(i,j,k+1))
 
-! set kmax and imin 0
+! set kmax and kmin 0
     endif
 
   enddo

@@ -862,8 +862,11 @@
    C1 = 1.d0/Mass(1) - A
    C2 = 1.d0/Mass(2) - A
 
+!DIR$ SIMD
    do k=1,ex(3)
+!DIR$ VECTOR ALIGNED
    do j=1,ex(2)
+!DIR$ IVDEP
    do i=1,ex(1)
      r1 = ((Porg(1)-X(i))**2+(Porg(2)-Y(j))**2+(Porg(3)-Z(k))**2)/ &
           ((Porg(1)-Porg(4))**2+(Porg(2)-Porg(5))**2+(Porg(3)-Porg(6))**2)
@@ -892,8 +895,11 @@
    C1 = 1.d0/Mass(1) - A
    C2 = 1.d0/Mass(2) - A
 
+!DIR$ SIMD
    do k=1,ex(3)
+!DIR$ VECTOR ALIGNED
    do j=1,ex(2)
+!DIR$ IVDEP
    do i=1,ex(1)
      r1 = ((Porg(1)-X(i))**2+(Porg(2)-Y(j))**2+(Porg(3)-Z(k))**2)/ &
           ((Porg(1)-Porg(4))**2+(Porg(2)-Porg(5))**2+(Porg(3)-Porg(6))**2)

@@ -1,0 +1,10 @@
+/home/sauriber2/AMSS-NCKU/plot_xiaoqu.py:254: UserWarning: No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+  plt.legend( loc='upper right'                                       )
+/home/sauriber2/AMSS-NCKU/plot_xiaoqu.py:282: UserWarning: No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+  plt.legend( loc='upper right'                                       )
+/home/sauriber2/AMSS-NCKU/plot_xiaoqu.py:310: UserWarning: No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+  plt.legend( loc='upper right'                                       )
+/home/sauriber2/AMSS-NCKU/plot_xiaoqu.py:434: UserWarning: No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+  plt.legend( loc='upper right'                          )
+/home/sauriber2/AMSS-NCKU/plot_GW_strain_amplitude_xiaoqu.py:574: RuntimeWarning: More than 20 figures have been opened. Figures created through the pyplot interface (`matplotlib.pyplot.figure`) are retained until explicitly closed and may consume too much memory. (To control this warning, see the rcParam `figure.max_open_warning`). Consider using `matplotlib.pyplot.close()`.
+  plt.figure( figsize=(8,8) )                                   ## figsize controls figure size

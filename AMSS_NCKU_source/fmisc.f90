@@ -324,7 +324,10 @@ subroutine symmetry_bd(ord,extc,func,funcc,SoA)
 
   integer::i
 
-  funcc = 0.d0
+! OPTIMIZACIÓN: Solo copiar array principal, NO inicializar todo con ceros
+! La inicialización completa "funcc = 0.d0" es innecesaria porque:
+! 1) El interior se sobreescribe con func
+! 2) Las ghost zones se rellenan en los loops siguientes
   funcc(1:extc(1),1:extc(2),1:extc(3)) = func
    do i=0,ord-1
       funcc(-i,1:extc(2),1:extc(3)) = funcc(i+2,1:extc(2),1:extc(3))*SoA(1)
@@ -886,7 +889,7 @@ subroutine symmetry_bd(ord,extc,func,funcc,SoA)
 
   integer::i
 
-  funcc = 0.d0
+! OPTIMIZACIÓN: Eliminar inicialización innecesaria (ver línea 315)
   funcc(1:extc(1),1:extc(2),1:extc(3)) = func
    do i=0,ord-1
       funcc(-i,1:extc(2),1:extc(3)) = funcc(i+1,1:extc(2),1:extc(3))*SoA(1)

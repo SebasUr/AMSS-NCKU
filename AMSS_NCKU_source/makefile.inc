@@ -23,8 +23,27 @@ Cu        = $(CUDA_HOME)/bin/nvcc
 # no OpenMP pragmas are present, this is typically a no-op.
 OMPFLAGS    = -fopenmp
 
-CXXAPPFLAGS  = -O3 -Wno-deprecated -Dfortran3 -Dnewc $(OMPFLAGS)
-f90appflags  = -O3 -x f95-cpp-input $(OMPFLAGS)
+# ULTRA-aggressive optimization flags for competition
+# -march=native -mtune=native: Use all CPU-specific instructions
+# -ffast-math: Allow aggressive FP optimizations
+# -funroll-loops: Unroll loops
+# -flto: Link-time optimization
+# -fno-signed-zeros -fno-trapping-math: Faster FP
+# -fipa-pta: Interprocedural pointer analysis
+# -ftree-loop-vectorize: Force vectorization
+# -ftree-slp-vectorize: SLP vectorization
+# -fvect-cost-model=unlimited: Aggressive vectorization
+# -fprefetch-loop-arrays: Hardware prefetching
+CXXAPPFLAGS  = -O3 -march=native -mtune=native -ffast-math -funroll-loops \
+               -flto -fno-signed-zeros -fno-trapping-math \
+               -fipa-pta -ftree-loop-vectorize -ftree-slp-vectorize \
+               -fvect-cost-model=unlimited -fprefetch-loop-arrays \
+               -Wno-deprecated -Dfortran3 -Dnewc $(OMPFLAGS)
+f90appflags  = -O3 -march=native -mtune=native -ffast-math -funroll-loops \
+               -flto -fno-signed-zeros -fno-trapping-math \
+               -ftree-loop-vectorize -ftree-slp-vectorize \
+               -fvect-cost-model=unlimited -fprefetch-loop-arrays \
+               -ftree-vectorize -x f95-cpp-input $(OMPFLAGS)
 CUDA_APP_FLAGS = -c -g -O3 --ptxas-options=-v -Dfortran3 -Dnewc
 
 ###############################################################################
