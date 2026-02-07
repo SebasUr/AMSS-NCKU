@@ -1010,9 +1010,20 @@
   fy = ZEO
   fz = ZEO
 
+  do k=3,ex(3)-3
+  do j=3,ex(2)-3
+  do i=3,ex(1)-3
+      fx(i,j,k)=d12dx*(fh(i-2,j,k)-EIT*fh(i-1,j,k)+EIT*fh(i+1,j,k)-fh(i+2,j,k))
+      fy(i,j,k)=d12dy*(fh(i,j-2,k)-EIT*fh(i,j-1,k)+EIT*fh(i,j+1,k)-fh(i,j+2,k))
+      fz(i,j,k)=d12dz*(fh(i,j,k-2)-EIT*fh(i,j,k-1)+EIT*fh(i,j,k+1)-fh(i,j,k+2))
+  enddo
+  enddo
+  enddo
+
   do k=1,ex(3)-1
   do j=1,ex(2)-1
   do i=1,ex(1)-1
+  if(i < 3 .or. i > ex(1)-3 .or. j < 3 .or. j > ex(2)-3 .or. k < 3 .or. k > ex(3)-3) then
 #if 0  
 ! x direction   
         if(i+2 <= imax .and. i-2 >= imin)then
@@ -1093,7 +1104,6 @@
 ! set kmax and kmin 0
     endif
 #else
-! for bam comparison
    if(i+2 <= imax .and. i-2 >= imin .and. &
       j+2 <= jmax .and. j-2 >= jmin .and. &
       k+2 <= kmax .and. k-2 >= kmin) then
@@ -1108,6 +1118,7 @@
       fz(i,j,k)=d2dz*(-fh(i,j,k-1)+fh(i,j,k+1))
    endif
 #endif
+  endif
   enddo
   enddo
   enddo
@@ -1414,9 +1425,35 @@
   fxz = ZEO
   fyz = ZEO
 
+  do k=3,ex(3)-3
+  do j=3,ex(2)-3
+  do i=3,ex(1)-3
+   fxx(i,j,k) = Fdxdx*(-fh(i-2,j,k)+F16*fh(i-1,j,k)-F30*fh(i,j,k) &
+                       -fh(i+2,j,k)+F16*fh(i+1,j,k)              )
+   fyy(i,j,k) = Fdydy*(-fh(i,j-2,k)+F16*fh(i,j-1,k)-F30*fh(i,j,k) &
+                       -fh(i,j+2,k)+F16*fh(i,j+1,k)              )
+   fzz(i,j,k) = Fdzdz*(-fh(i,j,k-2)+F16*fh(i,j,k-1)-F30*fh(i,j,k) &
+                       -fh(i,j,k+2)+F16*fh(i,j,k+1)              )
+   fxy(i,j,k) = Fdxdy*(     (fh(i-2,j-2,k)-F8*fh(i-1,j-2,k)+F8*fh(i+1,j-2,k)-fh(i+2,j-2,k))  &
+                       -F8 *(fh(i-2,j-1,k)-F8*fh(i-1,j-1,k)+F8*fh(i+1,j-1,k)-fh(i+2,j-1,k))  &
+                       +F8 *(fh(i-2,j+1,k)-F8*fh(i-1,j+1,k)+F8*fh(i+1,j+1,k)-fh(i+2,j+1,k))  &
+                       -    (fh(i-2,j+2,k)-F8*fh(i-1,j+2,k)+F8*fh(i+1,j+2,k)-fh(i+2,j+2,k)))
+   fxz(i,j,k) = Fdxdz*(     (fh(i-2,j,k-2)-F8*fh(i-1,j,k-2)+F8*fh(i+1,j,k-2)-fh(i+2,j,k-2))  &
+                       -F8 *(fh(i-2,j,k-1)-F8*fh(i-1,j,k-1)+F8*fh(i+1,j,k-1)-fh(i+2,j,k-1))  &
+                       +F8 *(fh(i-2,j,k+1)-F8*fh(i-1,j,k+1)+F8*fh(i+1,j,k+1)-fh(i+2,j,k+1))  &
+                       -    (fh(i-2,j,k+2)-F8*fh(i-1,j,k+2)+F8*fh(i+1,j,k+2)-fh(i+2,j,k+2)))
+   fyz(i,j,k) = Fdydz*(     (fh(i,j-2,k-2)-F8*fh(i,j-1,k-2)+F8*fh(i,j+1,k-2)-fh(i,j+2,k-2))  &
+                       -F8 *(fh(i,j-2,k-1)-F8*fh(i,j-1,k-1)+F8*fh(i,j+1,k-1)-fh(i,j+2,k-1))  &
+                       +F8 *(fh(i,j-2,k+1)-F8*fh(i,j-1,k+1)+F8*fh(i,j+1,k+1)-fh(i,j+2,k+1))  &
+                       -    (fh(i,j-2,k+2)-F8*fh(i,j-1,k+2)+F8*fh(i,j+1,k+2)-fh(i,j+2,k+2)))
+  enddo
+  enddo
+  enddo
+
   do k=1,ex(3)-1
   do j=1,ex(2)-1
   do i=1,ex(1)-1
+  if(i < 3 .or. i > ex(1)-3 .or. j < 3 .or. j > ex(2)-3 .or. k < 3 .or. k > ex(3)-3) then
 #if 0  
 !~~~~~~ fxx
         if(i+2 <= imax .and. i-2 >= imin)then
@@ -1496,7 +1533,6 @@
    fyz(i,j,k) = Sdydz*(fh(i,j-1,k-1)-fh(i,j+1,k-1)-fh(i,j-1,k+1)+fh(i,j+1,k+1))
    endif 
 #else
-! for bam comparison
    if(i+2 <= imax .and. i-2 >= imin .and. &
       j+2 <= jmax .and. j-2 >= jmin .and. &
       k+2 <= kmax .and. k-2 >= kmin) then
@@ -1532,6 +1568,7 @@
    fyz(i,j,k) = Sdydz*(fh(i,j-1,k-1)-fh(i,j+1,k-1)-fh(i,j-1,k+1)+fh(i,j+1,k+1))
    endif
 #endif
+   endif
    enddo
    enddo
    enddo
