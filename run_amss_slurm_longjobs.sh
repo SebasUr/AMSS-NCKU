@@ -17,7 +17,7 @@ ml libfabric/1.18.0
 
 conda activate AMSS10
 
-export AMSS_OUTPUT_DIR="GW150914_${SLURM_JOB_ID}_TEST"
+export AMSS_OUTPUT_DIR="GW150914_${SLURM_JOB_ID}_mega"
 export OMP_NUM_THREADS=1
 
 python AMSS_NCKU_Program.py

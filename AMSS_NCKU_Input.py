@@ -19,8 +19,7 @@ import numpy
 ## Example: export AMSS_OUTPUT_DIR="GW150914_${SLURM_JOB_ID}"
 File_directory   = os.environ.get("AMSS_OUTPUT_DIR", "GW150914")
 Output_directory = "binary_output"
-MPI_processes    = 128  ## Pure MPI (optimal for this problem)
-
+MPI_processes    = 128  
 GPU_Calculation  = "no"                          ## Use GPU or not 
                                                  ## (prefer "no" in the current version, because the GPU part may have bugs when integrated in this Python interface)
 CPU_Part         = 1.0

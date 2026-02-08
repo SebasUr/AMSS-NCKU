@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "/home/sauriber2/AMSS-NCKU/AMSS_NCKU_Program.py", line 378, in <module>
+    os.chdir('..')
+OSError: [Errno 116] Stale file handle: '..'

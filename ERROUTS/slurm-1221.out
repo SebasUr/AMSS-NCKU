@@ -1,0 +1,24 @@
+
+------------------------------------------------------------------------------------------
+
+     Numerical Relativity AMSS-NCKU  
+
+     Author of AMSS-NCKU Code: Zhou-Jian Cao et al. 
+     Author of AMSS-NCKU Python Interface: Xiao Qu 
+
+     AMSS-NCKU is an open source numerical relativity code 
+     It can be used to simulate the dynamical evolution on mergering process of black hole systems, 
+ calculating the variation of gravitational field, black holes' trajectories, and gravitational wave 
+ emissions through directly solving the Einstein field equations  
+
+     This AMSS-NCKU code uses the finite-difference method to evaluate the numerical simulation. The 
+ finite-difference schemes can be chosen as: 2nd order, 4th order, 6th order, 8th order. 
+     The computation equation form in AMSS-NCKU code can be chosen as: BSSN equations, Z4C equations, 
+ BSSN equations coupled with scalars (in f(R) theory), BSSN equations coupled with electromagnetic 
+ fields. 
+     The numerical grid system in this code includes: patch AMR grid, shell-patch AMR grid. 
+
+     Furthermore, This code has fulfilled the CPU and GPU hybrid calculation. 
+
+------------------------------------------------------------------------------------------
+

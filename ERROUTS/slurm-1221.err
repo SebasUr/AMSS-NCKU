@@ -1,0 +1,11 @@
+
+EnvironmentNameNotFound: Could not find conda environment: AMSS10
+You can list all discoverable environments with `conda info --envs`.
+
+
+Traceback (most recent call last):
+  File "/home/sauriber2/AMSS-NCKU/AMSS_NCKU_Program.py", line 37, in <module>
+    import AMSS_NCKU_Input as input_data
+  File "/home/sauriber2/AMSS-NCKU/AMSS_NCKU_Input.py", line 11, in <module>
+    import numpy
+ModuleNotFoundError: No module named 'numpy'

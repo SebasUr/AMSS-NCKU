@@ -1128,6 +1128,283 @@
   end subroutine fderivs
 !-----------------------------------------------------------------------------
 !
+! Batched first derivatives for 3 variables (fused loop for cache locality)
+!
+!-----------------------------------------------------------------------------
+  subroutine fderivs3(ex,f1,f1x,f1y,f1z,f2,f2x,f2y,f2z,f3,f3x,f3y,f3z, &
+                      X,Y,Z,SYM1a,SYM2a,SYM3a,SYM1b,SYM2b,SYM3b, &
+                      SYM1c,SYM2c,SYM3c,symmetry,onoff)
+  implicit none
+
+  integer,                               intent(in ):: ex(1:3),symmetry,onoff
+  real*8,  dimension(ex(1),ex(2),ex(3)), intent(in ):: f1,f2,f3
+  real*8,  dimension(ex(1),ex(2),ex(3)), intent(out):: f1x,f1y,f1z
+  real*8,  dimension(ex(1),ex(2),ex(3)), intent(out):: f2x,f2y,f2z
+  real*8,  dimension(ex(1),ex(2),ex(3)), intent(out):: f3x,f3y,f3z
+  real*8,                                intent(in) :: X(ex(1)),Y(ex(2)),Z(ex(3))
+  real*8,                                intent(in ):: SYM1a,SYM2a,SYM3a
+  real*8,                                intent(in ):: SYM1b,SYM2b,SYM3b
+  real*8,                                intent(in ):: SYM1c,SYM2c,SYM3c
+
+!~~~~~~ other variables
+
+  real*8 :: dX,dY,dZ
+  real*8,dimension(-1:ex(1),-1:ex(2),-1:ex(3))   :: fh1,fh2,fh3
+  real*8, dimension(3) :: SoA
+  integer :: imin1,jmin1,kmin1,imin2,jmin2,kmin2,imin3,jmin3,kmin3
+  integer :: imax,jmax,kmax,i,j,k
+  real*8 :: d12dx,d12dy,d12dz,d2dx,d2dy,d2dz
+  integer, parameter :: NO_SYMM = 0, EQ_SYMM = 1, OCTANT = 2
+  real*8,  parameter :: ZEO=0.d0,ONE=1.d0
+  real*8,  parameter :: TWO=2.d0,EIT=8.d0
+  real*8,  parameter :: F12=1.2d1
+
+  dX = X(2)-X(1)
+  dY = Y(2)-Y(1)
+  dZ = Z(2)-Z(1)
+
+  imax = ex(1)
+  jmax = ex(2)
+  kmax = ex(3)
+
+! Symmetry bounds for variable 1
+  imin1 = 1; jmin1 = 1; kmin1 = 1
+  if(Symmetry > NO_SYMM .and. dabs(Z(1)) < dZ) kmin1 = -1
+  if(Symmetry > EQ_SYMM .and. dabs(X(1)) < dX) imin1 = -1
+  if(Symmetry > EQ_SYMM .and. dabs(Y(1)) < dY) jmin1 = -1
+
+! Symmetry bounds for variable 2
+  imin2 = 1; jmin2 = 1; kmin2 = 1
+  if(Symmetry > NO_SYMM .and. dabs(Z(1)) < dZ) kmin2 = -1
+  if(Symmetry > EQ_SYMM .and. dabs(X(1)) < dX) imin2 = -1
+  if(Symmetry > EQ_SYMM .and. dabs(Y(1)) < dY) jmin2 = -1
+
+! Symmetry bounds for variable 3
+  imin3 = 1; jmin3 = 1; kmin3 = 1
+  if(Symmetry > NO_SYMM .and. dabs(Z(1)) < dZ) kmin3 = -1
+  if(Symmetry > EQ_SYMM .and. dabs(X(1)) < dX) imin3 = -1
+  if(Symmetry > EQ_SYMM .and. dabs(Y(1)) < dY) jmin3 = -1
+
+! Build ghost zone arrays (separate calls - each variable has its own symmetry)
+  SoA(1) = SYM1a; SoA(2) = SYM2a; SoA(3) = SYM3a
+  call symmetry_bd(2,ex,f1,fh1,SoA)
+
+  SoA(1) = SYM1b; SoA(2) = SYM2b; SoA(3) = SYM3b
+  call symmetry_bd(2,ex,f2,fh2,SoA)
+
+  SoA(1) = SYM1c; SoA(2) = SYM2c; SoA(3) = SYM3c
+  call symmetry_bd(2,ex,f3,fh3,SoA)
+
+  d12dx = ONE/F12/dX
+  d12dy = ONE/F12/dY
+  d12dz = ONE/F12/dZ
+
+  d2dx = ONE/TWO/dX
+  d2dy = ONE/TWO/dY
+  d2dz = ONE/TWO/dZ
+
+  f1x = ZEO; f1y = ZEO; f1z = ZEO
+  f2x = ZEO; f2y = ZEO; f2z = ZEO
+  f3x = ZEO; f3y = ZEO; f3z = ZEO
+
+! Interior loop - all 3 variables fused for cache locality
+  do k=3,ex(3)-3
+  do j=3,ex(2)-3
+  do i=3,ex(1)-3
+      f1x(i,j,k)=d12dx*(fh1(i-2,j,k)-EIT*fh1(i-1,j,k)+EIT*fh1(i+1,j,k)-fh1(i+2,j,k))
+      f1y(i,j,k)=d12dy*(fh1(i,j-2,k)-EIT*fh1(i,j-1,k)+EIT*fh1(i,j+1,k)-fh1(i,j+2,k))
+      f1z(i,j,k)=d12dz*(fh1(i,j,k-2)-EIT*fh1(i,j,k-1)+EIT*fh1(i,j,k+1)-fh1(i,j,k+2))
+      f2x(i,j,k)=d12dx*(fh2(i-2,j,k)-EIT*fh2(i-1,j,k)+EIT*fh2(i+1,j,k)-fh2(i+2,j,k))
+      f2y(i,j,k)=d12dy*(fh2(i,j-2,k)-EIT*fh2(i,j-1,k)+EIT*fh2(i,j+1,k)-fh2(i,j+2,k))
+      f2z(i,j,k)=d12dz*(fh2(i,j,k-2)-EIT*fh2(i,j,k-1)+EIT*fh2(i,j,k+1)-fh2(i,j,k+2))
+      f3x(i,j,k)=d12dx*(fh3(i-2,j,k)-EIT*fh3(i-1,j,k)+EIT*fh3(i+1,j,k)-fh3(i+2,j,k))
+      f3y(i,j,k)=d12dy*(fh3(i,j-2,k)-EIT*fh3(i,j-1,k)+EIT*fh3(i,j+1,k)-fh3(i,j+2,k))
+      f3z(i,j,k)=d12dz*(fh3(i,j,k-2)-EIT*fh3(i,j,k-1)+EIT*fh3(i,j,k+1)-fh3(i,j,k+2))
+  enddo
+  enddo
+  enddo
+
+! Boundary loop - all 3 variables
+  do k=1,ex(3)-1
+  do j=1,ex(2)-1
+  do i=1,ex(1)-1
+  if(i < 3 .or. i > ex(1)-3 .or. j < 3 .or. j > ex(2)-3 .or. k < 3 .or. k > ex(3)-3) then
+! Variable 1
+   if(i+2 <= imax .and. i-2 >= imin1 .and. &
+      j+2 <= jmax .and. j-2 >= jmin1 .and. &
+      k+2 <= kmax .and. k-2 >= kmin1) then
+      f1x(i,j,k)=d12dx*(fh1(i-2,j,k)-EIT*fh1(i-1,j,k)+EIT*fh1(i+1,j,k)-fh1(i+2,j,k))
+      f1y(i,j,k)=d12dy*(fh1(i,j-2,k)-EIT*fh1(i,j-1,k)+EIT*fh1(i,j+1,k)-fh1(i,j+2,k))
+      f1z(i,j,k)=d12dz*(fh1(i,j,k-2)-EIT*fh1(i,j,k-1)+EIT*fh1(i,j,k+1)-fh1(i,j,k+2))
+   elseif(i+1 <= imax .and. i-1 >= imin1 .and. &
+          j+1 <= jmax .and. j-1 >= jmin1 .and. &
+          k+1 <= kmax .and. k-1 >= kmin1) then
+      f1x(i,j,k)=d2dx*(-fh1(i-1,j,k)+fh1(i+1,j,k))
+      f1y(i,j,k)=d2dy*(-fh1(i,j-1,k)+fh1(i,j+1,k))
+      f1z(i,j,k)=d2dz*(-fh1(i,j,k-1)+fh1(i,j,k+1))
+   endif
+! Variable 2
+   if(i+2 <= imax .and. i-2 >= imin2 .and. &
+      j+2 <= jmax .and. j-2 >= jmin2 .and. &
+      k+2 <= kmax .and. k-2 >= kmin2) then
+      f2x(i,j,k)=d12dx*(fh2(i-2,j,k)-EIT*fh2(i-1,j,k)+EIT*fh2(i+1,j,k)-fh2(i+2,j,k))
+      f2y(i,j,k)=d12dy*(fh2(i,j-2,k)-EIT*fh2(i,j-1,k)+EIT*fh2(i,j+1,k)-fh2(i,j+2,k))
+      f2z(i,j,k)=d12dz*(fh2(i,j,k-2)-EIT*fh2(i,j,k-1)+EIT*fh2(i,j,k+1)-fh2(i,j,k+2))
+   elseif(i+1 <= imax .and. i-1 >= imin2 .and. &
+          j+1 <= jmax .and. j-1 >= jmin2 .and. &
+          k+1 <= kmax .and. k-1 >= kmin2) then
+      f2x(i,j,k)=d2dx*(-fh2(i-1,j,k)+fh2(i+1,j,k))
+      f2y(i,j,k)=d2dy*(-fh2(i,j-1,k)+fh2(i,j+1,k))
+      f2z(i,j,k)=d2dz*(-fh2(i,j,k-1)+fh2(i,j,k+1))
+   endif
+! Variable 3
+   if(i+2 <= imax .and. i-2 >= imin3 .and. &
+      j+2 <= jmax .and. j-2 >= jmin3 .and. &
+      k+2 <= kmax .and. k-2 >= kmin3) then
+      f3x(i,j,k)=d12dx*(fh3(i-2,j,k)-EIT*fh3(i-1,j,k)+EIT*fh3(i+1,j,k)-fh3(i+2,j,k))
+      f3y(i,j,k)=d12dy*(fh3(i,j-2,k)-EIT*fh3(i,j-1,k)+EIT*fh3(i,j+1,k)-fh3(i,j+2,k))
+      f3z(i,j,k)=d12dz*(fh3(i,j,k-2)-EIT*fh3(i,j,k-1)+EIT*fh3(i,j,k+1)-fh3(i,j,k+2))
+   elseif(i+1 <= imax .and. i-1 >= imin3 .and. &
+          j+1 <= jmax .and. j-1 >= jmin3 .and. &
+          k+1 <= kmax .and. k-1 >= kmin3) then
+      f3x(i,j,k)=d2dx*(-fh3(i-1,j,k)+fh3(i+1,j,k))
+      f3y(i,j,k)=d2dy*(-fh3(i,j-1,k)+fh3(i,j+1,k))
+      f3z(i,j,k)=d2dz*(-fh3(i,j,k-1)+fh3(i,j,k+1))
+   endif
+  endif
+  enddo
+  enddo
+  enddo
+
+  return
+
+  end subroutine fderivs3
+!-----------------------------------------------------------------------------
+!
+! Batched first derivatives for 2 variables (fused loop for cache locality)
+!
+!-----------------------------------------------------------------------------
+  subroutine fderivs2(ex,f1,f1x,f1y,f1z,f2,f2x,f2y,f2z, &
+                      X,Y,Z,SYM1a,SYM2a,SYM3a,SYM1b,SYM2b,SYM3b, &
+                      symmetry,onoff)
+  implicit none
+
+  integer,                               intent(in ):: ex(1:3),symmetry,onoff
+  real*8,  dimension(ex(1),ex(2),ex(3)), intent(in ):: f1,f2
+  real*8,  dimension(ex(1),ex(2),ex(3)), intent(out):: f1x,f1y,f1z
+  real*8,  dimension(ex(1),ex(2),ex(3)), intent(out):: f2x,f2y,f2z
+  real*8,                                intent(in) :: X(ex(1)),Y(ex(2)),Z(ex(3))
+  real*8,                                intent(in ):: SYM1a,SYM2a,SYM3a
+  real*8,                                intent(in ):: SYM1b,SYM2b,SYM3b
+
+!~~~~~~ other variables
+
+  real*8 :: dX,dY,dZ
+  real*8,dimension(-1:ex(1),-1:ex(2),-1:ex(3))   :: fh1,fh2
+  real*8, dimension(3) :: SoA
+  integer :: imin1,jmin1,kmin1,imin2,jmin2,kmin2
+  integer :: imax,jmax,kmax,i,j,k
+  real*8 :: d12dx,d12dy,d12dz,d2dx,d2dy,d2dz
+  integer, parameter :: NO_SYMM = 0, EQ_SYMM = 1, OCTANT = 2
+  real*8,  parameter :: ZEO=0.d0,ONE=1.d0
+  real*8,  parameter :: TWO=2.d0,EIT=8.d0
+  real*8,  parameter :: F12=1.2d1
+
+  dX = X(2)-X(1)
+  dY = Y(2)-Y(1)
+  dZ = Z(2)-Z(1)
+
+  imax = ex(1)
+  jmax = ex(2)
+  kmax = ex(3)
+
+! Symmetry bounds for variable 1
+  imin1 = 1; jmin1 = 1; kmin1 = 1
+  if(Symmetry > NO_SYMM .and. dabs(Z(1)) < dZ) kmin1 = -1
+  if(Symmetry > EQ_SYMM .and. dabs(X(1)) < dX) imin1 = -1
+  if(Symmetry > EQ_SYMM .and. dabs(Y(1)) < dY) jmin1 = -1
+
+! Symmetry bounds for variable 2
+  imin2 = 1; jmin2 = 1; kmin2 = 1
+  if(Symmetry > NO_SYMM .and. dabs(Z(1)) < dZ) kmin2 = -1
+  if(Symmetry > EQ_SYMM .and. dabs(X(1)) < dX) imin2 = -1
+  if(Symmetry > EQ_SYMM .and. dabs(Y(1)) < dY) jmin2 = -1
+
+! Build ghost zone arrays
+  SoA(1) = SYM1a; SoA(2) = SYM2a; SoA(3) = SYM3a
+  call symmetry_bd(2,ex,f1,fh1,SoA)
+
+  SoA(1) = SYM1b; SoA(2) = SYM2b; SoA(3) = SYM3b
+  call symmetry_bd(2,ex,f2,fh2,SoA)
+
+  d12dx = ONE/F12/dX
+  d12dy = ONE/F12/dY
+  d12dz = ONE/F12/dZ
+
+  d2dx = ONE/TWO/dX
+  d2dy = ONE/TWO/dY
+  d2dz = ONE/TWO/dZ
+
+  f1x = ZEO; f1y = ZEO; f1z = ZEO
+  f2x = ZEO; f2y = ZEO; f2z = ZEO
+
+! Interior loop - both variables fused
+  do k=3,ex(3)-3
+  do j=3,ex(2)-3
+  do i=3,ex(1)-3
+      f1x(i,j,k)=d12dx*(fh1(i-2,j,k)-EIT*fh1(i-1,j,k)+EIT*fh1(i+1,j,k)-fh1(i+2,j,k))
+      f1y(i,j,k)=d12dy*(fh1(i,j-2,k)-EIT*fh1(i,j-1,k)+EIT*fh1(i,j+1,k)-fh1(i,j+2,k))
+      f1z(i,j,k)=d12dz*(fh1(i,j,k-2)-EIT*fh1(i,j,k-1)+EIT*fh1(i,j,k+1)-fh1(i,j,k+2))
+      f2x(i,j,k)=d12dx*(fh2(i-2,j,k)-EIT*fh2(i-1,j,k)+EIT*fh2(i+1,j,k)-fh2(i+2,j,k))
+      f2y(i,j,k)=d12dy*(fh2(i,j-2,k)-EIT*fh2(i,j-1,k)+EIT*fh2(i,j+1,k)-fh2(i,j+2,k))
+      f2z(i,j,k)=d12dz*(fh2(i,j,k-2)-EIT*fh2(i,j,k-1)+EIT*fh2(i,j,k+1)-fh2(i,j,k+2))
+  enddo
+  enddo
+  enddo
+
+! Boundary loop
+  do k=1,ex(3)-1
+  do j=1,ex(2)-1
+  do i=1,ex(1)-1
+  if(i < 3 .or. i > ex(1)-3 .or. j < 3 .or. j > ex(2)-3 .or. k < 3 .or. k > ex(3)-3) then
+! Variable 1
+   if(i+2 <= imax .and. i-2 >= imin1 .and. &
+      j+2 <= jmax .and. j-2 >= jmin1 .and. &
+      k+2 <= kmax .and. k-2 >= kmin1) then
+      f1x(i,j,k)=d12dx*(fh1(i-2,j,k)-EIT*fh1(i-1,j,k)+EIT*fh1(i+1,j,k)-fh1(i+2,j,k))
+      f1y(i,j,k)=d12dy*(fh1(i,j-2,k)-EIT*fh1(i,j-1,k)+EIT*fh1(i,j+1,k)-fh1(i,j+2,k))
+      f1z(i,j,k)=d12dz*(fh1(i,j,k-2)-EIT*fh1(i,j,k-1)+EIT*fh1(i,j,k+1)-fh1(i,j,k+2))
+   elseif(i+1 <= imax .and. i-1 >= imin1 .and. &
+          j+1 <= jmax .and. j-1 >= jmin1 .and. &
+          k+1 <= kmax .and. k-1 >= kmin1) then
+      f1x(i,j,k)=d2dx*(-fh1(i-1,j,k)+fh1(i+1,j,k))
+      f1y(i,j,k)=d2dy*(-fh1(i,j-1,k)+fh1(i,j+1,k))
+      f1z(i,j,k)=d2dz*(-fh1(i,j,k-1)+fh1(i,j,k+1))
+   endif
+! Variable 2
+   if(i+2 <= imax .and. i-2 >= imin2 .and. &
+      j+2 <= jmax .and. j-2 >= jmin2 .and. &
+      k+2 <= kmax .and. k-2 >= kmin2) then
+      f2x(i,j,k)=d12dx*(fh2(i-2,j,k)-EIT*fh2(i-1,j,k)+EIT*fh2(i+1,j,k)-fh2(i+2,j,k))
+      f2y(i,j,k)=d12dy*(fh2(i,j-2,k)-EIT*fh2(i,j-1,k)+EIT*fh2(i,j+1,k)-fh2(i,j+2,k))
+      f2z(i,j,k)=d12dz*(fh2(i,j,k-2)-EIT*fh2(i,j,k-1)+EIT*fh2(i,j,k+1)-fh2(i,j,k+2))
+   elseif(i+1 <= imax .and. i-1 >= imin2 .and. &
+          j+1 <= jmax .and. j-1 >= jmin2 .and. &
+          k+1 <= kmax .and. k-1 >= kmin2) then
+      f2x(i,j,k)=d2dx*(-fh2(i-1,j,k)+fh2(i+1,j,k))
+      f2y(i,j,k)=d2dy*(-fh2(i,j-1,k)+fh2(i,j+1,k))
+      f2z(i,j,k)=d2dz*(-fh2(i,j,k-1)+fh2(i,j,k+1))
+   endif
+  endif
+  enddo
+  enddo
+  enddo
+
+  return
+
+  end subroutine fderivs2
+!-----------------------------------------------------------------------------
+!
 ! single derivatives dx
 !
 !-----------------------------------------------------------------------------
@@ -1576,6 +1853,274 @@
   return
 
   end subroutine fdderivs
+!-----------------------------------------------------------------------------
+!
+! Batched second derivatives for 3 variables (fused loop for cache locality)
+!
+!-----------------------------------------------------------------------------
+  subroutine fdderivs3(ex,f1,f1xx,f1xy,f1xz,f1yy,f1yz,f1zz, &
+                       f2,f2xx,f2xy,f2xz,f2yy,f2yz,f2zz, &
+                       f3,f3xx,f3xy,f3xz,f3yy,f3yz,f3zz, &
+                       X,Y,Z,SYM1a,SYM2a,SYM3a,SYM1b,SYM2b,SYM3b, &
+                       SYM1c,SYM2c,SYM3c,symmetry,onoff)
+  implicit none
+
+  integer,                             intent(in ):: ex(1:3),symmetry,onoff
+  real*8, dimension(ex(1),ex(2),ex(3)),intent(in ):: f1,f2,f3
+  real*8, dimension(ex(1),ex(2),ex(3)),intent(out):: f1xx,f1xy,f1xz,f1yy,f1yz,f1zz
+  real*8, dimension(ex(1),ex(2),ex(3)),intent(out):: f2xx,f2xy,f2xz,f2yy,f2yz,f2zz
+  real*8, dimension(ex(1),ex(2),ex(3)),intent(out):: f3xx,f3xy,f3xz,f3yy,f3yz,f3zz
+  real*8,                              intent(in ):: X(ex(1)),Y(ex(2)),Z(ex(3))
+  real*8,                              intent(in ):: SYM1a,SYM2a,SYM3a
+  real*8,                              intent(in ):: SYM1b,SYM2b,SYM3b
+  real*8,                              intent(in ):: SYM1c,SYM2c,SYM3c
+
+!~~~~~~ other variables
+  real*8 :: dX,dY,dZ
+  real*8,dimension(-1:ex(1),-1:ex(2),-1:ex(3))   :: fh1,fh2,fh3
+  real*8, dimension(3) :: SoA
+  integer :: imin1,jmin1,kmin1,imin2,jmin2,kmin2,imin3,jmin3,kmin3
+  integer :: imax,jmax,kmax,i,j,k
+  real*8  :: Sdxdx,Sdydy,Sdzdz,Fdxdx,Fdydy,Fdzdz
+  real*8  :: Sdxdy,Sdxdz,Sdydz,Fdxdy,Fdxdz,Fdydz
+  integer, parameter :: NO_SYMM = 0, EQ_SYMM = 1, OCTANT = 2
+  real*8, parameter :: ZEO=0.d0, ONE=1.d0, TWO=2.d0, F1o4=2.5d-1
+  real*8, parameter :: F8=8.d0, F16=1.6d1, F30=3.d1
+  real*8, parameter :: F1o12=ONE/1.2d1, F1o144=ONE/1.44d2
+
+  dX = X(2)-X(1)
+  dY = Y(2)-Y(1)
+  dZ = Z(2)-Z(1)
+
+  imax = ex(1)
+  jmax = ex(2)
+  kmax = ex(3)
+
+! Symmetry bounds for variable 1
+  imin1 = 1; jmin1 = 1; kmin1 = 1
+  if(Symmetry > NO_SYMM .and. dabs(Z(1)) < dZ) kmin1 = -1
+  if(Symmetry > EQ_SYMM .and. dabs(X(1)) < dX) imin1 = -1
+  if(Symmetry > EQ_SYMM .and. dabs(Y(1)) < dY) jmin1 = -1
+
+! Symmetry bounds for variable 2
+  imin2 = 1; jmin2 = 1; kmin2 = 1
+  if(Symmetry > NO_SYMM .and. dabs(Z(1)) < dZ) kmin2 = -1
+  if(Symmetry > EQ_SYMM .and. dabs(X(1)) < dX) imin2 = -1
+  if(Symmetry > EQ_SYMM .and. dabs(Y(1)) < dY) jmin2 = -1
+
+! Symmetry bounds for variable 3
+  imin3 = 1; jmin3 = 1; kmin3 = 1
+  if(Symmetry > NO_SYMM .and. dabs(Z(1)) < dZ) kmin3 = -1
+  if(Symmetry > EQ_SYMM .and. dabs(X(1)) < dX) imin3 = -1
+  if(Symmetry > EQ_SYMM .and. dabs(Y(1)) < dY) jmin3 = -1
+
+! Build ghost zone arrays
+  SoA(1) = SYM1a; SoA(2) = SYM2a; SoA(3) = SYM3a
+  call symmetry_bd(2,ex,f1,fh1,SoA)
+
+  SoA(1) = SYM1b; SoA(2) = SYM2b; SoA(3) = SYM3b
+  call symmetry_bd(2,ex,f2,fh2,SoA)
+
+  SoA(1) = SYM1c; SoA(2) = SYM2c; SoA(3) = SYM3c
+  call symmetry_bd(2,ex,f3,fh3,SoA)
+
+  Sdxdx =  ONE /( dX * dX )
+  Sdydy =  ONE /( dY * dY )
+  Sdzdz =  ONE /( dZ * dZ )
+
+  Fdxdx = F1o12 /( dX * dX )
+  Fdydy = F1o12 /( dY * dY )
+  Fdzdz = F1o12 /( dZ * dZ )
+
+  Sdxdy = F1o4 /( dX * dY )
+  Sdxdz = F1o4 /( dX * dZ )
+  Sdydz = F1o4 /( dY * dZ )
+
+  Fdxdy = F1o144 /( dX * dY )
+  Fdxdz = F1o144 /( dX * dZ )
+  Fdydz = F1o144 /( dY * dZ )
+
+  f1xx = ZEO; f1yy = ZEO; f1zz = ZEO
+  f1xy = ZEO; f1xz = ZEO; f1yz = ZEO
+  f2xx = ZEO; f2yy = ZEO; f2zz = ZEO
+  f2xy = ZEO; f2xz = ZEO; f2yz = ZEO
+  f3xx = ZEO; f3yy = ZEO; f3zz = ZEO
+  f3xy = ZEO; f3xz = ZEO; f3yz = ZEO
+
+! Interior loop - all 3 variables fused for cache locality
+  do k=3,ex(3)-3
+  do j=3,ex(2)-3
+  do i=3,ex(1)-3
+! Variable 1
+   f1xx(i,j,k) = Fdxdx*(-fh1(i-2,j,k)+F16*fh1(i-1,j,k)-F30*fh1(i,j,k) &
+                        -fh1(i+2,j,k)+F16*fh1(i+1,j,k)              )
+   f1yy(i,j,k) = Fdydy*(-fh1(i,j-2,k)+F16*fh1(i,j-1,k)-F30*fh1(i,j,k) &
+                        -fh1(i,j+2,k)+F16*fh1(i,j+1,k)              )
+   f1zz(i,j,k) = Fdzdz*(-fh1(i,j,k-2)+F16*fh1(i,j,k-1)-F30*fh1(i,j,k) &
+                        -fh1(i,j,k+2)+F16*fh1(i,j,k+1)              )
+   f1xy(i,j,k) = Fdxdy*(     (fh1(i-2,j-2,k)-F8*fh1(i-1,j-2,k)+F8*fh1(i+1,j-2,k)-fh1(i+2,j-2,k))  &
+                        -F8 *(fh1(i-2,j-1,k)-F8*fh1(i-1,j-1,k)+F8*fh1(i+1,j-1,k)-fh1(i+2,j-1,k))  &
+                        +F8 *(fh1(i-2,j+1,k)-F8*fh1(i-1,j+1,k)+F8*fh1(i+1,j+1,k)-fh1(i+2,j+1,k))  &
+                        -    (fh1(i-2,j+2,k)-F8*fh1(i-1,j+2,k)+F8*fh1(i+1,j+2,k)-fh1(i+2,j+2,k)))
+   f1xz(i,j,k) = Fdxdz*(     (fh1(i-2,j,k-2)-F8*fh1(i-1,j,k-2)+F8*fh1(i+1,j,k-2)-fh1(i+2,j,k-2))  &
+                        -F8 *(fh1(i-2,j,k-1)-F8*fh1(i-1,j,k-1)+F8*fh1(i+1,j,k-1)-fh1(i+2,j,k-1))  &
+                        +F8 *(fh1(i-2,j,k+1)-F8*fh1(i-1,j,k+1)+F8*fh1(i+1,j,k+1)-fh1(i+2,j,k+1))  &
+                        -    (fh1(i-2,j,k+2)-F8*fh1(i-1,j,k+2)+F8*fh1(i+1,j,k+2)-fh1(i+2,j,k+2)))
+   f1yz(i,j,k) = Fdydz*(     (fh1(i,j-2,k-2)-F8*fh1(i,j-1,k-2)+F8*fh1(i,j+1,k-2)-fh1(i,j+2,k-2))  &
+                        -F8 *(fh1(i,j-2,k-1)-F8*fh1(i,j-1,k-1)+F8*fh1(i,j+1,k-1)-fh1(i,j+2,k-1))  &
+                        +F8 *(fh1(i,j-2,k+1)-F8*fh1(i,j-1,k+1)+F8*fh1(i,j+1,k+1)-fh1(i,j+2,k+1))  &
+                        -    (fh1(i,j-2,k+2)-F8*fh1(i,j-1,k+2)+F8*fh1(i,j+1,k+2)-fh1(i,j+2,k+2)))
+! Variable 2
+   f2xx(i,j,k) = Fdxdx*(-fh2(i-2,j,k)+F16*fh2(i-1,j,k)-F30*fh2(i,j,k) &
+                        -fh2(i+2,j,k)+F16*fh2(i+1,j,k)              )
+   f2yy(i,j,k) = Fdydy*(-fh2(i,j-2,k)+F16*fh2(i,j-1,k)-F30*fh2(i,j,k) &
+                        -fh2(i,j+2,k)+F16*fh2(i,j+1,k)              )
+   f2zz(i,j,k) = Fdzdz*(-fh2(i,j,k-2)+F16*fh2(i,j,k-1)-F30*fh2(i,j,k) &
+                        -fh2(i,j,k+2)+F16*fh2(i,j,k+1)              )
+   f2xy(i,j,k) = Fdxdy*(     (fh2(i-2,j-2,k)-F8*fh2(i-1,j-2,k)+F8*fh2(i+1,j-2,k)-fh2(i+2,j-2,k))  &
+                        -F8 *(fh2(i-2,j-1,k)-F8*fh2(i-1,j-1,k)+F8*fh2(i+1,j-1,k)-fh2(i+2,j-1,k))  &
+                        +F8 *(fh2(i-2,j+1,k)-F8*fh2(i-1,j+1,k)+F8*fh2(i+1,j+1,k)-fh2(i+2,j+1,k))  &
+                        -    (fh2(i-2,j+2,k)-F8*fh2(i-1,j+2,k)+F8*fh2(i+1,j+2,k)-fh2(i+2,j+2,k)))
+   f2xz(i,j,k) = Fdxdz*(     (fh2(i-2,j,k-2)-F8*fh2(i-1,j,k-2)+F8*fh2(i+1,j,k-2)-fh2(i+2,j,k-2))  &
+                        -F8 *(fh2(i-2,j,k-1)-F8*fh2(i-1,j,k-1)+F8*fh2(i+1,j,k-1)-fh2(i+2,j,k-1))  &
+                        +F8 *(fh2(i-2,j,k+1)-F8*fh2(i-1,j,k+1)+F8*fh2(i+1,j,k+1)-fh2(i+2,j,k+1))  &
+                        -    (fh2(i-2,j,k+2)-F8*fh2(i-1,j,k+2)+F8*fh2(i+1,j,k+2)-fh2(i+2,j,k+2)))
+   f2yz(i,j,k) = Fdydz*(     (fh2(i,j-2,k-2)-F8*fh2(i,j-1,k-2)+F8*fh2(i,j+1,k-2)-fh2(i,j+2,k-2))  &
+                        -F8 *(fh2(i,j-2,k-1)-F8*fh2(i,j-1,k-1)+F8*fh2(i,j+1,k-1)-fh2(i,j+2,k-1))  &
+                        +F8 *(fh2(i,j-2,k+1)-F8*fh2(i,j-1,k+1)+F8*fh2(i,j+1,k+1)-fh2(i,j+2,k+1))  &
+                        -    (fh2(i,j-2,k+2)-F8*fh2(i,j-1,k+2)+F8*fh2(i,j+1,k+2)-fh2(i,j+2,k+2)))
+! Variable 3
+   f3xx(i,j,k) = Fdxdx*(-fh3(i-2,j,k)+F16*fh3(i-1,j,k)-F30*fh3(i,j,k) &
+                        -fh3(i+2,j,k)+F16*fh3(i+1,j,k)              )
+   f3yy(i,j,k) = Fdydy*(-fh3(i,j-2,k)+F16*fh3(i,j-1,k)-F30*fh3(i,j,k) &
+                        -fh3(i,j+2,k)+F16*fh3(i,j+1,k)              )
+   f3zz(i,j,k) = Fdzdz*(-fh3(i,j,k-2)+F16*fh3(i,j,k-1)-F30*fh3(i,j,k) &
+                        -fh3(i,j,k+2)+F16*fh3(i,j,k+1)              )
+   f3xy(i,j,k) = Fdxdy*(     (fh3(i-2,j-2,k)-F8*fh3(i-1,j-2,k)+F8*fh3(i+1,j-2,k)-fh3(i+2,j-2,k))  &
+                        -F8 *(fh3(i-2,j-1,k)-F8*fh3(i-1,j-1,k)+F8*fh3(i+1,j-1,k)-fh3(i+2,j-1,k))  &
+                        +F8 *(fh3(i-2,j+1,k)-F8*fh3(i-1,j+1,k)+F8*fh3(i+1,j+1,k)-fh3(i+2,j+1,k))  &
+                        -    (fh3(i-2,j+2,k)-F8*fh3(i-1,j+2,k)+F8*fh3(i+1,j+2,k)-fh3(i+2,j+2,k)))
+   f3xz(i,j,k) = Fdxdz*(     (fh3(i-2,j,k-2)-F8*fh3(i-1,j,k-2)+F8*fh3(i+1,j,k-2)-fh3(i+2,j,k-2))  &
+                        -F8 *(fh3(i-2,j,k-1)-F8*fh3(i-1,j,k-1)+F8*fh3(i+1,j,k-1)-fh3(i+2,j,k-1))  &
+                        +F8 *(fh3(i-2,j,k+1)-F8*fh3(i-1,j,k+1)+F8*fh3(i+1,j,k+1)-fh3(i+2,j,k+1))  &
+                        -    (fh3(i-2,j,k+2)-F8*fh3(i-1,j,k+2)+F8*fh3(i+1,j,k+2)-fh3(i+2,j,k+2)))
+   f3yz(i,j,k) = Fdydz*(     (fh3(i,j-2,k-2)-F8*fh3(i,j-1,k-2)+F8*fh3(i,j+1,k-2)-fh3(i,j+2,k-2))  &
+                        -F8 *(fh3(i,j-2,k-1)-F8*fh3(i,j-1,k-1)+F8*fh3(i,j+1,k-1)-fh3(i,j+2,k-1))  &
+                        +F8 *(fh3(i,j-2,k+1)-F8*fh3(i,j-1,k+1)+F8*fh3(i,j+1,k+1)-fh3(i,j+2,k+1))  &
+                        -    (fh3(i,j-2,k+2)-F8*fh3(i,j-1,k+2)+F8*fh3(i,j+1,k+2)-fh3(i,j+2,k+2)))
+  enddo
+  enddo
+  enddo
+
+! Boundary loop - all 3 variables
+  do k=1,ex(3)-1
+  do j=1,ex(2)-1
+  do i=1,ex(1)-1
+  if(i < 3 .or. i > ex(1)-3 .or. j < 3 .or. j > ex(2)-3 .or. k < 3 .or. k > ex(3)-3) then
+! Variable 1
+   if(i+2 <= imax .and. i-2 >= imin1 .and. &
+      j+2 <= jmax .and. j-2 >= jmin1 .and. &
+      k+2 <= kmax .and. k-2 >= kmin1) then
+   f1xx(i,j,k) = Fdxdx*(-fh1(i-2,j,k)+F16*fh1(i-1,j,k)-F30*fh1(i,j,k) &
+                        -fh1(i+2,j,k)+F16*fh1(i+1,j,k)              )
+   f1yy(i,j,k) = Fdydy*(-fh1(i,j-2,k)+F16*fh1(i,j-1,k)-F30*fh1(i,j,k) &
+                        -fh1(i,j+2,k)+F16*fh1(i,j+1,k)              )
+   f1zz(i,j,k) = Fdzdz*(-fh1(i,j,k-2)+F16*fh1(i,j,k-1)-F30*fh1(i,j,k) &
+                        -fh1(i,j,k+2)+F16*fh1(i,j,k+1)              )
+   f1xy(i,j,k) = Fdxdy*(     (fh1(i-2,j-2,k)-F8*fh1(i-1,j-2,k)+F8*fh1(i+1,j-2,k)-fh1(i+2,j-2,k))  &
+                        -F8 *(fh1(i-2,j-1,k)-F8*fh1(i-1,j-1,k)+F8*fh1(i+1,j-1,k)-fh1(i+2,j-1,k))  &
+                        +F8 *(fh1(i-2,j+1,k)-F8*fh1(i-1,j+1,k)+F8*fh1(i+1,j+1,k)-fh1(i+2,j+1,k))  &
+                        -    (fh1(i-2,j+2,k)-F8*fh1(i-1,j+2,k)+F8*fh1(i+1,j+2,k)-fh1(i+2,j+2,k)))
+   f1xz(i,j,k) = Fdxdz*(     (fh1(i-2,j,k-2)-F8*fh1(i-1,j,k-2)+F8*fh1(i+1,j,k-2)-fh1(i+2,j,k-2))  &
+                        -F8 *(fh1(i-2,j,k-1)-F8*fh1(i-1,j,k-1)+F8*fh1(i+1,j,k-1)-fh1(i+2,j,k-1))  &
+                        +F8 *(fh1(i-2,j,k+1)-F8*fh1(i-1,j,k+1)+F8*fh1(i+1,j,k+1)-fh1(i+2,j,k+1))  &
+                        -    (fh1(i-2,j,k+2)-F8*fh1(i-1,j,k+2)+F8*fh1(i+1,j,k+2)-fh1(i+2,j,k+2)))
+   f1yz(i,j,k) = Fdydz*(     (fh1(i,j-2,k-2)-F8*fh1(i,j-1,k-2)+F8*fh1(i,j+1,k-2)-fh1(i,j+2,k-2))  &
+                        -F8 *(fh1(i,j-2,k-1)-F8*fh1(i,j-1,k-1)+F8*fh1(i,j+1,k-1)-fh1(i,j+2,k-1))  &
+                        +F8 *(fh1(i,j-2,k+1)-F8*fh1(i,j-1,k+1)+F8*fh1(i,j+1,k+1)-fh1(i,j+2,k+1))  &
+                        -    (fh1(i,j-2,k+2)-F8*fh1(i,j-1,k+2)+F8*fh1(i,j+1,k+2)-fh1(i,j+2,k+2)))
+   elseif(i+1 <= imax .and. i-1 >= imin1 .and. &
+          j+1 <= jmax .and. j-1 >= jmin1 .and. &
+          k+1 <= kmax .and. k-1 >= kmin1) then
+   f1xx(i,j,k) = Sdxdx*(fh1(i-1,j,k)-TWO*fh1(i,j,k)+fh1(i+1,j,k))
+   f1yy(i,j,k) = Sdydy*(fh1(i,j-1,k)-TWO*fh1(i,j,k)+fh1(i,j+1,k))
+   f1zz(i,j,k) = Sdzdz*(fh1(i,j,k-1)-TWO*fh1(i,j,k)+fh1(i,j,k+1))
+   f1xy(i,j,k) = Sdxdy*(fh1(i-1,j-1,k)-fh1(i+1,j-1,k)-fh1(i-1,j+1,k)+fh1(i+1,j+1,k))
+   f1xz(i,j,k) = Sdxdz*(fh1(i-1,j,k-1)-fh1(i+1,j,k-1)-fh1(i-1,j,k+1)+fh1(i+1,j,k+1))
+   f1yz(i,j,k) = Sdydz*(fh1(i,j-1,k-1)-fh1(i,j+1,k-1)-fh1(i,j-1,k+1)+fh1(i,j+1,k+1))
+   endif
+! Variable 2
+   if(i+2 <= imax .and. i-2 >= imin2 .and. &
+      j+2 <= jmax .and. j-2 >= jmin2 .and. &
+      k+2 <= kmax .and. k-2 >= kmin2) then
+   f2xx(i,j,k) = Fdxdx*(-fh2(i-2,j,k)+F16*fh2(i-1,j,k)-F30*fh2(i,j,k) &
+                        -fh2(i+2,j,k)+F16*fh2(i+1,j,k)              )
+   f2yy(i,j,k) = Fdydy*(-fh2(i,j-2,k)+F16*fh2(i,j-1,k)-F30*fh2(i,j,k) &
+                        -fh2(i,j+2,k)+F16*fh2(i,j+1,k)              )
+   f2zz(i,j,k) = Fdzdz*(-fh2(i,j,k-2)+F16*fh2(i,j,k-1)-F30*fh2(i,j,k) &
+                        -fh2(i,j,k+2)+F16*fh2(i,j,k+1)              )
+   f2xy(i,j,k) = Fdxdy*(     (fh2(i-2,j-2,k)-F8*fh2(i-1,j-2,k)+F8*fh2(i+1,j-2,k)-fh2(i+2,j-2,k))  &
+                        -F8 *(fh2(i-2,j-1,k)-F8*fh2(i-1,j-1,k)+F8*fh2(i+1,j-1,k)-fh2(i+2,j-1,k))  &
+                        +F8 *(fh2(i-2,j+1,k)-F8*fh2(i-1,j+1,k)+F8*fh2(i+1,j+1,k)-fh2(i+2,j+1,k))  &
+                        -    (fh2(i-2,j+2,k)-F8*fh2(i-1,j+2,k)+F8*fh2(i+1,j+2,k)-fh2(i+2,j+2,k)))
+   f2xz(i,j,k) = Fdxdz*(     (fh2(i-2,j,k-2)-F8*fh2(i-1,j,k-2)+F8*fh2(i+1,j,k-2)-fh2(i+2,j,k-2))  &
+                        -F8 *(fh2(i-2,j,k-1)-F8*fh2(i-1,j,k-1)+F8*fh2(i+1,j,k-1)-fh2(i+2,j,k-1))  &
+                        +F8 *(fh2(i-2,j,k+1)-F8*fh2(i-1,j,k+1)+F8*fh2(i+1,j,k+1)-fh2(i+2,j,k+1))  &
+                        -    (fh2(i-2,j,k+2)-F8*fh2(i-1,j,k+2)+F8*fh2(i+1,j,k+2)-fh2(i+2,j,k+2)))
+   f2yz(i,j,k) = Fdydz*(     (fh2(i,j-2,k-2)-F8*fh2(i,j-1,k-2)+F8*fh2(i,j+1,k-2)-fh2(i,j+2,k-2))  &
+                        -F8 *(fh2(i,j-2,k-1)-F8*fh2(i,j-1,k-1)+F8*fh2(i,j+1,k-1)-fh2(i,j+2,k-1))  &
+                        +F8 *(fh2(i,j-2,k+1)-F8*fh2(i,j-1,k+1)+F8*fh2(i,j+1,k+1)-fh2(i,j+2,k+1))  &
+                        -    (fh2(i,j-2,k+2)-F8*fh2(i,j-1,k+2)+F8*fh2(i,j+1,k+2)-fh2(i,j+2,k+2)))
+   elseif(i+1 <= imax .and. i-1 >= imin2 .and. &
+          j+1 <= jmax .and. j-1 >= jmin2 .and. &
+          k+1 <= kmax .and. k-1 >= kmin2) then
+   f2xx(i,j,k) = Sdxdx*(fh2(i-1,j,k)-TWO*fh2(i,j,k)+fh2(i+1,j,k))
+   f2yy(i,j,k) = Sdydy*(fh2(i,j-1,k)-TWO*fh2(i,j,k)+fh2(i,j+1,k))
+   f2zz(i,j,k) = Sdzdz*(fh2(i,j,k-1)-TWO*fh2(i,j,k)+fh2(i,j,k+1))
+   f2xy(i,j,k) = Sdxdy*(fh2(i-1,j-1,k)-fh2(i+1,j-1,k)-fh2(i-1,j+1,k)+fh2(i+1,j+1,k))
+   f2xz(i,j,k) = Sdxdz*(fh2(i-1,j,k-1)-fh2(i+1,j,k-1)-fh2(i-1,j,k+1)+fh2(i+1,j,k+1))
+   f2yz(i,j,k) = Sdydz*(fh2(i,j-1,k-1)-fh2(i,j+1,k-1)-fh2(i,j-1,k+1)+fh2(i,j+1,k+1))
+   endif
+! Variable 3
+   if(i+2 <= imax .and. i-2 >= imin3 .and. &
+      j+2 <= jmax .and. j-2 >= jmin3 .and. &
+      k+2 <= kmax .and. k-2 >= kmin3) then
+   f3xx(i,j,k) = Fdxdx*(-fh3(i-2,j,k)+F16*fh3(i-1,j,k)-F30*fh3(i,j,k) &
+                        -fh3(i+2,j,k)+F16*fh3(i+1,j,k)              )
+   f3yy(i,j,k) = Fdydy*(-fh3(i,j-2,k)+F16*fh3(i,j-1,k)-F30*fh3(i,j,k) &
+                        -fh3(i,j+2,k)+F16*fh3(i,j+1,k)              )
+   f3zz(i,j,k) = Fdzdz*(-fh3(i,j,k-2)+F16*fh3(i,j,k-1)-F30*fh3(i,j,k) &
+                        -fh3(i,j,k+2)+F16*fh3(i,j,k+1)              )
+   f3xy(i,j,k) = Fdxdy*(     (fh3(i-2,j-2,k)-F8*fh3(i-1,j-2,k)+F8*fh3(i+1,j-2,k)-fh3(i+2,j-2,k))  &
+                        -F8 *(fh3(i-2,j-1,k)-F8*fh3(i-1,j-1,k)+F8*fh3(i+1,j-1,k)-fh3(i+2,j-1,k))  &
+                        +F8 *(fh3(i-2,j+1,k)-F8*fh3(i-1,j+1,k)+F8*fh3(i+1,j+1,k)-fh3(i+2,j+1,k))  &
+                        -    (fh3(i-2,j+2,k)-F8*fh3(i-1,j+2,k)+F8*fh3(i+1,j+2,k)-fh3(i+2,j+2,k)))
+   f3xz(i,j,k) = Fdxdz*(     (fh3(i-2,j,k-2)-F8*fh3(i-1,j,k-2)+F8*fh3(i+1,j,k-2)-fh3(i+2,j,k-2))  &
+                        -F8 *(fh3(i-2,j,k-1)-F8*fh3(i-1,j,k-1)+F8*fh3(i+1,j,k-1)-fh3(i+2,j,k-1))  &
+                        +F8 *(fh3(i-2,j,k+1)-F8*fh3(i-1,j,k+1)+F8*fh3(i+1,j,k+1)-fh3(i+2,j,k+1))  &
+                        -    (fh3(i-2,j,k+2)-F8*fh3(i-1,j,k+2)+F8*fh3(i+1,j,k+2)-fh3(i+2,j,k+2)))
+   f3yz(i,j,k) = Fdydz*(     (fh3(i,j-2,k-2)-F8*fh3(i,j-1,k-2)+F8*fh3(i,j+1,k-2)-fh3(i,j+2,k-2))  &
+                        -F8 *(fh3(i,j-2,k-1)-F8*fh3(i,j-1,k-1)+F8*fh3(i,j+1,k-1)-fh3(i,j+2,k-1))  &
+                        +F8 *(fh3(i,j-2,k+1)-F8*fh3(i,j-1,k+1)+F8*fh3(i,j+1,k+1)-fh3(i,j+2,k+1))  &
+                        -    (fh3(i,j-2,k+2)-F8*fh3(i,j-1,k+2)+F8*fh3(i,j+1,k+2)-fh3(i,j+2,k+2)))
+   elseif(i+1 <= imax .and. i-1 >= imin3 .and. &
+          j+1 <= jmax .and. j-1 >= jmin3 .and. &
+          k+1 <= kmax .and. k-1 >= kmin3) then
+   f3xx(i,j,k) = Sdxdx*(fh3(i-1,j,k)-TWO*fh3(i,j,k)+fh3(i+1,j,k))
+   f3yy(i,j,k) = Sdydy*(fh3(i,j-1,k)-TWO*fh3(i,j,k)+fh3(i,j+1,k))
+   f3zz(i,j,k) = Sdzdz*(fh3(i,j,k-1)-TWO*fh3(i,j,k)+fh3(i,j,k+1))
+   f3xy(i,j,k) = Sdxdy*(fh3(i-1,j-1,k)-fh3(i+1,j-1,k)-fh3(i-1,j+1,k)+fh3(i+1,j+1,k))
+   f3xz(i,j,k) = Sdxdz*(fh3(i-1,j,k-1)-fh3(i+1,j,k-1)-fh3(i-1,j,k+1)+fh3(i+1,j,k+1))
+   f3yz(i,j,k) = Sdydz*(fh3(i,j-1,k-1)-fh3(i,j+1,k-1)-fh3(i,j-1,k+1)+fh3(i,j+1,k+1))
+   endif
+  endif
+  enddo
+  enddo
+  enddo
+
+  return
+
+  end subroutine fdderivs3
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 ! only for compute_ricci.f90 usage
 !-----------------------------------------------------------------------------

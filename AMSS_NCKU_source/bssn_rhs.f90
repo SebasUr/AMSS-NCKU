@@ -149,9 +149,9 @@
   gyy = dyy + ONE
   gzz = dzz + ONE
 
-  call fderivs(ex,betax,betaxx,betaxy,betaxz,X,Y,Z,ANTI, SYM, SYM,Symmetry,Lev)
-  call fderivs(ex,betay,betayx,betayy,betayz,X,Y,Z, SYM,ANTI, SYM,Symmetry,Lev)
-  call fderivs(ex,betaz,betazx,betazy,betazz,X,Y,Z, SYM, SYM,ANTI,Symmetry,Lev)
+  call fderivs3(ex,betax,betaxx,betaxy,betaxz,betay,betayx,betayy,betayz, &
+                   betaz,betazx,betazy,betazz, &
+                   X,Y,Z,ANTI,SYM,SYM,SYM,ANTI,SYM,SYM,SYM,ANTI,Symmetry,Lev)
   
   div_beta = betaxx + betayy + betazz
  
@@ -159,12 +159,12 @@
 
   chi_rhs = F2o3 *chin1*( alpn1 * trK - div_beta ) !rhs for chi
 
-  call fderivs(ex,dxx,gxxx,gxxy,gxxz,X,Y,Z,SYM ,SYM ,SYM ,Symmetry,Lev)
-  call fderivs(ex,gxy,gxyx,gxyy,gxyz,X,Y,Z,ANTI,ANTI,SYM ,Symmetry,Lev)
-  call fderivs(ex,gxz,gxzx,gxzy,gxzz,X,Y,Z,ANTI,SYM ,ANTI,Symmetry,Lev)
-  call fderivs(ex,dyy,gyyx,gyyy,gyyz,X,Y,Z,SYM ,SYM ,SYM ,Symmetry,Lev)
-  call fderivs(ex,gyz,gyzx,gyzy,gyzz,X,Y,Z,SYM ,ANTI,ANTI,Symmetry,Lev)
-  call fderivs(ex,dzz,gzzx,gzzy,gzzz,X,Y,Z,SYM ,SYM ,SYM ,Symmetry,Lev)
+  call fderivs3(ex,dxx,gxxx,gxxy,gxxz,gxy,gxyx,gxyy,gxyz, &
+                   gxz,gxzx,gxzy,gxzz, &
+                   X,Y,Z,SYM,SYM,SYM,ANTI,ANTI,SYM,ANTI,SYM,ANTI,Symmetry,Lev)
+  call fderivs3(ex,dyy,gyyx,gyyy,gyyz,gyz,gyzx,gyzy,gyzz, &
+                   dzz,gzzx,gzzy,gzzz, &
+                   X,Y,Z,SYM,SYM,SYM,SYM,ANTI,ANTI,SYM,SYM,SYM,Symmetry,Lev)
 
   gxx_rhs = - TWO * alpn1 * Axx    -  F2o3 * gxx * div_beta          + &
               TWO *(  gxx * betaxx +   gxy * betayx +   gxz * betazx)
@@ -282,8 +282,8 @@
           (gupyy * gupzz       + gupyz * gupyz)* Ayz
 
 ! Right hand side for Gam^i without shift terms...
-  call fderivs(ex,Lap,Lapx,Lapy,Lapz,X,Y,Z,SYM,SYM,SYM,Symmetry,Lev)
-  call fderivs(ex,trK,Kx,Ky,Kz,X,Y,Z,SYM,SYM,SYM,symmetry,Lev)
+  call fderivs2(ex,Lap,Lapx,Lapy,Lapz,trK,Kx,Ky,Kz, &
+                   X,Y,Z,SYM,SYM,SYM,SYM,SYM,SYM,Symmetry,Lev)
 
    Gamx_rhs = - TWO * (   Lapx * Rxx +   Lapy * Rxy +   Lapz * Rxz ) + &
         TWO * alpn1 * (                                                &
@@ -312,12 +312,10 @@
                         Gamzxx * Rxx + Gamzyy * Ryy + Gamzzz * Rzz   + &
                 TWO * ( Gamzxy * Rxy + Gamzxz * Rxz + Gamzyz * Ryz ) )
 
-  call fdderivs(ex,betax,gxxx,gxyx,gxzx,gyyx,gyzx,gzzx,&
-                X,Y,Z,ANTI,SYM, SYM ,Symmetry,Lev)
-  call fdderivs(ex,betay,gxxy,gxyy,gxzy,gyyy,gyzy,gzzy,&
-                X,Y,Z,SYM ,ANTI,SYM ,Symmetry,Lev)
-  call fdderivs(ex,betaz,gxxz,gxyz,gxzz,gyyz,gyzz,gzzz,&
-                X,Y,Z,SYM ,SYM, ANTI,Symmetry,Lev)
+  call fdderivs3(ex,betax,gxxx,gxyx,gxzx,gyyx,gyzx,gzzx, &
+                    betay,gxxy,gxyy,gxzy,gyyy,gyzy,gzzy, &
+                    betaz,gxxz,gxyz,gxzz,gyyz,gyzz,gzzz, &
+                    X,Y,Z,ANTI,SYM,SYM,SYM,ANTI,SYM,SYM,SYM,ANTI,Symmetry,Lev)
 
   fxx = gxxx + gxyy + gxzz
   fxy = gxyx + gyyy + gyzz
@@ -330,9 +328,9 @@
   Gamza =       gupxx * Gamzxx + gupyy * Gamzyy + gupzz * Gamzzz + &
           TWO*( gupxy * Gamzxy + gupxz * Gamzxz + gupyz * Gamzyz )
 
-  call fderivs(ex,Gamx,Gamxx,Gamxy,Gamxz,X,Y,Z,ANTI,SYM ,SYM ,Symmetry,Lev)
-  call fderivs(ex,Gamy,Gamyx,Gamyy,Gamyz,X,Y,Z,SYM ,ANTI,SYM ,Symmetry,Lev)
-  call fderivs(ex,Gamz,Gamzx,Gamzy,Gamzz,X,Y,Z,SYM ,SYM ,ANTI,Symmetry,Lev)
+  call fderivs3(ex,Gamx,Gamxx,Gamxy,Gamxz,Gamy,Gamyx,Gamyy,Gamyz, &
+                   Gamz,Gamzx,Gamzy,Gamzz, &
+                   X,Y,Z,ANTI,SYM,SYM,SYM,ANTI,SYM,SYM,SYM,ANTI,Symmetry,Lev)
 
   Gamx_rhs =               Gamx_rhs +  F2o3 *  Gamxa * div_beta        - &
                      Gamxa * betaxx - Gamya * betaxy - Gamza * betaxz  + &
@@ -1082,12 +1080,12 @@ endif
 
 ! mov_Res_j = gupkj*(-1/chi d_k chi*A_ij + D_k A_ij) - 2/3 d_j trK - 8 PI s_j where D respect to physical metric
 ! store D_i A_jk - 1/chi d_i chi*A_jk in gjk_i
-  call fderivs(ex,Axx,gxxx,gxxy,gxxz,X,Y,Z,SYM ,SYM ,SYM ,Symmetry,0)
-  call fderivs(ex,Axy,gxyx,gxyy,gxyz,X,Y,Z,ANTI,ANTI,SYM ,Symmetry,0)
-  call fderivs(ex,Axz,gxzx,gxzy,gxzz,X,Y,Z,ANTI,SYM ,ANTI,Symmetry,0)
-  call fderivs(ex,Ayy,gyyx,gyyy,gyyz,X,Y,Z,SYM ,SYM ,SYM ,Symmetry,0)
-  call fderivs(ex,Ayz,gyzx,gyzy,gyzz,X,Y,Z,SYM ,ANTI,ANTI,Symmetry,0)
-  call fderivs(ex,Azz,gzzx,gzzy,gzzz,X,Y,Z,SYM ,SYM ,SYM ,Symmetry,0)
+  call fderivs3(ex,Axx,gxxx,gxxy,gxxz,Axy,gxyx,gxyy,gxyz, &
+                   Axz,gxzx,gxzy,gxzz, &
+                   X,Y,Z,SYM,SYM,SYM,ANTI,ANTI,SYM,ANTI,SYM,ANTI,Symmetry,0)
+  call fderivs3(ex,Ayy,gyyx,gyyy,gyyz,Ayz,gyzx,gyzy,gyzz, &
+                   Azz,gzzx,gzzy,gzzz, &
+                   X,Y,Z,SYM,SYM,SYM,SYM,ANTI,ANTI,SYM,SYM,SYM,Symmetry,0)
 
   gxxx = gxxx - (  Gamxxx * Axx + Gamyxx * Axy + Gamzxx * Axz &
                  + Gamxxx * Axx + Gamyxx * Axy + Gamzxx * Axz) - chix*Axx/chin1

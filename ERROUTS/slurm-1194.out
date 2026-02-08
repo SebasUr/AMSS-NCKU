@@ -1,0 +1,2901 @@
+
+------------------------------------------------------------------------------------------
+
+     Numerical Relativity AMSS-NCKU  
+
+     Author of AMSS-NCKU Code: Zhou-Jian Cao et al. 
+     Author of AMSS-NCKU Python Interface: Xiao Qu 
+
+     AMSS-NCKU is an open source numerical relativity code 
+     It can be used to simulate the dynamical evolution on mergering process of black hole systems, 
+ calculating the variation of gravitational field, black holes' trajectories, and gravitational wave 
+ emissions through directly solving the Einstein field equations  
+
+     This AMSS-NCKU code uses the finite-difference method to evaluate the numerical simulation. The 
+ finite-difference schemes can be chosen as: 2nd order, 4th order, 6th order, 8th order. 
+     The computation equation form in AMSS-NCKU code can be chosen as: BSSN equations, Z4C equations, 
+ BSSN equations coupled with scalars (in f(R) theory), BSSN equations coupled with electromagnetic 
+ fields. 
+     The numerical grid system in this code includes: patch AMR grid, shell-patch AMR grid. 
+
+     Furthermore, This code has fulfilled the CPU and GPU hybrid calculation. 
+
+------------------------------------------------------------------------------------------
+
+ Output directory name = GW150914_1194_3rdOpt96pFdirs
+
+ Output directory has been generated 
+
+------------------------------------------------------------------------------------------
+
+ Printing the basic parameter and setting in the AMSS-NCKU simulation 
+
+ The number of MPI processes in the AMSS-NCKU simulation =  96
+
+ The form of computational equation  =  BSSN
+ The initial data in this simulation =  Ansorg-TwoPuncture
+
+ Starting evolution time   =  0.0
+ Final evolution time      =  1000.0
+ Maximal iteration number  =  10000000
+ Courant factor            =  0.5
+ Strength of dissipation   =  0.15
+ Symmetry of system        =  equatorial-symmetry
+ The Runge-Kutta scheme in the time evolution   =  runge-kutta-45
+ The finite-difference scheme in the simulation =  4th-order
+
+ The static AMR grid type =  Linear
+ The moving AMR grid type =  Linear
+
+ The number of static AMR grid levels =  5
+ The number of moving AMR grid levels =  4
+ The number of total  AMR grid levels =  9
+
+ The grid number of each static AMR grid level =  96
+ The grid number of each moving AMR grid level =  48
+
+ The scale for largest  static AMR grid in X direction =  [-320.  320.]
+ The scale for largest  static AMR grid in Y direction =  [-320.  320.]
+ The scale for largest  static AMR grid in Z direction =  [-320.  320.]
+ The scale for smallest static AMR grid in X direction =  [-20.  20.]
+ The scale for smallest static AMR grid in Y direction =  [-20.  20.]
+ The scale for smallest static AMR grid in Z direction =  [-20.  20.]
+
+ The scale for largest  moving AMR grid =  [-5.  5.]
+ The scale for smallest moving AMR grid =  [-0.625  0.625]
+
+ The coarest resolution for static AMR grid =  6.666666666666667
+ The finest  resolution for static AMR grid =  0.4166666666666667
+ The coarest resolution for moving AMR grid =  0.20833333333333334
+ The finest  resolution for moving AMR grid =  0.026041666666666668
+
+ The time refinement starts from AMR grid level =  4
+ The time interval in each step for coarest AMR grid during time evaluation =  0.4166666666666667
+
+ This simulation only uses the Patch AMR grid structure, the Shell-Patch is not used 
+
+------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------
+
+ Printing the puncture information 
+
+ The information for 1 puncture 
+ Mass(1) =   0.553846,  Charge(1) =   0.000000,  a(1)  =   0.310000
+ X(1)    =   0.000000,  Y(1)      =   4.461538,  Z(1)  =   0.000000
+ Px(1)   =  -0.095302,  Py(1)     =  -0.000845,  Pz(1) =   0.000000
+ Jx(1)   =   0.000000,  Jy(1)     =   0.000000,  Jz(1) =   0.095091
+
+ The information for 2 puncture 
+ Mass(2) =   0.446154,  Charge(2) =   0.000000,  a(2)  =  -0.460000
+ X(2)    =   0.000000,  Y(2)      =  -5.538462,  Z(2)  =   0.000000
+ Px(2)   =   0.095302,  Py(2)     =   0.000845,  Pz(2) =   0.000000
+ Jx(2)   =   0.000000,  Jy(2)     =   0.000000,  Jz(2) =  -0.091564
+
+------------------------------------------------------------------------------------------
+
+ Generating the AMSS-NCKU input parfile for the ABE executable. 
+
+
+ Setting Puncture's position and momentum 
+
+
+ Wirte Down The Grid Information 
+
+ Number of Total Grid Level =  9
+ Number of Static Grid Level =  5
+ Number of Moving Grid Level =  4
+
+
+ Setting the demanded numerical grid 
+
+ adjusting the static gird points, making the original point (0,0,0) to the static gird points 
+
+
+ adjusting the moving gird points, ensuring the alliance of moving grids points and static grids points 
+
+ adjust_puncture[5,0,0] = 0.0 
+ adjust_puncture[5,0,1] = 4.375000000000002 
+ adjust_puncture[5,0,2] = 0.0 
+ adjust_puncture[5,1,0] = 0.0 
+ adjust_puncture[5,1,1] = -5.624999999999999 
+ adjust_puncture[5,1,2] = 0.0 
+ adjust_puncture[6,0,0] = 0.0 
+ adjust_puncture[6,0,1] = 4.479166666666669 
+ adjust_puncture[6,0,2] = 0.0 
+ adjust_puncture[6,1,0] = 0.0 
+ adjust_puncture[6,1,1] = -5.520833333333333 
+ adjust_puncture[6,1,2] = 0.0 
+ adjust_puncture[7,0,0] = 0.0 
+ adjust_puncture[7,0,1] = 4.479166666666669 
+ adjust_puncture[7,0,2] = 0.0 
+ adjust_puncture[7,1,0] = 0.0 
+ adjust_puncture[7,1,1] = -5.520833333333332 
+ adjust_puncture[7,1,2] = 0.0 
+ adjust_puncture[8,0,0] = 0.0 
+ adjust_puncture[8,0,1] = 4.453125000000002 
+ adjust_puncture[8,0,2] = 0.0 
+ adjust_puncture[8,1,0] = 0.0 
+ adjust_puncture[8,1,1] = -5.546874999999998 
+ adjust_puncture[8,1,2] = 0.0 
+
+ The moving grid puncture position adjustment is done 
+
+
+ The input parfile for AMSS-NCKU C++ executable file ABE has been generated. 
+ However, the input relevant to TwoPuncture need to be appended later. 
+
+
+ Schematically plot the numerical grid structure. 
+
+
+ Automatically generating the macro file for AMSS-NCKU C++ executable file ABE 
+ (Based on the finite-difference numerical scheme) 
+
+ AMSS-NCKU macro file macrodef.h has been generated. 
+ AMSS-NCKU macro file macrodef.fh has been generated. 
+
+ Preparing to compile and run the AMSS-NCKU code as requested 
+ Compiling the AMSS-NCKU code based on the generated macro files 
+
+
+ Compiling the AMSS-NCKU executable file ABE/ABEGPU 
+
+mpic++ -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -fipa-pta -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -Wno-deprecated -Dfortran3 -Dnewc -fopenmp -c ABE.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o ABE.o
+mpic++ -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -fipa-pta -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -Wno-deprecated -Dfortran3 -Dnewc -fopenmp -c Ansorg.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o Ansorg.o
+mpic++ -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -fipa-pta -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -Wno-deprecated -Dfortran3 -Dnewc -fopenmp -c Block.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o Block.o
+mpifort -c zbesh.for -o zbesh.o
+mpic++ -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -fipa-pta -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -Wno-deprecated -Dfortran3 -Dnewc -fopenmp -c monitor.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o monitor.o
+mpic++ -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -fipa-pta -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -Wno-deprecated -Dfortran3 -Dnewc -fopenmp -c Parallel.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o Parallel.o
+mpic++ -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -fipa-pta -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -Wno-deprecated -Dfortran3 -Dnewc -fopenmp -c MPatch.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o MPatch.o
+mpic++ -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -fipa-pta -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -Wno-deprecated -Dfortran3 -Dnewc -fopenmp -c var.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o var.o
+mpic++ -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -fipa-pta -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -Wno-deprecated -Dfortran3 -Dnewc -fopenmp -c cgh.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o cgh.o
+mpic++ -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -fipa-pta -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -Wno-deprecated -Dfortran3 -Dnewc -fopenmp -c bssn_class.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o bssn_class.o
+mpic++ -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -fipa-pta -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -Wno-deprecated -Dfortran3 -Dnewc -fopenmp -c surface_integral.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o surface_integral.o
+mpic++ -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -fipa-pta -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -Wno-deprecated -Dfortran3 -Dnewc -fopenmp -c ShellPatch.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o ShellPatch.o
+bssn_class.C: In member function ‘virtual void bssn_class::Read_Ansorg()’:
+bssn_class.C:1865:24: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+ 1865 |     Ansorg read_ansorg("Ansorg.psid", order);
+      |                        ^~~~~~~~~~~~~
+mpic++ -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -fipa-pta -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -Wno-deprecated -Dfortran3 -Dnewc -fopenmp -c bssnEScalar_class.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o bssnEScalar_class.o
+mpic++ -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -fipa-pta -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -Wno-deprecated -Dfortran3 -Dnewc -fopenmp -c perf.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o perf.o
+mpic++ -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -fipa-pta -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -Wno-deprecated -Dfortran3 -Dnewc -fopenmp -c Z4c_class.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o Z4c_class.o
+bssnEScalar_class.C: In member function ‘virtual void bssnEScalar_class::Read_Ansorg()’:
+bssnEScalar_class.C:335:24: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+  335 |     Ansorg read_ansorg("Ansorg.psid", order);
+      |                        ^~~~~~~~~~~~~
+mpic++ -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -fipa-pta -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -Wno-deprecated -Dfortran3 -Dnewc -fopenmp -c NullShellPatch.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o NullShellPatch.o
+mpic++ -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -fipa-pta -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -Wno-deprecated -Dfortran3 -Dnewc -fopenmp -c bssnEM_class.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o bssnEM_class.o
+mpic++ -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -fipa-pta -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -Wno-deprecated -Dfortran3 -Dnewc -fopenmp -c cpbc_util.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o cpbc_util.o
+Z4c_class.C: In member function ‘void Z4c_class::Check_extrop()’:
+Z4c_class.C:2396:28: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+ 2396 |   SH->Dump_Data(StateList, "extrop", 0, 1);
+      |                            ^~~~~~~~
+mpic++ -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -fipa-pta -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -Wno-deprecated -Dfortran3 -Dnewc -fopenmp -c z4c_rhs_point.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o z4c_rhs_point.o
+bssnEM_class.C: In member function ‘virtual void bssnEM_class::Read_Ansorg()’:
+bssnEM_class.C:486:24: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+  486 |     Ansorg read_ansorg("Ansorg.psid", order);
+      |                        ^~~~~~~~~~~~~
+mpic++ -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -fipa-pta -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -Wno-deprecated -Dfortran3 -Dnewc -fopenmp -c checkpoint.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o checkpoint.o
+mpic++ -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -fipa-pta -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -Wno-deprecated -Dfortran3 -Dnewc -fopenmp -c Parallel_bam.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o Parallel_bam.o
+mpic++ -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -fipa-pta -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -Wno-deprecated -Dfortran3 -Dnewc -fopenmp -c scalar_class.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o scalar_class.o
+mpic++ -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -fipa-pta -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -Wno-deprecated -Dfortran3 -Dnewc -fopenmp -c transpbh.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o transpbh.o
+mpic++ -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -fipa-pta -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -Wno-deprecated -Dfortran3 -Dnewc -fopenmp -c NullShellPatch2.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o NullShellPatch2.o
+mpic++ -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -fipa-pta -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -Wno-deprecated -Dfortran3 -Dnewc -fopenmp -c NullShellPatch2_Evo.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o NullShellPatch2_Evo.o
+mpic++ -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -fipa-pta -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -Wno-deprecated -Dfortran3 -Dnewc -fopenmp -c writefile_f.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o writefile_f.o
+mpifort -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -ftree-vectorize -x f95-cpp-input -fopenmp -c enforce_algebra.f90 -o enforce_algebra.o
+mpifort -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -ftree-vectorize -x f95-cpp-input -fopenmp -c fmisc.f90 -o fmisc.o
+mpifort -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -ftree-vectorize -x f95-cpp-input -fopenmp -c initial_puncture.f90 -o initial_puncture.o
+mpifort -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -ftree-vectorize -x f95-cpp-input -fopenmp -c prolongrestrict.f90 -o prolongrestrict.o
+mpifort -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -ftree-vectorize -x f95-cpp-input -fopenmp -c prolongrestrict_cell.f90 -o prolongrestrict_cell.o
+mpifort -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -ftree-vectorize -x f95-cpp-input -fopenmp -c prolongrestrict_vertex.f90 -o prolongrestrict_vertex.o
+mpifort -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -ftree-vectorize -x f95-cpp-input -fopenmp -c rungekutta4_rout.f90 -o rungekutta4_rout.o
+mpifort -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -ftree-vectorize -x f95-cpp-input -fopenmp -c bssn_rhs.f90 -o bssn_rhs.o
+mpifort -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -ftree-vectorize -x f95-cpp-input -fopenmp -c diff_new.f90 -o diff_new.o
+mpifort -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -ftree-vectorize -x f95-cpp-input -fopenmp -c kodiss.f90 -o kodiss.o
+mpifort -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -ftree-vectorize -x f95-cpp-input -fopenmp -c kodiss_sh.f90 -o kodiss_sh.o
+mpifort -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -ftree-vectorize -x f95-cpp-input -fopenmp -c lopsidediff.f90 -o lopsidediff.o
+mpifort -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -ftree-vectorize -x f95-cpp-input -fopenmp -c sommerfeld_rout.f90 -o sommerfeld_rout.o
+mpifort -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -ftree-vectorize -x f95-cpp-input -fopenmp -c getnp4.f90 -o getnp4.o
+mpifort -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -ftree-vectorize -x f95-cpp-input -fopenmp -c diff_new_sh.f90 -o diff_new_sh.o
+mpifort -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -ftree-vectorize -x f95-cpp-input -fopenmp -c shellfunctions.f90 -o shellfunctions.o
+mpifort -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -ftree-vectorize -x f95-cpp-input -fopenmp -c bssn_rhs_ss.f90 -o bssn_rhs_ss.o
+mpifort -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -ftree-vectorize -x f95-cpp-input -fopenmp -c Set_Rho_ADM.f90 -o Set_Rho_ADM.o
+mpifort -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -ftree-vectorize -x f95-cpp-input -fopenmp -c getnp4EScalar.f90 -o getnp4EScalar.o
+mpifort -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -ftree-vectorize -x f95-cpp-input -fopenmp -c bssnEScalar_rhs.f90 -o bssnEScalar_rhs.o
+mpifort -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -ftree-vectorize -x f95-cpp-input -fopenmp -c bssn_constraint.f90 -o bssn_constraint.o
+mpifort -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -ftree-vectorize -x f95-cpp-input -fopenmp -c ricci_gamma.f90 -o ricci_gamma.o
+mpifort -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -ftree-vectorize -x f95-cpp-input -fopenmp -c fadmquantites_bssn.f90 -o fadmquantites_bssn.o
+mpifort -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -ftree-vectorize -x f95-cpp-input -fopenmp -c Z4c_rhs.f90 -o Z4c_rhs.o
+mpifort -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -ftree-vectorize -x f95-cpp-input -fopenmp -c Z4c_rhs_ss.f90 -o Z4c_rhs_ss.o
+mpifort -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -ftree-vectorize -x f95-cpp-input -fopenmp -c point_diff_new_sh.f90 -o point_diff_new_sh.o
+mpifort -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -ftree-vectorize -x f95-cpp-input -fopenmp -c cpbc.f90 -o cpbc.o
+mpifort -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -ftree-vectorize -x f95-cpp-input -fopenmp -c getnp4old.f90 -o getnp4old.o
+mpifort -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -ftree-vectorize -x f95-cpp-input -fopenmp -c NullEvol.f90 -o NullEvol.o
+mpifort -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -ftree-vectorize -x f95-cpp-input -fopenmp -c initial_null.f90 -o initial_null.o
+mpifort -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -ftree-vectorize -x f95-cpp-input -fopenmp -c initial_maxwell.f90 -o initial_maxwell.o
+mpifort -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -ftree-vectorize -x f95-cpp-input -fopenmp -c getnpem2.f90 -o getnpem2.o
+mpifort -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -ftree-vectorize -x f95-cpp-input -fopenmp -c empart.f90 -o empart.o
+mpifort -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -ftree-vectorize -x f95-cpp-input -fopenmp -c NullNews.f90 -o NullNews.o
+mpifort -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -ftree-vectorize -x f95-cpp-input -fopenmp -c fourdcurvature.f90 -o fourdcurvature.o
+mpifort -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -ftree-vectorize -x f95-cpp-input -fopenmp -c bssn2adm.f90 -o bssn2adm.o
+mpifort -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -ftree-vectorize -x f95-cpp-input -fopenmp -c adm_constraint.f90 -o adm_constraint.o
+mpifort -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -ftree-vectorize -x f95-cpp-input -fopenmp -c adm_ricci_gamma.f90 -o adm_ricci_gamma.o
+mpifort -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -ftree-vectorize -x f95-cpp-input -fopenmp -c scalar_rhs.f90 -o scalar_rhs.o
+mpifort -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -ftree-vectorize -x f95-cpp-input -fopenmp -c initial_scalar.f90 -o initial_scalar.o
+mpifort -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -ftree-vectorize -x f95-cpp-input -fopenmp -c NullEvol2.f90 -o NullEvol2.o
+mpifort -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -ftree-vectorize -x f95-cpp-input -fopenmp -c initial_null2.f90 -o initial_null2.o
+mpifort -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -ftree-vectorize -x f95-cpp-input -fopenmp -c NullNews2.f90 -o NullNews2.o
+mpifort -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -ftree-vectorize -x f95-cpp-input -fopenmp -c tool_f.f90 -o tool_f.o
+mpic++ -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -fipa-pta -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -Wno-deprecated -Dfortran3 -Dnewc -fopenmp -c expansion.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o expansion.o
+mpic++ -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -fipa-pta -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -Wno-deprecated -Dfortran3 -Dnewc -fopenmp -c expansion_Jacobian.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o expansion_Jacobian.o
+mpic++ -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -fipa-pta -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -Wno-deprecated -Dfortran3 -Dnewc -fopenmp -c patch.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o patch.o
+mpic++ -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -fipa-pta -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -Wno-deprecated -Dfortran3 -Dnewc -fopenmp -c coords.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o coords.o
+mpic++ -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -fipa-pta -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -Wno-deprecated -Dfortran3 -Dnewc -fopenmp -c patch_info.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o patch_info.o
+patch.C: In static member function ‘static AHFinderDirect::patch::integration_method AHFinderDirect::patch::decode_integration_method(const char*)’:
+patch.C:212:35: warning: control reaches end of non-void function [-Wreturn-type]
+  212 |                         error_exit(ERROR_EXIT,
+      |                         ~~~~~~~~~~^~~~~~~~~~~~
+  213 |                                            "***** patch::decode_integration_method():\n"
+      |                                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  214 |                                            "        unknown method_string=\"%s\"!\n",
+      |                                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  215 |                                            method_string); /*NOTREACHED*/
+      |                                            ~~~~~~~~~~~~~~
+patch.C: In member function ‘virtual fp AHFinderDirect::z_patch::plane_arc_length(const char*, int, int, int, int, int, int, int, AHFinderDirect::patch::integration_method) const’:
+patch.C:399:35: warning: control reaches end of non-void function [-Wreturn-type]
+  399 |                         error_exit(ERROR_EXIT,
+      |                         ~~~~~~~~~~^~~~~~~~~~~~
+  400 |                                            "***** z_patch::plane_arc_length(): %s patch, plane=\"%s\", but\n"
+      |                                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  401 |                                            "                                   this patch doesn't contain that plane!\n",
+      |                                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  402 |                                            name(), plane); /*NOTREACHED*/
+      |                                            ~~~~~~~~~~~~~~
+patch.C: In member function ‘virtual fp AHFinderDirect::x_patch::plane_arc_length(const char*, int, int, int, int, int, int, int, AHFinderDirect::patch::integration_method) const’:
+patch.C:440:35: warning: control reaches end of non-void function [-Wreturn-type]
+  440 |                         error_exit(ERROR_EXIT,
+      |                         ~~~~~~~~~~^~~~~~~~~~~~
+  441 |                                            "***** x_patch::plane_arc_length(): %s patch, plane=\"%s\", but\n"
+      |                                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  442 |                                            "                                   this patch doesn't contain that plane!\n",
+      |                                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  443 |                                            name(), plane); /*NOTREACHED*/
+      |                                            ~~~~~~~~~~~~~~
+patch.C: In member function ‘virtual fp AHFinderDirect::y_patch::plane_arc_length(const char*, int, int, int, int, int, int, int, AHFinderDirect::patch::integration_method) const’:
+patch.C:481:35: warning: control reaches end of non-void function [-Wreturn-type]
+  481 |                         error_exit(ERROR_EXIT,
+      |                         ~~~~~~~~~~^~~~~~~~~~~~
+  482 |                                            "***** y_patch::plane_arc_length(): %s patch, plane=\"%s\", but\n"
+      |                                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  483 |                                            "                                   this patch doesn't contain that plane!\n",
+      |                                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  484 |                                            name(), plane); /*NOTREACHED*/
+      |                                            ~~~~~~~~~~~~~~
+patch.C: In static member function ‘static fp AHFinderDirect::patch::integration_coeff(integration_method, int, int)’:
+patch.C:640:35: warning: control reaches end of non-void function [-Wreturn-type]
+  640 |                         error_exit(ERROR_EXIT,
+      |                         ~~~~~~~~~~^~~~~~~~~~~~
+  641 |                                            "***** patch::integration_coeff(): unknown method=(int)%d!\n"
+      |                                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  642 |                                            "                                  (this should never happen!)\n",
+      |                                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  643 |                                            int(method)); /*NOTREACHED*/
+      |                                            ~~~~~~~~~~~~
+patch.C: In member function ‘AHFinderDirect::ghost_zone& AHFinderDirect::patch::ghost_zone_containing_noncorner_point(int, int) const’:
+patch.C:744:27: warning: control reaches end of non-void function [-Wreturn-type]
+  744 |                 error_exit(ERROR_EXIT,
+      |                 ~~~~~~~~~~^~~~~~~~~~~~
+  745 |                                    "***** patch::ghost_zone_containing_noncorner_point():\n"
+      |                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  746 |                                    "        no ghost zone contains point (this should never happen)!\n"
+      |                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  747 |                                    "        patch=%s irho=%d isigma=%d\n",
+      |                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  748 |                                    name(), irho, isigma); /*NOTREACHED*/
+      |                                    ~~~~~~~~~~~~~~~~~~~~~
+mpic++ -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -fipa-pta -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -Wno-deprecated -Dfortran3 -Dnewc -fopenmp -c patch_interp.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o patch_interp.o
+mpic++ -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -fipa-pta -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -Wno-deprecated -Dfortran3 -Dnewc -fopenmp -c patch_system.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o patch_system.o
+mpic++ -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -fipa-pta -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -Wno-deprecated -Dfortran3 -Dnewc -fopenmp -c tgrid.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o tgrid.o
+mpic++ -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -fipa-pta -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -Wno-deprecated -Dfortran3 -Dnewc -fopenmp -c fd_grid.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o fd_grid.o
+patch_system.C: In static member function ‘static int AHFinderDirect::patch_system::N_patches_of_type(patch_system_type)’:
+patch_system.C:1175:35: warning: control reaches end of non-void function [-Wreturn-type]
+ 1175 |                         error_exit(PANIC_EXIT,
+      |                         ~~~~~~~~~~^~~~~~~~~~~~
+ 1176 |                                            "***** patch_system::N_patches_of_type(): bad type=(int)%d!\n"
+      |                                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 1177 |                                            "                                         (this should never happen!)\n",
+      |                                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 1178 |                                            int(type_in)); /*NOTREACHED*/
+      |                                            ~~~~~~~~~~~~~
+patch_system.C: In static member function ‘static const char* AHFinderDirect::patch_system::name_of_type(patch_system_type)’:
+patch_system.C:1210:35: warning: control reaches end of non-void function [-Wreturn-type]
+ 1210 |                         error_exit(PANIC_EXIT,
+      |                         ~~~~~~~~~~^~~~~~~~~~~~
+ 1211 |                                            "***** patch_system::name_of_type(): bad type=(int)%d!\n"
+      |                                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 1212 |                                            "                                    (this should never happen!)\n",
+      |                                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 1213 |                                            int(type_in)); /*NOTREACHED*/
+      |                                            ~~~~~~~~~~~~~
+patch_system.C: In static member function ‘static AHFinderDirect::patch_system::patch_system_type AHFinderDirect::patch_system::type_of_name(const char*)’:
+patch_system.C:1244:35: warning: control reaches end of non-void function [-Wreturn-type]
+ 1244 |                         error_exit(PANIC_EXIT,
+      |                         ~~~~~~~~~~^~~~~~~~~~~~
+ 1245 |                                            "***** patch_system::type_of_name(): unknown name=\"%s\"!",
+      |                                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 1246 |                                            name_in); /*NOTREACHED*/
+      |                                            ~~~~~~~~
+patch_system.C: In member function ‘const AHFinderDirect::patch& AHFinderDirect::patch_system::plus_or_minus_xyz_patch(bool, char) const’:
+patch_system.C:1271:27: warning: control reaches end of non-void function [-Wreturn-type]
+ 1271 |                 error_exit(ERROR_EXIT,
+      |                 ~~~~~~~~~~^~~~~~~~~~~~
+ 1272 |                                    "***** patch_system::plus_or_minus_xyz_patch():\n"
+      |                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 1273 |                                    "        can't find any %c%c patch!",
+      |                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 1274 |                                    (is_plus ? '+' : '-'), ctype); /*NOTREACHED*/
+      |                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+patch_system.C: In member function ‘int AHFinderDirect::patch_system::patch_number_of_name(const char*) const’:
+patch_system.C:1292:27: warning: control reaches end of non-void function [-Wreturn-type]
+ 1292 |                 error_exit(ERROR_EXIT,
+      |                 ~~~~~~~~~~^~~~~~~~~~~~
+ 1293 |                                    "***** patch_system::patch_number_of_name():\n"
+      |                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 1294 |                                    "        no patch with name \"%s\"!\n",
+      |                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 1295 |                                    name); /*NOTREACHED*/
+      |                                    ~~~~~
+patch_system.C: In member function ‘const AHFinderDirect::patch& AHFinderDirect::patch_system::patch_irho_isigma_of_gpn(int, int&, int&) const’:
+patch_system.C:1337:27: warning: control reaches end of non-void function [-Wreturn-type]
+ 1337 |                 error_exit(PANIC_EXIT,
+      |                 ~~~~~~~~~~^~~~~~~~~~~~
+ 1338 |                                    "***** patch_system::patch_irho_isigma_of_gpn(gpn=%d):\n"
+      |                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 1339 |                                    "        couldn't find any patch! (this should never happen!)\n"
+      |                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 1340 |                                    "        N_grid_points()=%d\n",
+      |                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 1341 |                                    gpn,
+      |                                    ~~~~
+ 1342 |                                    N_grid_points()); /*NOTREACHED*/
+      |                                    ~~~~~~~~~~~~~~~~
+patch_system.C: In member function ‘const AHFinderDirect::patch& AHFinderDirect::patch_system::ghosted_patch_irho_isigma_of_gpn(int, int&, int&) const’:
+patch_system.C:1383:27: warning: control reaches end of non-void function [-Wreturn-type]
+ 1383 |                 error_exit(PANIC_EXIT,
+      |                 ~~~~~~~~~~^~~~~~~~~~~~
+ 1384 |                                    "***** patch_system::ghosted_patch_irho_isigma_of_gpn(gpn=%d):\n"
+      |                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 1385 |                                    "        couldn't find any patch! (this should never happen!)\n"
+      |                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 1386 |                                    "        ghosted_N_grid_points()=%d\n",
+      |                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 1387 |                                    gpn,
+      |                                    ~~~~
+ 1388 |                                    ghosted_N_grid_points()); /*NOTREACHED*/
+      |                                    ~~~~~~~~~~~~~~~~~~~~~~~~
+patch_system.C: In member function ‘const AHFinderDirect::patch* AHFinderDirect::patch_system::patch_containing_local_xyz(fp, fp, fp) const’:
+patch_system.C:1737:35: warning: control reaches end of non-void function [-Wreturn-type]
+ 1737 |                         error_exit(ERROR_EXIT,
+      |                         ~~~~~~~~~~^~~~~~~~~~~~
+ 1738 |                                            "***** patch_system::patch_containing_local_xyz():\n"
+      |                                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 1739 |                                            "        unknown (wierd!) ordering of |x|, |y|, and |z|!\n"
+      |                                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 1740 |                                            "        (this should never happen!)\n"
+      |                                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 1741 |                                            "        [local] (x,y,z)=(%g,%g,%g)\n",
+      |                                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 1742 |                                            double(x), double(y), double(z)); /*NOTREACHED*/
+      |                                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+patch_system.C: In member function ‘const AHFinderDirect::patch_edge& AHFinderDirect::patch_system::synchronize_Jacobian(const AHFinderDirect::ghost_zone&, int, int, int&, int&, int&, int&, AHFinderDirect::jtutil::array1d<double>&) const’:
+patch_system.C:2373:35: warning: control reaches end of non-void function [-Wreturn-type]
+ 2373 |                         error_exit(PANIC_EXIT,
+      |                         ~~~~~~~~~~^~~~~~~~~~~~
+ 2374 |                                            "***** patch_system::synchronize_Jacobian():\n"
+      |                                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 2375 |                                            "        don't know what to do with ghost zone (this should never happen)!\n"
+      |                                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 2376 |                                            "        xgz.my_patch()=\"%s\"    xe=xgz.my_edge()=\"%s\"\n"
+      |                                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 2377 |                                            "        xgz.other_patch()=\"%s\"    xgz.other_edge()=\"%s\"\n"
+      |                                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 2378 |                                            "        xgz.is_symmetry()=(int)%d xgz.is_interpatch()=(int)%d\n"
+      |                                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 2379 |                                            "        x_iperp=%d x_ipar=%d\n"
+      |                                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 2380 |                                            "        xe.ipar_is_in_{min,max}_ipar_corner(x_ipar)=(int){%d,%d}\n"
+      |                                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 2381 |                                            "        xe.ipar_is_in_{corner,noncorner}(x_ipar)=(int){%d,%d}\n",
+      |                                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 2382 |                                            xgz.my_patch().name(), xe.name(),
+      |                                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 2383 |                                            xgz.other_patch().name(), xgz.other_edge().name(),
+      |                                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 2384 |                                            int(xgz.is_symmetry()), int(xgz.is_interpatch()),
+      |                                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 2385 |                                            x_iperp, x_ipar,
+      |                                            ~~~~~~~~~~~~~~~~
+ 2386 |                                            xe.ipar_is_in_min_ipar_corner(x_ipar),
+      |                                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 2387 |                                            xe.ipar_is_in_max_ipar_corner(x_ipar),
+      |                                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 2388 |                                            xe.ipar_is_in_corner(x_ipar),
+      |                                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 2389 |                                            xe.ipar_is_in_noncorner(x_ipar)); /*NOTREACHED*/
+      |                                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+mpic++ -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -fipa-pta -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -Wno-deprecated -Dfortran3 -Dnewc -fopenmp -c ghost_zone.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o ghost_zone.o
+mpic++ -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -fipa-pta -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -Wno-deprecated -Dfortran3 -Dnewc -fopenmp -c array.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o array.o
+mpic++ -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -fipa-pta -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -Wno-deprecated -Dfortran3 -Dnewc -fopenmp -c round.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o round.o
+mpic++ -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -fipa-pta -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -Wno-deprecated -Dfortran3 -Dnewc -fopenmp -c norm.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o norm.o
+mpic++ -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -fipa-pta -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -Wno-deprecated -Dfortran3 -Dnewc -fopenmp -c fuzzy.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o fuzzy.o
+mpic++ -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -fipa-pta -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -Wno-deprecated -Dfortran3 -Dnewc -fopenmp -c error_exit.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o error_exit.o
+mpic++ -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -fipa-pta -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -Wno-deprecated -Dfortran3 -Dnewc -fopenmp -c miscfp.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o miscfp.o
+mpic++ -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -fipa-pta -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -Wno-deprecated -Dfortran3 -Dnewc -fopenmp -c linear_map.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o linear_map.o
+mpic++ -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -fipa-pta -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -Wno-deprecated -Dfortran3 -Dnewc -fopenmp -c cpm_map.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o cpm_map.o
+mpic++ -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -fipa-pta -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -Wno-deprecated -Dfortran3 -Dnewc -fopenmp -c BH_diagnostics.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o BH_diagnostics.o
+mpic++ -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -fipa-pta -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -Wno-deprecated -Dfortran3 -Dnewc -fopenmp -c setup.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o setup.o
+mpic++ -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -fipa-pta -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -Wno-deprecated -Dfortran3 -Dnewc -fopenmp -c horizon_sequence.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o horizon_sequence.o
+mpic++ -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -fipa-pta -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -Wno-deprecated -Dfortran3 -Dnewc -fopenmp -c find_horizons.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o find_horizons.o
+mpic++ -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -fipa-pta -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -Wno-deprecated -Dfortran3 -Dnewc -fopenmp -c initial_guess.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o initial_guess.o
+mpic++ -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -fipa-pta -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -Wno-deprecated -Dfortran3 -Dnewc -fopenmp -c Newton.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o Newton.o
+mpic++ -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -fipa-pta -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -Wno-deprecated -Dfortran3 -Dnewc -fopenmp -c Jacobian.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o Jacobian.o
+mpifort -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -ftree-vectorize -x f95-cpp-input -fopenmp -c ilucg.f90 -o ilucg.o
+mpic++ -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -fipa-pta -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -Wno-deprecated -Dfortran3 -Dnewc -fopenmp -c IntPnts0.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o IntPnts0.o
+mpic++ -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -fipa-pta -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -Wno-deprecated -Dfortran3 -Dnewc -fopenmp -c IntPnts.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o IntPnts.o
+mpic++ -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -fipa-pta -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -Wno-deprecated -Dfortran3 -Dnewc -fopenmp -c misc.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o misc.o
+mpic++ -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -fipa-pta -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -Wno-deprecated -Dfortran3 -Dnewc -fopenmp -o ABE ABE.o Ansorg.o Block.o misc.o monitor.o Parallel.o MPatch.o var.o cgh.o bssn_class.o surface_integral.o ShellPatch.o bssnEScalar_class.o perf.o Z4c_class.o NullShellPatch.o bssnEM_class.o cpbc_util.o z4c_rhs_point.o checkpoint.o Parallel_bam.o scalar_class.o transpbh.o NullShellPatch2.o NullShellPatch2_Evo.o writefile_f.o enforce_algebra.o fmisc.o initial_puncture.o prolongrestrict.o prolongrestrict_cell.o prolongrestrict_vertex.o rungekutta4_rout.o bssn_rhs.o diff_new.o kodiss.o kodiss_sh.o lopsidediff.o sommerfeld_rout.o getnp4.o diff_new_sh.o shellfunctions.o bssn_rhs_ss.o Set_Rho_ADM.o getnp4EScalar.o bssnEScalar_rhs.o bssn_constraint.o ricci_gamma.o fadmquantites_bssn.o Z4c_rhs.o Z4c_rhs_ss.o point_diff_new_sh.o cpbc.o getnp4old.o NullEvol.o initial_null.o initial_maxwell.o getnpem2.o empart.o NullNews.o fourdcurvature.o bssn2adm.o adm_constraint.o adm_ricci_gamma.o scalar_rhs.o initial_scalar.o NullEvol2.o initial_null2.o NullNews2.o tool_f.o zbesh.o expansion.o expansion_Jacobian.o patch.o coords.o patch_info.o patch_interp.o patch_system.o tgrid.o fd_grid.o ghost_zone.o array.o round.o norm.o fuzzy.o error_exit.o miscfp.o linear_map.o cpm_map.o BH_diagnostics.o setup.o horizon_sequence.o find_horizons.o initial_guess.o Newton.o Jacobian.o ilucg.o IntPnts0.o IntPnts.o   -lmpi   -lcudart -lgfortran -lquadmath
+lto-wrapper: warning: using serial compilation of 9 LTRANS jobs
+lto-wrapper: note: see the ‘-flto’ option documentation for more information
+
+ Compilation of the AMSS-NCKU executable file ABE is finished 
+
+
+ Compiling the AMSS-NCKU executable file TwoPunctureABE 
+
+mpic++ -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -fipa-pta -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -Wno-deprecated -Dfortran3 -Dnewc -fopenmp -c TwoPunctureABE.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o TwoPunctureABE.o
+TwoPunctureABE.C: In function ‘int main(int, char**)’:
+TwoPunctureABE.C:213:13: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+  213 |   ADM->Save("Ansorg.psid");
+      |             ^~~~~~~~~~~~~
+mpic++ -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -fipa-pta -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -Wno-deprecated -Dfortran3 -Dnewc -fopenmp -c TwoPunctures.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o TwoPunctures.o
+mpic++ -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -fipa-pta -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -Wno-deprecated -Dfortran3 -Dnewc -fopenmp -o TwoPunctureABE TwoPunctureABE.o TwoPunctures.o    -lmpi   -lcudart -lgfortran -lquadmath
+
+ Compilation of the AMSS-NCKU executable file TwoPunctureABE is finished 
+
+
+
+ Initial data is chosen as Ansorg-TwoPuncture
+
+
+ Automatically generating the input parfile for the TwoPunctureABE executable 
+
+
+ The input parfile for the TwoPunctureABE executable has been generated. 
+
+
+
+
+ Running the AMSS-NCKU executable file TwoPunctureABE 
+
+///////////////////////////////////////////////////////////////
+     mp     = -1
+     mm     = -1
+     b      = 5
+  P_plusx   = -0.000845415
+  P_plusy   = 0.0953015
+  P_plusz   = 0
+  P_minusx  = 0.000845415
+  P_minusy  = -0.0953015
+  P_minusz  = 0
+  S_plusx   = 0
+  S_plusy   = -0
+  S_plusz   = 0.0950911
+  S_minusx  = 0
+  S_minusy  = -0
+  S_minusz  = -0.0915645
+     Mp     = 0.553846
+     Mm     = 0.446154
+   admtol   = 1e-08
+ Newtontol  = 5e-12
+    nA      = 50
+    nB      = 50
+   nphi     = 26
+Newtonmaxit = 50
+///////////////////////////////////////////////////////////////
+Attempting to find bare masses.
+Target ADM masses: M_p=0.553846 and M_m=0.446154
+ADM mass tolerance: 1e-08
+Bare masses: mp=-1, mm=-1
+Newton: it=0 	 |F|=8.116007e-02
+bare mass: mp=0.553846 	 mm=0.446154
+bicgstab:  itmax 100, tol 8.116007e-05
+bicgstab:     0   1.366e+00
+bicgstab:     1   4.256e+00   1.069e+00   0.000e+00   5.233e-01
+bicgstab:     2   6.633e+00   3.158e+00   4.084e-02   6.106e-01
+bicgstab:     3   3.581e+00   8.311e-01   3.694e-01   6.584e-01
+bicgstab:     4   1.274e+00   9.982e-01   2.470e-01   5.270e-01
+bicgstab:     5   1.339e+00   3.287e+00   2.260e-01   4.272e-01
+bicgstab:     6   1.312e-01   2.004e-01  -3.652e+00   2.448e+00
+bicgstab:     7   9.817e-03   1.243e+00  -9.975e-02   4.477e-01
+bicgstab:     8   1.698e-03   1.272e+00   1.953e-01   9.239e-01
+bicgstab:     9   7.728e-04   1.087e+00   4.785e-01   1.048e+00
+bicgstab:    10   4.820e-04   1.101e+00   3.316e-01   8.663e-01
+bicgstab:    11   2.111e-04   1.009e+00   3.637e-01   1.070e+00
+bicgstab:    12   6.988e-05   1.333e+00   3.293e-01   4.434e-01
+Newton: it=1 	 |F|=1.149742e-03 
+ADM mass error: M_p_err=1.54193, M_m_err=1.46829
+Bare masses: mp=0.52329, mm=0.406224
+Newton: it=0 	 |F|=3.875643e-02
+bare mass: mp=0.52329 	 mm=0.406224
+bicgstab:  itmax 100, tol 3.875643e-05
+bicgstab:     0   5.945e-01
+bicgstab:     1   1.665e+00   1.056e+00   0.000e+00   5.479e-01
+bicgstab:     2   2.381e+00   3.082e+00   3.689e-02   5.523e-01
+bicgstab:     3   1.199e+00   8.967e-01   2.866e-01   6.091e-01
+bicgstab:     4   2.743e+00  -3.782e+00   1.151e-01   4.187e-01
+bicgstab:     5   3.316e-02  -1.187e-01  -4.740e+01   2.090e+00
+bicgstab:     6   2.495e-02   2.193e+00  -7.808e-03   1.579e+00
+bicgstab:     7   9.583e-03   8.010e-01   5.470e-01   9.374e-01
+bicgstab:     8   3.277e-03   1.104e+00   1.358e-01   5.262e-01
+bicgstab:     9   4.372e-04   1.227e+00   5.417e-01   5.506e-01
+bicgstab:    10   2.466e-04   1.056e+00   3.276e-01   2.239e+00
+bicgstab:    11   4.380e-05   1.127e+00   4.671e-01   4.438e-01
+bicgstab:    12   2.680e-05   9.705e-01   2.322e-01   4.438e-01
+Newton: it=1 	 |F|=1.824401e-04 
+ADM mass error: M_p_err=0.00465719, M_m_err=0.0113011
+Bare masses: mp=0.519168, mm=0.396261
+Newton: it=0 	 |F|=1.258694e-02
+bare mass: mp=0.519168 	 mm=0.396261
+bicgstab:  itmax 100, tol 1.258694e-05
+bicgstab:     0   1.849e-01
+bicgstab:     1   5.065e-01   1.054e+00   0.000e+00   5.547e-01
+bicgstab:     2   7.039e-01   3.032e+00   3.651e-02   5.426e-01
+bicgstab:     3   3.561e-01   7.788e-01   3.136e-01   7.672e-01
+bicgstab:     4   1.091e-01   1.113e+00   1.694e-01   4.465e-01
+bicgstab:     5   8.703e-02  -2.726e-01   8.995e-02   9.502e-01
+bicgstab:     6   3.147e-02  -3.174e+00  -2.006e+00   1.340e+00
+bicgstab:     7   1.208e-02   8.920e-01  -6.591e-01   1.550e+00
+bicgstab:     8   3.508e-03   1.069e+00   1.180e-01   4.626e-01
+bicgstab:     9   5.706e-04   1.360e+00   5.533e-01   6.261e-01
+bicgstab:    10   4.245e-04   1.015e+00   3.497e-01   1.970e+00
+bicgstab:    11   1.068e-04   1.191e+00   4.740e-01   4.247e-01
+bicgstab:    12   1.864e-05   7.743e-01   1.840e-01   2.152e+00
+bicgstab:    13   5.051e-06   1.829e+00   3.480e-01   4.089e-01
+Newton: it=1 	 |F|=1.741310e-05 
+ADM mass error: M_p_err=0.000750389, M_m_err=0.00338687
+Bare masses: mp=0.518538, mm=0.393286
+Newton: it=0 	 |F|=4.045363e-03
+bare mass: mp=0.518538 	 mm=0.393286
+bicgstab:  itmax 100, tol 4.045363e-06
+bicgstab:     0   5.824e-02
+bicgstab:     1   1.585e-01   1.053e+00   0.000e+00   5.568e-01
+bicgstab:     2   2.169e-01   2.959e+00   3.591e-02   5.432e-01
+bicgstab:     3   1.098e-01   7.436e-01   3.340e-01   8.466e-01
+bicgstab:     4   3.622e-02   1.031e+00   1.846e-01   4.676e-01
+bicgstab:     5   2.254e-02   2.429e+00   2.309e-01   4.200e-01
+bicgstab:     6   2.231e-03   1.933e-01  -1.588e+00   2.398e+00
+bicgstab:     7   3.881e-04   1.650e+00  -1.984e-01   4.992e-01
+bicgstab:     8   1.944e-04   1.367e+00   2.159e-01   1.710e+00
+bicgstab:     9   6.186e-05   1.134e+00   7.193e-01   6.893e-01
+bicgstab:    10   3.107e-05   9.294e-01   1.739e-01   1.125e+00
+bicgstab:    11   4.900e-06   1.503e+00   4.809e-01   4.850e-01
+bicgstab:    12   7.281e-07   8.138e-01   2.940e-01   4.850e-01
+Newton: it=1 	 |F|=1.719848e-06 
+ADM mass error: M_p_err=0.000129657, M_m_err=0.00105376
+Bare masses: mp=0.518439, mm=0.392361
+Newton: it=0 	 |F|=1.285940e-03
+bare mass: mp=0.518439 	 mm=0.392361
+bicgstab:  itmax 100, tol 1.285940e-06
+bicgstab:     0   1.841e-02
+bicgstab:     1   5.001e-02   1.053e+00   0.000e+00   5.574e-01
+bicgstab:     2   6.823e-02   2.955e+00   3.596e-02   5.422e-01
+bicgstab:     3   3.408e-02   7.182e-01   3.474e-01   9.137e-01
+bicgstab:     4   1.170e-02   9.679e-01   1.850e-01   4.893e-01
+bicgstab:     5   5.760e-04   1.299e+00   2.633e-01   4.016e-01
+bicgstab:     6   2.688e-04   1.413e+00   6.493e-01   2.358e+00
+bicgstab:     7   1.509e-04  -3.079e-01   6.015e-02   4.027e-01
+bicgstab:     8   2.998e-05  -1.457e+00  -2.374e+00   4.673e+00
+bicgstab:     9   1.162e-05   1.546e+00  -3.587e-01   2.086e+00
+bicgstab:    10   3.034e-06   9.270e-01   2.184e-01   8.172e-01
+bicgstab:    11   1.021e-06   1.571e+00   4.583e-01   8.215e-01
+Newton: it=1 	 |F|=1.775094e-07 
+ADM mass error: M_p_err=2.45898e-05, M_m_err=0.000331604
+Bare masses: mp=0.518423, mm=0.39207
+Newton: it=0 	 |F|=4.074719e-04
+bare mass: mp=0.518423 	 mm=0.39207
+bicgstab:  itmax 100, tol 4.074719e-07
+bicgstab:     0   5.823e-03
+bicgstab:     1   1.581e-02   1.053e+00   0.000e+00   5.576e-01
+bicgstab:     2   2.174e-02   3.039e+00   3.538e-02   5.369e-01
+bicgstab:     3   2.470e-02  -9.717e-01   1.035e-01   4.406e-01
+bicgstab:     4   6.381e-04  -4.184e-01  -6.927e+00   2.314e+00
+bicgstab:     5   2.147e-04   1.243e+00  -3.400e-02   4.862e-01
+bicgstab:     6   7.857e-05   1.484e+00   4.859e-01   1.658e+00
+bicgstab:     7   4.056e-05   8.206e-01   4.152e-01   7.694e-01
+bicgstab:     8   1.891e-05   1.445e+00   2.054e-01   5.972e-01
+bicgstab:     9   5.869e-06   9.957e-01   7.960e-01   2.003e+00
+bicgstab:    10   2.809e-06   9.088e-01   1.306e-01   4.872e-01
+bicgstab:    11   4.220e-07   1.674e+00   5.165e-01   4.899e-01
+bicgstab:    12   1.594e-07   6.953e-01   2.766e-01   4.899e-01
+Newton: it=1 	 |F|=3.489660e-08 
+ADM mass error: M_p_err=5.26251e-06, M_m_err=0.000104717
+Bare masses: mp=0.518421, mm=0.391978
+Newton: it=0 	 |F|=1.289665e-04
+bare mass: mp=0.518421 	 mm=0.391978
+bicgstab:  itmax 100, tol 1.289665e-07
+bicgstab:     0   1.842e-03
+bicgstab:     1   5.000e-03   1.053e+00   0.000e+00   5.577e-01
+bicgstab:     2   6.842e-03   2.993e+00   3.609e-02   5.395e-01
+bicgstab:     3   3.454e-03   7.755e-01   3.077e-01   7.748e-01
+bicgstab:     4   9.849e-04   1.179e+00   1.607e-01   4.358e-01
+bicgstab:     5   5.342e-04   3.390e-02  -2.284e-02   1.421e+00
+bicgstab:     6   2.135e-04   2.285e+01  -8.828e-01   8.259e-01
+bicgstab:     7   7.575e-05   8.932e-01   5.464e+00   1.905e+00
+bicgstab:     8   1.664e-05   1.195e+00   1.427e-01   4.280e-01
+bicgstab:     9   3.228e-06   1.234e+00   6.672e-01   1.489e+00
+bicgstab:    10   1.955e-06   9.330e-01   2.314e-01   6.078e-01
+bicgstab:    11   6.809e-07   1.455e+00   4.809e-01   1.038e+00
+bicgstab:    12   2.646e-07   7.275e-01   2.439e-01   6.392e-01
+bicgstab:    13   1.795e-07   2.494e+00   3.544e-01   6.572e-01
+bicgstab:    14   4.624e-08   9.400e-01  -1.023e+00   4.166e-01
+Newton: it=1 	 |F|=8.386701e-09 
+ADM mass error: M_p_err=1.27996e-06, M_m_err=3.31055e-05
+Bare masses: mp=0.51842, mm=0.391949
+Newton: it=0 	 |F|=4.080309e-05
+bare mass: mp=0.51842 	 mm=0.391949
+bicgstab:  itmax 100, tol 4.080309e-08
+bicgstab:     0   5.827e-04
+bicgstab:     1   1.582e-03   1.053e+00   0.000e+00   5.577e-01
+bicgstab:     2   2.162e-03   2.985e+00   3.602e-02   5.399e-01
+bicgstab:     3   1.093e-03   7.738e-01   3.091e-01   7.784e-01
+bicgstab:     4   3.156e-04   1.170e+00   1.629e-01   4.374e-01
+bicgstab:     5   1.848e-04  -4.718e-03   2.768e-03   1.324e+00
+bicgstab:     6   7.018e-05  -1.630e+02  -1.016e+00   8.741e-01
+bicgstab:     7   2.575e-05   9.015e-01  -3.771e+01   1.879e+00
+bicgstab:     8   5.648e-06   1.236e+00   1.500e-01   4.289e-01
+bicgstab:     9   1.029e-06   1.198e+00   6.904e-01   1.664e+00
+bicgstab:    10   5.639e-07   9.326e-01   2.103e-01   5.661e-01
+bicgstab:    11   1.537e-07   1.488e+00   4.889e-01   1.443e+00
+bicgstab:    12   4.964e-08   7.353e-01   2.496e-01   5.515e-01
+bicgstab:    13   4.361e-08   2.465e+00   3.737e-01   5.469e-01
+bicgstab:    14   1.785e-08   8.020e-01  -1.144e+00   5.469e-01
+Newton: it=1 	 |F|=2.856975e-09 
+ADM mass error: M_p_err=3.45657e-07, M_m_err=1.04695e-05
+Bare masses: mp=0.51842, mm=0.39194
+Newton: it=0 	 |F|=1.290727e-05
+bare mass: mp=0.51842 	 mm=0.39194
+bicgstab:  itmax 100, tol 1.290727e-08
+bicgstab:     0   1.843e-04
+bicgstab:     1   5.002e-04   1.053e+00   0.000e+00   5.578e-01
+bicgstab:     2   6.844e-04   2.994e+00   3.595e-02   5.394e-01
+bicgstab:     3   3.447e-04   8.430e-01   2.816e-01   6.706e-01
+bicgstab:     4   1.145e-03   1.044e+01   1.187e-01   4.011e-01
+bicgstab:     5   4.428e-06   4.105e-02  -2.146e+02   2.120e+00
+bicgstab:     6   4.593e-06   2.086e+00  -1.244e-03   1.916e+00
+bicgstab:     7   1.569e-06   8.407e-01   5.817e-01   4.264e-01
+bicgstab:     8   3.940e-07   1.261e+00   1.584e-01   2.622e+00
+bicgstab:     9   1.271e-07   1.153e+00   7.138e-01   7.588e-01
+bicgstab:    10   6.333e-08   9.239e-01   1.952e-01   6.915e-01
+bicgstab:    11   1.182e-08   1.517e+00   4.917e-01   6.915e-01
+Newton: it=1 	 |F|=1.778290e-09 
+ADM mass error: M_p_err=1.00189e-07, M_m_err=3.3113e-06
+Bare masses: mp=0.51842, mm=0.391937
+Newton: it=0 	 |F|=4.082626e-06
+bare mass: mp=0.51842 	 mm=0.391937
+bicgstab:  itmax 100, tol 4.082626e-09
+bicgstab:     0   5.830e-05
+bicgstab:     1   1.582e-04   1.053e+00   0.000e+00   5.578e-01
+bicgstab:     2   2.193e-04   3.116e+00   3.549e-02   5.324e-01
+bicgstab:     3   1.614e-04   3.853e-02  -1.559e-02   8.222e-01
+bicgstab:     4   3.413e-05   1.104e+01  -8.650e-01   1.580e+00
+bicgstab:     5   3.299e-06   1.187e+00   1.700e+00   4.023e-01
+bicgstab:     6   6.744e-07   1.507e+00   4.998e-01   2.504e+00
+bicgstab:     7   3.652e-07   8.111e-01   4.275e-01   8.687e-01
+bicgstab:     8   1.771e-07   1.375e+00   1.912e-01   5.374e-01
+bicgstab:     9   6.336e-08   1.030e+00   7.716e-01   9.662e-01
+bicgstab:    10   3.468e-08   9.117e-01   1.502e-01   4.915e-01
+bicgstab:    11   5.340e-09   1.611e+00   5.098e-01   1.679e+00
+bicgstab:    12   1.425e-09   7.126e-01   2.750e-01   1.679e+00
+Newton: it=1 	 |F|=1.547191e-10 
+ADM mass error: M_p_err=3.03763e-08, M_m_err=1.04732e-06
+Bare masses: mp=0.51842, mm=0.391936
+Newton: it=0 	 |F|=1.291353e-06
+bare mass: mp=0.51842 	 mm=0.391936
+bicgstab:  itmax 100, tol 1.291353e-09
+bicgstab:     0   1.844e-05
+bicgstab:     1   5.004e-05   1.052e+00   0.000e+00   5.577e-01
+bicgstab:     2   6.795e-05   2.925e+00   3.582e-02   5.435e-01
+bicgstab:     3   3.312e-05   6.820e-01   3.771e-01   1.037e+00
+bicgstab:     4   1.134e-05   9.296e-01   1.862e-01   5.128e-01
+bicgstab:     5   1.716e-06   1.085e+00   2.807e-01   4.594e-01
+bicgstab:     6   1.042e-06   1.305e+00   5.971e-01   2.310e+00
+bicgstab:     7   1.565e-07   7.667e-01   3.828e-01   4.065e-01
+bicgstab:     8   2.496e-08   1.318e+00   1.990e-01   4.454e+00
+bicgstab:     9   1.715e-08   1.033e+00   7.639e-01   2.150e+00
+bicgstab:    10   2.576e-09   9.122e-01   1.605e-01   6.169e-01
+bicgstab:    11   1.058e-09   1.588e+00   5.011e-01   3.773e-01
+Newton: it=1 	 |F|=1.441505e-10 
+ADM mass error: M_p_err=9.39458e-09, M_m_err=3.3126e-07
+Bare masses: mp=0.51842, mm=0.391936
+Newton: it=0 	 |F|=4.084464e-07
+bare mass: mp=0.51842 	 mm=0.391936
+bicgstab:  itmax 100, tol 4.084464e-10
+bicgstab:     0   5.832e-06
+bicgstab:     1   1.582e-05   1.052e+00   0.000e+00   5.577e-01
+bicgstab:     2   2.136e-05   2.871e+00   3.550e-02   5.469e-01
+bicgstab:     3   1.004e-05   6.501e-01   4.214e-01   1.186e+00
+bicgstab:     4   3.260e-06   9.479e-01   1.831e-01   5.096e-01
+bicgstab:     5   5.132e-07   1.063e+00   2.916e-01   4.863e-01
+bicgstab:     6   3.376e-07   1.290e+00   5.421e-01   2.257e+00
+bicgstab:     7   7.156e-08   7.904e-01   3.756e-01   4.193e-01
+bicgstab:     8   1.963e-08   1.397e+00   2.191e-01   2.249e+00
+bicgstab:     9   5.659e-09   9.971e-01   7.925e-01   6.198e-01
+bicgstab:    10   2.942e-09   8.841e-01   1.367e-01   1.373e+00
+bicgstab:    11   4.632e-10   1.690e+00   4.831e-01   5.217e-01
+bicgstab:    12   1.639e-10   7.042e-01   3.283e-01   5.217e-01
+Newton: it=1 	 |F|=3.656612e-11 
+ADM mass error: M_p_err=2.9382e-09, M_m_err=1.04772e-07
+Bare masses: mp=0.51842, mm=0.391936
+Newton: it=0 	 |F|=1.291872e-07
+bare mass: mp=0.51842 	 mm=0.391936
+bicgstab:  itmax 100, tol 1.291872e-10
+bicgstab:     0   1.845e-06
+bicgstab:     1   5.006e-06   1.053e+00   0.000e+00   5.578e-01
+bicgstab:     2   6.830e-06   2.967e+00   3.612e-02   5.410e-01
+bicgstab:     3   3.359e-06   7.006e-01   3.551e-01   9.659e-01
+bicgstab:     4   1.177e-06   9.224e-01   1.806e-01   5.092e-01
+bicgstab:     5   1.489e-07   1.156e+00   2.607e-01   4.301e-01
+bicgstab:     6   8.051e-08   1.343e+00   6.702e-01   2.341e+00
+bicgstab:     7   1.155e-08   7.465e-01   3.628e-01   4.104e-01
+bicgstab:     8   4.299e-09   1.255e+00   1.727e-01   3.315e+00
+bicgstab:     9   1.564e-09   1.068e+00   7.484e-01   4.860e-01
+bicgstab:    10   5.399e-10   9.557e-01   2.085e-01   1.128e+00
+bicgstab:    11   1.635e-10   1.381e+00   5.348e-01   6.161e-01
+bicgstab:    12   1.175e-10   7.426e-01   2.151e-01   6.161e-01
+Newton: it=1 	 |F|=2.745922e-11 
+ADM mass error: M_p_err=9.24597e-10, M_m_err=3.31388e-08
+Bare masses: mp=0.51842, mm=0.391936
+Newton: it=0 	 |F|=4.086114e-08
+bare mass: mp=0.51842 	 mm=0.391936
+bicgstab:  itmax 100, tol 4.086114e-11
+bicgstab:     0   5.835e-07
+bicgstab:     1   1.584e-06   1.053e+00   0.000e+00   5.578e-01
+bicgstab:     2   2.195e-06   3.112e+00   3.631e-02   5.327e-01
+bicgstab:     3   1.633e-05  -1.992e+01   1.369e-01   3.986e-01
+bicgstab:     4   2.069e-08  -1.871e-02  -1.142e+03   2.255e+00
+bicgstab:     5   1.889e-08   1.248e+00  -1.128e-04   9.439e-01
+bicgstab:     6   9.545e-09   1.816e+00   5.387e-01   5.319e-01
+bicgstab:     7   2.411e-09   7.783e-01   5.598e-01   2.512e+00
+bicgstab:     8   1.409e-09   9.332e-01   9.303e-02   5.866e-01
+bicgstab:     9   5.216e-10   1.685e+00   5.029e-01   3.964e-01
+bicgstab:    10   6.601e-11   1.006e+00   5.652e-01   1.733e+00
+bicgstab:    11   4.885e-11   1.070e+00   4.370e-01   1.280e+00
+bicgstab:    12   2.968e-11   2.260e-01   3.611e-02   1.588e+00
+Newton: it=1 	 |F|=5.748394e-12 
+ADM mass error: M_p_err=2.91709e-10, M_m_err=1.04817e-08
+Bare masses: mp=0.51842, mm=0.391936
+Newton: it=0 	 |F|=1.292426e-08
+bare mass: mp=0.51842 	 mm=0.391936
+bicgstab:  itmax 100, tol 1.292426e-11
+bicgstab:     0   1.846e-07
+bicgstab:     1   5.008e-07   1.052e+00   0.000e+00   5.578e-01
+bicgstab:     2   6.782e-07   2.899e+00   3.596e-02   5.451e-01
+bicgstab:     3   3.061e-07   6.335e-01   4.412e-01   1.269e+00
+bicgstab:     4   9.759e-08   9.186e-01   1.704e-01   5.185e-01
+bicgstab:     5   1.732e-08   1.057e+00   2.699e-01   5.113e-01
+bicgstab:     6   1.229e-08   1.400e+00   5.573e-01   2.134e+00
+bicgstab:     7   3.169e-09   7.824e-01   4.251e-01   4.657e-01
+bicgstab:     8   1.113e-09   1.262e+00   1.772e-01   1.008e+00
+bicgstab:     9   3.122e-10   1.109e+00   7.318e-01   6.939e-01
+bicgstab:    10   1.839e-10   9.082e-01   1.844e-01   1.126e+00
+bicgstab:    11   4.963e-11   1.551e+00   4.821e-01   5.099e-01
+bicgstab:    12   1.689e-11   7.261e-01   2.871e-01   1.235e+00
+bicgstab:    13   1.408e-11   2.413e+00   3.521e-01   4.222e-01
+bicgstab:    14   4.599e-12   8.912e-01  -1.032e+00   4.222e-01
+Newton: it=1 	 |F|=2.057732e-12 
+ADM mass error: M_p_err=9.19752e-11, M_m_err=3.31528e-09
+Found bare masses resulted Mp = 0.553846 and Mm = 0.446154
+Newton: it=0 	 |F|=4.087847e-09
+bare mass: mp=0.51842 	 mm=0.391936
+bicgstab:  itmax 100, tol 4.087847e-12
+bicgstab:     0   5.837e-08
+bicgstab:     1   1.584e-07   1.052e+00   0.000e+00   5.578e-01
+bicgstab:     2   2.159e-07   2.960e+00   3.568e-02   5.413e-01
+bicgstab:     3   1.099e-07   8.076e-01   2.997e-01   7.217e-01
+bicgstab:     4   5.374e-09   1.832e+00   1.483e-01   4.050e-01
+bicgstab:     5   1.204e-09   2.030e-01  -2.049e+00   2.146e+00
+bicgstab:     6   7.758e-10   2.356e+00  -9.138e-02   2.492e+00
+bicgstab:     7   2.871e-10   8.653e-01   6.288e-01   5.783e-01
+bicgstab:     8   1.556e-10   1.340e+00   1.783e-01   6.479e-01
+bicgstab:     9   5.175e-11   1.098e+00   7.521e-01   2.076e+00
+bicgstab:    10   2.163e-11   8.970e-01   1.608e-01   3.979e-01
+bicgstab:    11   3.450e-12   1.630e+00   4.804e-01   3.979e-01
+Newton: it=1 	 |F|=1.214073e-12 
+The two puncture masses are mp = 0.51842 and mm = 0.391936
+                   resulted Mp = 0.553846 and Mm = 0.446154
+The total ADM mass is 0.989946
+===============================================================
+Initial data is successfully producede!!
+
+ The TwoPunctureABE simulation is finished 
+
+
+ Successfully copy all AMSS-NCKU input parfile to target dictionary. 
+
+
+
+
+ Running the AMSS-NCKU executable file ABE/ABEGPU 
+
+
+ /////////////////////////////////////////////////////////////// 
+ AMSS-NCKU Begin !!! 
+ /////////////////////////////////////////////////////////////// 
+
+                                 new run
+   simulation with cpu numbers = 96
+               simulation time = (0, 1000)
+ simulation steps for this run = 10000000
+                Courant number = 0.5
+            Initial Data Type: Numerical Ansorg TwoPuncture
+             Symmetry setting: Equatorial
+ Courant = 0.5
+ artificial dissipation for shell patches = 0.15
+ artificial dissipation for fixed levels = 0.15
+ artificial dissipation for moving levels = 0.15
+ Dumpt Time = 100
+ Check Time = 100
+ Analysis Time = 0.1
+ Analysis level = 0
+ checkfile = bssn.chk
+ fourth order finite difference is used
+///////////////////////////////////////////////////////////////
+-----------------------------------------------------------------------
+ spherical integration for wave form extraction with Gauss method      
+ N_phi   = 384
+ N_theta = 192
+-----------------------------------------------------------------------
+ chitiny = 1e-05
+ time refinement start from level #3
+ checkpoint class created 
+ BSSN class successfully created 
+ you have setted 167 grid functions.
+
+ cgh has levels: 9
+
+ level #0 has boxes: 1
+ #0 box is  (-320:320,-320:320,0:320).
+ level #1 has boxes: 1
+ #0 box is  (-160:160,-160:160,0:160).
+ level #2 has boxes: 1
+ #0 box is  (-80:80,-80:80,0:80).
+ level #3 has boxes: 1
+ #0 box is  (-40:40,-40:40,0:40).
+ level #4 has boxes: 1
+ #0 box is  (-20:20,-20:20,0:20).
+ level #5 has boxes: 2
+ #0 box is  (-5:5,-0.625:9.375,0:5).
+ #1 box is  (-5:5,-10.625:-0.625,0:5).
+ level #6 has boxes: 2
+ #0 box is  (-2.5:2.5,1.97917:6.97917,0:2.5).
+ #1 box is  (-2.5:2.5,-8.02083:-3.02083,0:2.5).
+ level #7 has boxes: 2
+ #0 box is  (-1.25:1.25,3.22917:5.72917,0:1.25).
+ #1 box is  (-1.25:1.25,-6.77083:-4.27083,0:1.25).
+ level #8 has boxes: 2
+ #0 box is  (-0.625:0.625,3.82813:5.07812,0:0.625).
+ #1 box is  (-0.625:0.625,-6.17187:-4.92188,0:0.625).
+
+ moving levels are lev #5--8
+
+ belong to level 0
+ shape: [96,96,48] resolution: [6.66667,6.66667,6.66667]
+ range:(-320:320,-320:320,0:320)
+ belong to level 1
+ shape: [96,96,48] resolution: [3.33333,3.33333,3.33333]
+ range:(-160:160,-160:160,0:160)
+ belong to level 2
+ shape: [96,96,48] resolution: [1.66667,1.66667,1.66667]
+ range:(-80:80,-80:80,0:80)
+ belong to level 3
+ shape: [96,96,48] resolution: [0.833333,0.833333,0.833333]
+ range:(-40:40,-40:40,0:40)
+ belong to level 4
+ shape: [96,96,48] resolution: [0.416667,0.416667,0.416667]
+ range:(-20:20,-20:20,0:20)
+ belong to level 5
+ shape: [48,51,24] resolution: [0.208333,0.208333,0.208333]
+ range:(-5:5,-1.25:9.375,0:5)
+ belong to level 5
+ shape: [48,51,24] resolution: [0.208333,0.208333,0.208333]
+ range:(-5:5,-10.625:-1.59317e-14,0:5)
+ belong to level 6
+ shape: [48,48,24] resolution: [0.104167,0.104167,0.104167]
+ range:(-2.5:2.5,1.97917:6.97917,0:2.5)
+ belong to level 6
+ shape: [48,48,24] resolution: [0.104167,0.104167,0.104167]
+ range:(-2.5:2.5,-8.02083:-3.02083,0:2.5)
+ belong to level 7
+ shape: [48,48,24] resolution: [0.0520833,0.0520833,0.0520833]
+ range:(-1.25:1.25,3.22917:5.72917,0:1.25)
+ belong to level 7
+ shape: [48,48,24] resolution: [0.0520833,0.0520833,0.0520833]
+ range:(-1.25:1.25,-6.77083:-4.27083,0:1.25)
+ belong to level 8
+ shape: [48,48,24] resolution: [0.0260417,0.0260417,0.0260417]
+ range:(-0.625:0.625,3.82813:5.07812,0:0.625)
+ belong to level 8
+ shape: [48,48,24] resolution: [0.0260417,0.0260417,0.0260417]
+ range:(-0.625:0.625,-6.17187:-4.92188,0:0.625)
+
+ initial information of 2 Black Hole(s) 
+        Mass           x           y           z              Px              Py          Pz          Sx          Sy          Sz
+     0.51842           0     4.46154           0      -0.0953015    -0.000845415           0           0           0   0.0950911
+    0.391936           0    -5.53846           0       0.0953015     0.000845415           0           0           0  -0.0915645
+
+ Read initial data from Ansorg's solver, please be sure the input parameters for black holes are puncture parameters!! 
+
+  reading data from Ansorg.psid
+  found data with dimensions 50 x 50 x 26 = 65000
+  bhx1 = 0
+  bhy1 = 4.46154
+  bhz1 = 0
+  bhx2 = 0
+  bhy2 = -5.53846
+  bhz2 = 0
+  read 65000 data lines
+
+
+ Before Evolve, it takes 1.33101 seconds
+
+
+ Timestep # 1: integrating to time: 0.416667    Computer used 16.2836 seconds! 
+ Memory usage: current 2.839e+04/295.7/2.839e+04MB, peak 2.839e+04/295.7/2.839e+04MB
+
+ puncture position: no. 0 = (-0.00133515 4.46153 1.40621e-09)
+ puncture position: no. 1 = (0.00303045 -5.5384 7.13936e-08)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 2: integrating to time: 0.833333    Computer used 16.3322 seconds! 
+ Memory usage: current 2.892e+04/301.2/2.892e+04MB, peak 2.892e+04/301.2/2.892e+04MB
+
+ puncture position: no. 0 = (-0.0115119 4.46147 3.18205e-09)
+ puncture position: no. 1 = (0.0206168 -5.53805 3.46215e-08)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 3: integrating to time: 1.25    Computer used 16.3368 seconds! 
+ Memory usage: current 2.919e+04/304.1/2.919e+04MB, peak 2.919e+04/304.1/2.919e+04MB
+
+ puncture position: no. 0 = (-0.029844 4.46122 1.23941e-08)
+ puncture position: no. 1 = (0.0486361 -5.53743 1.04331e-07)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 4: integrating to time: 1.66667    Computer used 16.3064 seconds! 
+ Memory usage: current 2.944e+04/306.7/2.944e+04MB, peak 2.944e+04/306.7/2.944e+04MB
+
+ puncture position: no. 0 = (-0.0532202 4.46075 2.97806e-08)
+ puncture position: no. 1 = (0.082376 -5.53632 9.48886e-07)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 5: integrating to time: 2.08333    Computer used 16.4909 seconds! 
+ Memory usage: current 2.957e+04/308/2.957e+04MB, peak 2.957e+04/308/2.957e+04MB
+
+ puncture position: no. 0 = (-0.0799732 4.46009 1.38676e-07)
+ puncture position: no. 1 = (0.119446 -5.53453 2.45993e-06)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 6: integrating to time: 2.5    Computer used 16.3702 seconds! 
+ Memory usage: current 2.986e+04/311.1/2.986e+04MB, peak 2.986e+04/311.1/2.986e+04MB
+
+ puncture position: no. 0 = (-0.109148 4.45926 1.59409e-07)
+ puncture position: no. 1 = (0.158526 -5.53154 3.03427e-06)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 7: integrating to time: 2.91667    Computer used 16.3559 seconds! 
+ Memory usage: current 2.995e+04/312/2.995e+04MB, peak 2.995e+04/312/2.995e+04MB
+
+ puncture position: no. 0 = (-0.139962 4.45804 4.2381e-06)
+ puncture position: no. 1 = (0.198675 -5.5275 5.33122e-06)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 8: integrating to time: 3.33333    Computer used 16.5297 seconds! 
+ Memory usage: current 3.003e+04/312.8/3.003e+04MB, peak 3.003e+04/312.8/3.003e+04MB
+
+ puncture position: no. 0 = (-0.171774 4.45544 1.23511e-05)
+ puncture position: no. 1 = (0.240809 -5.52368 2.28823e-06)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 9: integrating to time: 3.75    Computer used 16.3202 seconds! 
+ Memory usage: current 3.013e+04/313.9/3.013e+04MB, peak 3.013e+04/313.9/3.013e+04MB
+
+ puncture position: no. 0 = (-0.204588 4.45437 3.53138e-06)
+ puncture position: no. 1 = (0.283942 -5.52006 1.61768e-06)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 10: integrating to time: 4.16667    Computer used 16.3828 seconds! 
+ Memory usage: current 3.028e+04/315.5/3.028e+04MB, peak 3.028e+04/315.5/3.028e+04MB
+
+ puncture position: no. 0 = (-0.238301 4.45271 2.65872e-06)
+ puncture position: no. 1 = (0.327893 -5.51638 1.07707e-06)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 11: integrating to time: 4.58333    Computer used 16.5389 seconds! 
+ Memory usage: current 3.044e+04/317.1/3.044e+04MB, peak 3.044e+04/317.1/3.044e+04MB
+
+ puncture position: no. 0 = (-0.272875 4.45017 1.85377e-06)
+ puncture position: no. 1 = (0.372377 -5.51239 4.84317e-07)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 12: integrating to time: 5    Computer used 17.2904 seconds! 
+ Memory usage: current 3.05e+04/317.7/3.05e+04MB, peak 3.05e+04/317.7/3.05e+04MB
+
+ puncture position: no. 0 = (-0.308116 4.44695 9.65973e-07)
+ puncture position: no. 1 = (0.417151 -5.50795 1.40221e-07)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 13: integrating to time: 5.41667    Computer used 16.8022 seconds! 
+ Memory usage: current 3.063e+04/319.1/3.063e+04MB, peak 3.063e+04/319.1/3.063e+04MB
+
+ puncture position: no. 0 = (-0.343702 4.44324 4.59251e-07)
+ puncture position: no. 1 = (0.462076 -5.50301 3.7173e-09)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 14: integrating to time: 5.83333    Computer used 16.8545 seconds! 
+ Memory usage: current 3.07e+04/319.8/3.07e+04MB, peak 3.07e+04/319.8/3.07e+04MB
+
+ puncture position: no. 0 = (-0.379455 4.43918 1.72394e-07)
+ puncture position: no. 1 = (0.50708 -5.49754 2.3869e-06)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 15: integrating to time: 6.25    Computer used 16.5183 seconds! 
+ Memory usage: current 3.075e+04/320.3/3.075e+04MB, peak 3.075e+04/320.3/3.075e+04MB
+
+ puncture position: no. 0 = (-0.415293 4.43483 2.40607e-07)
+ puncture position: no. 1 = (0.552148 -5.49155 7.79926e-06)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 16: integrating to time: 6.66667    Computer used 16.6109 seconds! 
+ Memory usage: current 3.079e+04/320.7/3.079e+04MB, peak 3.079e+04/320.7/3.079e+04MB
+
+ puncture position: no. 0 = (-0.451166 4.4302 3.00393e-06)
+ puncture position: no. 1 = (0.597306 -5.48508 1.41265e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 17: integrating to time: 7.08333    Computer used 16.4617 seconds! 
+ Memory usage: current 3.082e+04/321.1/3.082e+04MB, peak 3.082e+04/321.1/3.082e+04MB
+
+ puncture position: no. 0 = (-0.487074 4.4253 6.75442e-06)
+ puncture position: no. 1 = (0.642611 -5.47817 1.97024e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 18: integrating to time: 7.5    Computer used 16.6566 seconds! 
+ Memory usage: current 3.087e+04/321.5/3.087e+04MB, peak 3.087e+04/321.5/3.087e+04MB
+
+ puncture position: no. 0 = (-0.523028 4.42011 1.06826e-05)
+ puncture position: no. 1 = (0.688116 -5.47082 2.38937e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 19: integrating to time: 7.91667    Computer used 16.8966 seconds! 
+ Memory usage: current 3.092e+04/322.1/3.092e+04MB, peak 3.092e+04/322.1/3.092e+04MB
+
+ puncture position: no. 0 = (-0.559053 4.41462 1.45065e-05)
+ puncture position: no. 1 = (0.73388 -5.46301 2.7131e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 20: integrating to time: 8.33333    Computer used 16.8108 seconds! 
+ Memory usage: current 3.099e+04/322.8/3.099e+04MB, peak 3.099e+04/322.8/3.099e+04MB
+
+ puncture position: no. 0 = (-0.595186 4.40883 1.79553e-05)
+ puncture position: no. 1 = (0.779984 -5.45474 2.98562e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 21: integrating to time: 8.75    Computer used 16.742 seconds! 
+ Memory usage: current 3.102e+04/323.2/3.102e+04MB, peak 3.102e+04/323.2/3.102e+04MB
+
+ puncture position: no. 0 = (-0.631472 4.40271 2.06153e-05)
+ puncture position: no. 1 = (0.826495 -5.44602 3.11127e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 22: integrating to time: 9.16667    Computer used 16.5861 seconds! 
+ Memory usage: current 3.108e+04/323.7/3.108e+04MB, peak 3.108e+04/323.7/3.108e+04MB
+
+ puncture position: no. 0 = (-0.667958 4.39627 2.25785e-05)
+ puncture position: no. 1 = (0.873455 -5.43684 3.12398e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 23: integrating to time: 9.58333    Computer used 16.639 seconds! 
+ Memory usage: current 3.11e+04/323.9/3.11e+04MB, peak 3.11e+04/323.9/3.11e+04MB
+
+ puncture position: no. 0 = (-0.704679 4.38951 2.44576e-05)
+ puncture position: no. 1 = (0.920922 -5.42724 3.07378e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 24: integrating to time: 10    Computer used 16.7127 seconds! 
+ Memory usage: current 3.113e+04/324.3/3.113e+04MB, peak 3.113e+04/324.3/3.113e+04MB
+
+ puncture position: no. 0 = (-0.74167 4.38248 2.62207e-05)
+ puncture position: no. 1 = (0.968933 -5.4173 2.83772e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 25: integrating to time: 10.4167    Computer used 16.5731 seconds! 
+ Memory usage: current 3.12e+04/325/3.12e+04MB, peak 3.12e+04/325/3.12e+04MB
+
+ puncture position: no. 0 = (-0.778967 4.37525 2.73227e-05)
+ puncture position: no. 1 = (1.0175 -5.40709 2.56685e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 26: integrating to time: 10.8333    Computer used 16.6891 seconds! 
+ Memory usage: current 3.122e+04/325.2/3.122e+04MB, peak 3.122e+04/325.2/3.122e+04MB
+
+ puncture position: no. 0 = (-0.816607 4.36789 2.76692e-05)
+ puncture position: no. 1 = (1.06664 -5.39672 2.27494e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 27: integrating to time: 11.25    Computer used 16.6517 seconds! 
+ Memory usage: current 3.124e+04/325.4/3.124e+04MB, peak 3.124e+04/325.4/3.124e+04MB
+
+ puncture position: no. 0 = (-0.854604 4.36045 2.83436e-05)
+ puncture position: no. 1 = (1.11633 -5.38621 1.95432e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 28: integrating to time: 11.6667    Computer used 16.6614 seconds! 
+ Memory usage: current 3.128e+04/325.8/3.128e+04MB, peak 3.128e+04/325.8/3.128e+04MB
+
+ puncture position: no. 0 = (-0.892974 4.35292 2.84095e-05)
+ puncture position: no. 1 = (1.16654 -5.37552 1.77707e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 29: integrating to time: 12.0833    Computer used 16.4961 seconds! 
+ Memory usage: current 3.134e+04/326.5/3.134e+04MB, peak 3.134e+04/326.5/3.134e+04MB
+
+ puncture position: no. 0 = (-0.931727 4.3452 2.72954e-05)
+ puncture position: no. 1 = (1.21722 -5.36457 1.59011e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 30: integrating to time: 12.5    Computer used 16.5244 seconds! 
+ Memory usage: current 3.136e+04/326.7/3.136e+04MB, peak 3.136e+04/326.7/3.136e+04MB
+
+ puncture position: no. 0 = (-0.970845 4.33712 2.62276e-05)
+ puncture position: no. 1 = (1.26826 -5.35318 1.52757e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 31: integrating to time: 12.9167    Computer used 16.5888 seconds! 
+ Memory usage: current 3.138e+04/326.8/3.138e+04MB, peak 3.138e+04/326.8/3.138e+04MB
+
+ puncture position: no. 0 = (-1.01029 4.32849 2.56382e-05)
+ puncture position: no. 1 = (1.31958 -5.34119 1.48702e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 32: integrating to time: 13.3333    Computer used 16.6437 seconds! 
+ Memory usage: current 3.14e+04/327/3.14e+04MB, peak 3.14e+04/327/3.14e+04MB
+
+ puncture position: no. 0 = (-1.05002 4.31912 2.3781e-05)
+ puncture position: no. 1 = (1.37106 -5.32844 1.50085e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 33: integrating to time: 13.75    Computer used 17.068 seconds! 
+ Memory usage: current 3.141e+04/327.2/3.141e+04MB, peak 3.141e+04/327.2/3.141e+04MB
+
+ puncture position: no. 0 = (-1.08998 4.30887 2.28999e-05)
+ puncture position: no. 1 = (1.42262 -5.31485 1.54301e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 34: integrating to time: 14.1667    Computer used 17.0118 seconds! 
+ Memory usage: current 3.142e+04/327.3/3.142e+04MB, peak 3.142e+04/327.3/3.142e+04MB
+
+ puncture position: no. 0 = (-1.13008 4.29768 2.20332e-05)
+ puncture position: no. 1 = (1.47415 -5.30036 1.62375e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 35: integrating to time: 14.5833    Computer used 17.6664 seconds! 
+ Memory usage: current 3.147e+04/327.8/3.147e+04MB, peak 3.147e+04/327.8/3.147e+04MB
+
+ puncture position: no. 0 = (-1.17028 4.28556 2.10704e-05)
+ puncture position: no. 1 = (1.5256 -5.28498 1.68719e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 36: integrating to time: 15    Computer used 17.1914 seconds! 
+ Memory usage: current 3.152e+04/328.3/3.152e+04MB, peak 3.152e+04/328.3/3.152e+04MB
+
+ puncture position: no. 0 = (-1.21051 4.27259 2.08672e-05)
+ puncture position: no. 1 = (1.57688 -5.26873 1.80634e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 37: integrating to time: 15.4167    Computer used 16.9696 seconds! 
+ Memory usage: current 3.155e+04/328.7/3.155e+04MB, peak 3.155e+04/328.7/3.155e+04MB
+
+ puncture position: no. 0 = (-1.25076 4.25892 2.03629e-05)
+ puncture position: no. 1 = (1.62798 -5.25165 1.87987e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 38: integrating to time: 15.8333    Computer used 16.6702 seconds! 
+ Memory usage: current 3.157e+04/328.8/3.157e+04MB, peak 3.157e+04/328.8/3.157e+04MB
+
+ puncture position: no. 0 = (-1.291 4.24468 2.05509e-05)
+ puncture position: no. 1 = (1.67888 -5.23378 1.95717e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 39: integrating to time: 16.25    Computer used 16.6339 seconds! 
+ Memory usage: current 3.245e+04/338.1/3.245e+04MB, peak 3.245e+04/338.1/3.245e+04MB
+
+ puncture position: no. 0 = (-1.33123 4.22999 2.06587e-05)
+ puncture position: no. 1 = (1.72958 -5.21514 2.05228e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 40: integrating to time: 16.6667    Computer used 16.5879 seconds! 
+ Memory usage: current 3.302e+04/343.9/3.302e+04MB, peak 3.302e+04/343.9/3.302e+04MB
+
+ puncture position: no. 0 = (-1.37144 4.21497 2.09148e-05)
+ puncture position: no. 1 = (1.78011 -5.19578 2.11942e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 41: integrating to time: 17.0833    Computer used 16.6513 seconds! 
+ Memory usage: current 3.329e+04/346.8/3.329e+04MB, peak 3.329e+04/346.8/3.329e+04MB
+
+ puncture position: no. 0 = (-1.41162 4.19964 2.1492e-05)
+ puncture position: no. 1 = (1.8305 -5.17573 2.17162e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 42: integrating to time: 17.5    Computer used 16.6551 seconds! 
+ Memory usage: current 3.346e+04/348.6/3.346e+04MB, peak 3.346e+04/348.6/3.346e+04MB
+
+ puncture position: no. 0 = (-1.45175 4.184 2.17251e-05)
+ puncture position: no. 1 = (1.88076 -5.15502 2.23031e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 43: integrating to time: 17.9167    Computer used 16.5682 seconds! 
+ Memory usage: current 3.358e+04/349.8/3.358e+04MB, peak 3.358e+04/349.8/3.358e+04MB
+
+ puncture position: no. 0 = (-1.49184 4.16802 2.24067e-05)
+ puncture position: no. 1 = (1.93092 -5.13369 2.2921e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 44: integrating to time: 18.3333    Computer used 16.6989 seconds! 
+ Memory usage: current 3.368e+04/350.8/3.368e+04MB, peak 3.368e+04/350.8/3.368e+04MB
+
+ puncture position: no. 0 = (-1.53186 4.15166 2.29481e-05)
+ puncture position: no. 1 = (1.98099 -5.11176 2.342e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 45: integrating to time: 18.75    Computer used 16.4495 seconds! 
+ Memory usage: current 3.39e+04/353.1/3.39e+04MB, peak 3.39e+04/353.1/3.39e+04MB
+
+ puncture position: no. 0 = (-1.5718 4.13489 2.32563e-05)
+ puncture position: no. 1 = (2.03099 -5.08925 2.37346e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 46: integrating to time: 19.1667    Computer used 16.7773 seconds! 
+ Memory usage: current 3.393e+04/353.4/3.393e+04MB, peak 3.393e+04/353.4/3.393e+04MB
+
+ puncture position: no. 0 = (-1.61168 4.11765 2.41648e-05)
+ puncture position: no. 1 = (2.08091 -5.06619 2.39115e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 47: integrating to time: 19.5833    Computer used 16.6885 seconds! 
+ Memory usage: current 3.396e+04/353.7/3.396e+04MB, peak 3.396e+04/353.7/3.396e+04MB
+
+ puncture position: no. 0 = (-1.65149 4.09994 2.44009e-05)
+ puncture position: no. 1 = (2.13077 -5.04259 2.39945e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 48: integrating to time: 20    Computer used 16.8619 seconds! 
+ Memory usage: current 3.397e+04/353.8/3.397e+04MB, peak 3.397e+04/353.8/3.397e+04MB
+
+ puncture position: no. 0 = (-1.69124 4.08174 2.4765e-05)
+ puncture position: no. 1 = (2.18055 -5.01845 2.39965e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 49: integrating to time: 20.4167    Computer used 16.6416 seconds! 
+ Memory usage: current 3.398e+04/354/3.398e+04MB, peak 3.398e+04/354/3.398e+04MB
+
+ puncture position: no. 0 = (-1.73095 4.06304 2.52229e-05)
+ puncture position: no. 1 = (2.23027 -4.99378 2.39403e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 50: integrating to time: 20.8333    Computer used 16.4914 seconds! 
+ Memory usage: current 3.399e+04/354/3.399e+04MB, peak 3.399e+04/354/3.399e+04MB
+
+ puncture position: no. 0 = (-1.77064 4.04385 2.55351e-05)
+ puncture position: no. 1 = (2.27992 -4.96858 2.38383e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 51: integrating to time: 21.25    Computer used 16.5548 seconds! 
+ Memory usage: current 3.399e+04/354.1/3.399e+04MB, peak 3.399e+04/354.1/3.399e+04MB
+
+ puncture position: no. 0 = (-1.81032 4.02419 2.54183e-05)
+ puncture position: no. 1 = (2.3295 -4.94284 2.36929e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 52: integrating to time: 21.6667    Computer used 16.6537 seconds! 
+ Memory usage: current 3.4e+04/354.2/3.4e+04MB, peak 3.4e+04/354.2/3.4e+04MB
+
+ puncture position: no. 0 = (-1.84999 4.00405 2.54171e-05)
+ puncture position: no. 1 = (2.379 -4.91656 2.35397e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 53: integrating to time: 22.0833    Computer used 16.573 seconds! 
+ Memory usage: current 3.402e+04/354.4/3.402e+04MB, peak 3.402e+04/354.4/3.402e+04MB
+
+ puncture position: no. 0 = (-1.88964 3.98345 2.55315e-05)
+ puncture position: no. 1 = (2.42842 -4.88972 2.33775e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 54: integrating to time: 22.5    Computer used 17.1156 seconds! 
+ Memory usage: current 3.403e+04/354.4/3.403e+04MB, peak 3.403e+04/354.4/3.403e+04MB
+
+ puncture position: no. 0 = (-1.92927 3.96237 2.5592e-05)
+ puncture position: no. 1 = (2.47773 -4.86233 2.32286e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 55: integrating to time: 22.9167    Computer used 16.5647 seconds! 
+ Memory usage: current 3.404e+04/354.6/3.404e+04MB, peak 3.404e+04/354.6/3.404e+04MB
+
+ puncture position: no. 0 = (-1.96883 3.94083 2.54339e-05)
+ puncture position: no. 1 = (2.52692 -4.83436 2.3169e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 56: integrating to time: 23.3333    Computer used 16.6649 seconds! 
+ Memory usage: current 3.406e+04/354.8/3.406e+04MB, peak 3.406e+04/354.8/3.406e+04MB
+
+ puncture position: no. 0 = (-2.0083 3.91882 2.51454e-05)
+ puncture position: no. 1 = (2.57597 -4.80581 2.31788e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 57: integrating to time: 23.75    Computer used 16.9269 seconds! 
+ Memory usage: current 3.407e+04/354.9/3.407e+04MB, peak 3.407e+04/354.9/3.407e+04MB
+
+ puncture position: no. 0 = (-2.04766 3.89634 2.50406e-05)
+ puncture position: no. 1 = (2.62486 -4.77668 2.32102e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 58: integrating to time: 24.1667    Computer used 17.254 seconds! 
+ Memory usage: current 3.408e+04/355/3.408e+04MB, peak 3.408e+04/355/3.408e+04MB
+
+ puncture position: no. 0 = (-2.08688 3.87339 2.48357e-05)
+ puncture position: no. 1 = (2.67358 -4.74697 2.32204e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 59: integrating to time: 24.5833    Computer used 16.7143 seconds! 
+ Memory usage: current 3.408e+04/355/3.408e+04MB, peak 3.408e+04/355/3.408e+04MB
+
+ puncture position: no. 0 = (-2.12593 3.84996 2.487e-05)
+ puncture position: no. 1 = (2.7221 -4.71669 2.32078e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 60: integrating to time: 25    Computer used 16.7039 seconds! 
+ Memory usage: current 3.409e+04/355.1/3.409e+04MB, peak 3.409e+04/355.1/3.409e+04MB
+
+ puncture position: no. 0 = (-2.1648 3.82607 2.48554e-05)
+ puncture position: no. 1 = (2.77041 -4.68583 2.31822e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 61: integrating to time: 25.4167    Computer used 16.7613 seconds! 
+ Memory usage: current 3.41e+04/355.2/3.41e+04MB, peak 3.41e+04/355.2/3.41e+04MB
+
+ puncture position: no. 0 = (-2.20348 3.8017 2.49154e-05)
+ puncture position: no. 1 = (2.81849 -4.6544 2.32804e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 62: integrating to time: 25.8333    Computer used 16.5445 seconds! 
+ Memory usage: current 3.411e+04/355.3/3.411e+04MB, peak 3.411e+04/355.3/3.411e+04MB
+
+ puncture position: no. 0 = (-2.24197 3.77685 2.49767e-05)
+ puncture position: no. 1 = (2.86634 -4.62241 2.34922e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 63: integrating to time: 26.25    Computer used 16.7233 seconds! 
+ Memory usage: current 3.411e+04/355.4/3.411e+04MB, peak 3.411e+04/355.4/3.411e+04MB
+
+ puncture position: no. 0 = (-2.28026 3.75153 2.50134e-05)
+ puncture position: no. 1 = (2.91394 -4.58985 2.36847e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 64: integrating to time: 26.6667    Computer used 16.5388 seconds! 
+ Memory usage: current 3.412e+04/355.5/3.412e+04MB, peak 3.412e+04/355.5/3.412e+04MB
+
+ puncture position: no. 0 = (-2.31835 3.72574 2.51354e-05)
+ puncture position: no. 1 = (2.96127 -4.55671 2.3728e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 65: integrating to time: 27.0833    Computer used 16.3352 seconds! 
+ Memory usage: current 3.413e+04/355.5/3.413e+04MB, peak 3.413e+04/355.5/3.413e+04MB
+
+ puncture position: no. 0 = (-2.35624 3.69948 2.51364e-05)
+ puncture position: no. 1 = (3.0083 -4.52299 2.39076e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 66: integrating to time: 27.5    Computer used 16.5048 seconds! 
+ Memory usage: current 3.414e+04/355.6/3.414e+04MB, peak 3.414e+04/355.6/3.414e+04MB
+
+ puncture position: no. 0 = (-2.39394 3.67277 2.52923e-05)
+ puncture position: no. 1 = (3.05502 -4.48869 2.40402e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 67: integrating to time: 27.9167    Computer used 16.6094 seconds! 
+ Memory usage: current 3.414e+04/355.7/3.414e+04MB, peak 3.414e+04/355.7/3.414e+04MB
+
+ puncture position: no. 0 = (-2.43143 3.6456 2.52573e-05)
+ puncture position: no. 1 = (3.10142 -4.4538 2.40567e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 68: integrating to time: 28.3333    Computer used 16.7174 seconds! 
+ Memory usage: current 3.415e+04/355.7/3.415e+04MB, peak 3.415e+04/355.7/3.415e+04MB
+
+ puncture position: no. 0 = (-2.46872 3.61798 2.53417e-05)
+ puncture position: no. 1 = (3.14749 -4.41835 2.41982e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 69: integrating to time: 28.75    Computer used 16.9833 seconds! 
+ Memory usage: current 3.416e+04/355.8/3.416e+04MB, peak 3.416e+04/355.8/3.416e+04MB
+
+ puncture position: no. 0 = (-2.5058 3.58993 2.53246e-05)
+ puncture position: no. 1 = (3.19325 -4.38236 2.4353e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 70: integrating to time: 29.1667    Computer used 16.4345 seconds! 
+ Memory usage: current 3.417e+04/355.9/3.417e+04MB, peak 3.417e+04/355.9/3.417e+04MB
+
+ puncture position: no. 0 = (-2.54266 3.56144 2.54326e-05)
+ puncture position: no. 1 = (3.23868 -4.34583 2.42682e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 71: integrating to time: 29.5833    Computer used 17.0387 seconds! 
+ Memory usage: current 3.418e+04/356.1/3.418e+04MB, peak 3.418e+04/356.1/3.418e+04MB
+
+ puncture position: no. 0 = (-2.5793 3.53253 2.53968e-05)
+ puncture position: no. 1 = (3.2838 -4.30879 2.43768e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 72: integrating to time: 30    Computer used 16.9762 seconds! 
+ Memory usage: current 3.419e+04/356.1/3.419e+04MB, peak 3.419e+04/356.1/3.419e+04MB
+
+ puncture position: no. 0 = (-2.61571 3.50319 2.54716e-05)
+ puncture position: no. 1 = (3.32861 -4.27125 2.44079e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 73: integrating to time: 30.4167    Computer used 16.4886 seconds! 
+ Memory usage: current 3.419e+04/356.2/3.419e+04MB, peak 3.419e+04/356.2/3.419e+04MB
+
+ puncture position: no. 0 = (-2.65187 3.47344 2.57524e-05)
+ puncture position: no. 1 = (3.3731 -4.23319 2.45453e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 74: integrating to time: 30.8333    Computer used 16.5106 seconds! 
+ Memory usage: current 3.421e+04/356.3/3.421e+04MB, peak 3.421e+04/356.3/3.421e+04MB
+
+ puncture position: no. 0 = (-2.68779 3.44326 2.56248e-05)
+ puncture position: no. 1 = (3.41727 -4.19464 2.45261e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 75: integrating to time: 31.25    Computer used 16.707 seconds! 
+ Memory usage: current 3.421e+04/356.4/3.421e+04MB, peak 3.421e+04/356.4/3.421e+04MB
+
+ puncture position: no. 0 = (-2.72344 3.41266 2.56278e-05)
+ puncture position: no. 1 = (3.46112 -4.15557 2.46001e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 76: integrating to time: 31.6667    Computer used 16.4504 seconds! 
+ Memory usage: current 3.421e+04/356.4/3.421e+04MB, peak 3.421e+04/356.4/3.421e+04MB
+
+ puncture position: no. 0 = (-2.75884 3.38164 2.5589e-05)
+ puncture position: no. 1 = (3.50464 -4.11599 2.46048e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 77: integrating to time: 32.0833    Computer used 16.6186 seconds! 
+ Memory usage: current 3.422e+04/356.4/3.422e+04MB, peak 3.422e+04/356.4/3.422e+04MB
+
+ puncture position: no. 0 = (-2.79396 3.35019 2.54933e-05)
+ puncture position: no. 1 = (3.54781 -4.07589 2.4574e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 78: integrating to time: 32.5    Computer used 16.5607 seconds! 
+ Memory usage: current 3.422e+04/356.5/3.422e+04MB, peak 3.422e+04/356.5/3.422e+04MB
+
+ puncture position: no. 0 = (-2.82881 3.31833 2.57501e-05)
+ puncture position: no. 1 = (3.59062 -4.03527 2.46028e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 79: integrating to time: 32.9167    Computer used 16.6768 seconds! 
+ Memory usage: current 3.424e+04/356.6/3.424e+04MB, peak 3.424e+04/356.6/3.424e+04MB
+
+ puncture position: no. 0 = (-2.86337 3.28605 2.58701e-05)
+ puncture position: no. 1 = (3.63305 -3.99413 2.47318e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 80: integrating to time: 33.3333    Computer used 16.6459 seconds! 
+ Memory usage: current 3.425e+04/356.8/3.425e+04MB, peak 3.425e+04/356.8/3.425e+04MB
+
+ puncture position: no. 0 = (-2.89764 3.25336 2.56488e-05)
+ puncture position: no. 1 = (3.6751 -3.95248 2.45752e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 81: integrating to time: 33.75    Computer used 16.6267 seconds! 
+ Memory usage: current 3.427e+04/356.9/3.427e+04MB, peak 3.427e+04/356.9/3.427e+04MB
+
+ puncture position: no. 0 = (-2.93162 3.22025 2.56153e-05)
+ puncture position: no. 1 = (3.71676 -3.91033 2.47228e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 82: integrating to time: 34.1667    Computer used 16.6269 seconds! 
+ Memory usage: current 3.427e+04/357/3.427e+04MB, peak 3.427e+04/357/3.427e+04MB
+
+ puncture position: no. 0 = (-2.96529 3.18673 2.57637e-05)
+ puncture position: no. 1 = (3.75801 -3.86769 2.46338e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 83: integrating to time: 34.5833    Computer used 17.0278 seconds! 
+ Memory usage: current 3.428e+04/357.1/3.428e+04MB, peak 3.428e+04/357.1/3.428e+04MB
+
+ puncture position: no. 0 = (-2.99865 3.1528 2.56451e-05)
+ puncture position: no. 1 = (3.79884 -3.82456 2.454e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 84: integrating to time: 35    Computer used 16.5965 seconds! 
+ Memory usage: current 3.429e+04/357.2/3.429e+04MB, peak 3.429e+04/357.2/3.429e+04MB
+
+ puncture position: no. 0 = (-3.0317 3.11848 2.5491e-05)
+ puncture position: no. 1 = (3.83926 -3.78094 2.45656e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 85: integrating to time: 35.4167    Computer used 16.4234 seconds! 
+ Memory usage: current 3.43e+04/357.3/3.43e+04MB, peak 3.43e+04/357.3/3.43e+04MB
+
+ puncture position: no. 0 = (-3.06442 3.08376 2.57145e-05)
+ puncture position: no. 1 = (3.87926 -3.73685 2.45216e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 86: integrating to time: 35.8333    Computer used 16.5847 seconds! 
+ Memory usage: current 3.43e+04/357.3/3.43e+04MB, peak 3.43e+04/357.3/3.43e+04MB
+
+ puncture position: no. 0 = (-3.09681 3.04864 2.58349e-05)
+ puncture position: no. 1 = (3.91882 -3.69228 2.44733e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 87: integrating to time: 36.25    Computer used 16.787 seconds! 
+ Memory usage: current 3.431e+04/357.4/3.431e+04MB, peak 3.431e+04/357.4/3.431e+04MB
+
+ puncture position: no. 0 = (-3.12887 3.01314 2.56062e-05)
+ puncture position: no. 1 = (3.95795 -3.64724 2.4511e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 88: integrating to time: 36.6667    Computer used 16.5724 seconds! 
+ Memory usage: current 3.431e+04/357.4/3.431e+04MB, peak 3.431e+04/357.4/3.431e+04MB
+
+ puncture position: no. 0 = (-3.16059 2.97726 2.56489e-05)
+ puncture position: no. 1 = (3.99664 -3.60173 2.46226e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 89: integrating to time: 37.0833    Computer used 16.6751 seconds! 
+ Memory usage: current 3.432e+04/357.5/3.432e+04MB, peak 3.432e+04/357.5/3.432e+04MB
+
+ puncture position: no. 0 = (-3.19196 2.941 2.56044e-05)
+ puncture position: no. 1 = (4.03488 -3.55577 2.45614e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 90: integrating to time: 37.5    Computer used 17.1638 seconds! 
+ Memory usage: current 3.434e+04/357.7/3.434e+04MB, peak 3.434e+04/357.7/3.434e+04MB
+
+ puncture position: no. 0 = (-3.22298 2.90436 2.55724e-05)
+ puncture position: no. 1 = (4.07266 -3.50935 2.45092e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 91: integrating to time: 37.9167    Computer used 16.8852 seconds! 
+ Memory usage: current 3.435e+04/357.8/3.435e+04MB, peak 3.435e+04/357.8/3.435e+04MB
+
+ puncture position: no. 0 = (-3.25364 2.86735 2.56825e-05)
+ puncture position: no. 1 = (4.10997 -3.46249 2.4593e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 92: integrating to time: 38.3333    Computer used 16.7543 seconds! 
+ Memory usage: current 3.435e+04/357.9/3.435e+04MB, peak 3.435e+04/357.9/3.435e+04MB
+
+ puncture position: no. 0 = (-3.28393 2.82997 2.55208e-05)
+ puncture position: no. 1 = (4.14682 -3.41518 2.45428e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 93: integrating to time: 38.75    Computer used 16.8694 seconds! 
+ Memory usage: current 3.436e+04/357.9/3.436e+04MB, peak 3.436e+04/357.9/3.436e+04MB
+
+ puncture position: no. 0 = (-3.31386 2.79222 2.55136e-05)
+ puncture position: no. 1 = (4.18318 -3.36743 2.46921e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 94: integrating to time: 39.1667    Computer used 16.7095 seconds! 
+ Memory usage: current 3.436e+04/357.9/3.436e+04MB, peak 3.436e+04/357.9/3.436e+04MB
+
+ puncture position: no. 0 = (-3.34341 2.75412 2.53701e-05)
+ puncture position: no. 1 = (4.21906 -3.31925 2.45834e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 95: integrating to time: 39.5833    Computer used 16.7471 seconds! 
+ Memory usage: current 3.436e+04/358/3.436e+04MB, peak 3.436e+04/358/3.436e+04MB
+
+ puncture position: no. 0 = (-3.37258 2.71566 2.55948e-05)
+ puncture position: no. 1 = (4.25446 -3.27064 2.45711e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 96: integrating to time: 40    Computer used 16.7431 seconds! 
+ Memory usage: current 3.437e+04/358/3.437e+04MB, peak 3.437e+04/358/3.437e+04MB
+
+ puncture position: no. 0 = (-3.40136 2.67686 2.54697e-05)
+ puncture position: no. 1 = (4.28935 -3.22161 2.45845e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 97: integrating to time: 40.4167    Computer used 16.6923 seconds! 
+ Memory usage: current 3.437e+04/358/3.437e+04MB, peak 3.437e+04/358/3.437e+04MB
+
+ puncture position: no. 0 = (-3.42975 2.63771 2.56217e-05)
+ puncture position: no. 1 = (4.32375 -3.17216 2.44785e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 98: integrating to time: 40.8333    Computer used 16.6237 seconds! 
+ Memory usage: current 3.437e+04/358.1/3.437e+04MB, peak 3.437e+04/358.1/3.437e+04MB
+
+ puncture position: no. 0 = (-3.45775 2.59821 2.55274e-05)
+ puncture position: no. 1 = (4.35763 -3.1223 2.44263e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 99: integrating to time: 41.25    Computer used 16.5396 seconds! 
+ Memory usage: current 3.438e+04/358.1/3.438e+04MB, peak 3.438e+04/358.1/3.438e+04MB
+
+ puncture position: no. 0 = (-3.48535 2.55838 2.55966e-05)
+ puncture position: no. 1 = (4.39101 -3.07204 2.4493e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 100: integrating to time: 41.6667    Computer used 16.6507 seconds! 
+ Memory usage: current 3.438e+04/358.1/3.438e+04MB, peak 3.438e+04/358.1/3.438e+04MB
+
+ puncture position: no. 0 = (-3.51255 2.51822 2.54834e-05)
+ puncture position: no. 1 = (4.42387 -3.02138 2.44421e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 101: integrating to time: 42.0833    Computer used 16.7196 seconds! 
+ Memory usage: current 3.439e+04/358.2/3.439e+04MB, peak 3.439e+04/358.2/3.439e+04MB
+
+ puncture position: no. 0 = (-3.53933 2.47773 2.55431e-05)
+ puncture position: no. 1 = (4.45622 -2.97033 2.43123e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 102: integrating to time: 42.5    Computer used 17.1473 seconds! 
+ Memory usage: current 3.441e+04/358.5/3.441e+04MB, peak 3.441e+04/358.5/3.441e+04MB
+
+ puncture position: no. 0 = (-3.56571 2.43692 2.54286e-05)
+ puncture position: no. 1 = (4.48803 -2.91889 2.43307e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 103: integrating to time: 42.9167    Computer used 16.5531 seconds! 
+ Memory usage: current 3.443e+04/358.6/3.443e+04MB, peak 3.443e+04/358.6/3.443e+04MB
+
+ puncture position: no. 0 = (-3.59167 2.39579 2.54727e-05)
+ puncture position: no. 1 = (4.51931 -2.86707 2.43593e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 104: integrating to time: 43.3333    Computer used 17.1382 seconds! 
+ Memory usage: current 3.444e+04/358.8/3.444e+04MB, peak 3.444e+04/358.8/3.444e+04MB
+
+ puncture position: no. 0 = (-3.6172 2.35435 2.54139e-05)
+ puncture position: no. 1 = (4.55005 -2.81487 2.43219e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 105: integrating to time: 43.75    Computer used 16.6073 seconds! 
+ Memory usage: current 3.445e+04/358.8/3.445e+04MB, peak 3.445e+04/358.8/3.445e+04MB
+
+ puncture position: no. 0 = (-3.64231 2.3126 2.53851e-05)
+ puncture position: no. 1 = (4.58024 -2.7623 2.42363e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 106: integrating to time: 44.1667    Computer used 17.001 seconds! 
+ Memory usage: current 3.448e+04/359.2/3.448e+04MB, peak 3.448e+04/359.2/3.448e+04MB
+
+ puncture position: no. 0 = (-3.66699 2.27055 2.54258e-05)
+ puncture position: no. 1 = (4.60988 -2.70937 2.41176e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 107: integrating to time: 44.5833    Computer used 16.6747 seconds! 
+ Memory usage: current 3.45e+04/359.4/3.45e+04MB, peak 3.45e+04/359.4/3.45e+04MB
+
+ puncture position: no. 0 = (-3.69123 2.2282 2.52658e-05)
+ puncture position: no. 1 = (4.63897 -2.65609 2.40219e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 108: integrating to time: 45    Computer used 16.938 seconds! 
+ Memory usage: current 3.451e+04/359.5/3.451e+04MB, peak 3.451e+04/359.5/3.451e+04MB
+
+ puncture position: no. 0 = (-3.71502 2.18556 2.52581e-05)
+ puncture position: no. 1 = (4.66749 -2.60245 2.3959e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 109: integrating to time: 45.4167    Computer used 16.6193 seconds! 
+ Memory usage: current 3.451e+04/359.5/3.451e+04MB, peak 3.451e+04/359.5/3.451e+04MB
+
+ puncture position: no. 0 = (-3.73837 2.14263 2.52139e-05)
+ puncture position: no. 1 = (4.69545 -2.54847 2.39317e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 110: integrating to time: 45.8333    Computer used 16.4605 seconds! 
+ Memory usage: current 3.452e+04/359.6/3.452e+04MB, peak 3.452e+04/359.6/3.452e+04MB
+
+ puncture position: no. 0 = (-3.76127 2.09941 2.4969e-05)
+ puncture position: no. 1 = (4.72283 -2.49415 2.39e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 111: integrating to time: 46.25    Computer used 16.4324 seconds! 
+ Memory usage: current 3.453e+04/359.7/3.453e+04MB, peak 3.453e+04/359.7/3.453e+04MB
+
+ puncture position: no. 0 = (-3.78371 2.05592 2.49368e-05)
+ puncture position: no. 1 = (4.74964 -2.4395 2.38692e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 112: integrating to time: 46.6667    Computer used 16.5066 seconds! 
+ Memory usage: current 3.454e+04/359.8/3.454e+04MB, peak 3.454e+04/359.8/3.454e+04MB
+
+ puncture position: no. 0 = (-3.8057 2.01215 2.49737e-05)
+ puncture position: no. 1 = (4.77587 -2.38453 2.38506e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 113: integrating to time: 47.0833    Computer used 16.5103 seconds! 
+ Memory usage: current 3.455e+04/359.9/3.455e+04MB, peak 3.455e+04/359.9/3.455e+04MB
+
+ puncture position: no. 0 = (-3.82722 1.96812 2.50317e-05)
+ puncture position: no. 1 = (4.80151 -2.32925 2.3792e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 114: integrating to time: 47.5    Computer used 16.763 seconds! 
+ Memory usage: current 3.456e+04/360/3.456e+04MB, peak 3.456e+04/360/3.456e+04MB
+
+ puncture position: no. 0 = (-3.84827 1.92382 2.5055e-05)
+ puncture position: no. 1 = (4.82655 -2.27365 2.37099e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 115: integrating to time: 47.9167    Computer used 16.7064 seconds! 
+ Memory usage: current 3.456e+04/360/3.456e+04MB, peak 3.456e+04/360/3.456e+04MB
+
+ puncture position: no. 0 = (-3.86885 1.87927 2.49675e-05)
+ puncture position: no. 1 = (4.85101 -2.21775 2.35882e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 116: integrating to time: 48.3333    Computer used 16.4803 seconds! 
+ Memory usage: current 3.457e+04/360.1/3.457e+04MB, peak 3.457e+04/360.1/3.457e+04MB
+
+ puncture position: no. 0 = (-3.88896 1.83446 2.46921e-05)
+ puncture position: no. 1 = (4.87486 -2.16155 2.34697e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 117: integrating to time: 48.75    Computer used 16.6585 seconds! 
+ Memory usage: current 3.458e+04/360.2/3.458e+04MB, peak 3.458e+04/360.2/3.458e+04MB
+
+ puncture position: no. 0 = (-3.90859 1.78942 2.46884e-05)
+ puncture position: no. 1 = (4.8981 -2.10507 2.33671e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 118: integrating to time: 49.1667    Computer used 16.3672 seconds! 
+ Memory usage: current 3.459e+04/360.3/3.459e+04MB, peak 3.459e+04/360.3/3.459e+04MB
+
+ puncture position: no. 0 = (-3.92774 1.74413 2.48851e-05)
+ puncture position: no. 1 = (4.92074 -2.0483 2.3392e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 119: integrating to time: 49.5833    Computer used 16.3342 seconds! 
+ Memory usage: current 3.459e+04/360.4/3.459e+04MB, peak 3.459e+04/360.4/3.459e+04MB
+
+ puncture position: no. 0 = (-3.9464 1.69861 2.47112e-05)
+ puncture position: no. 1 = (4.94276 -1.99126 2.34002e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 120: integrating to time: 50    Computer used 16.5289 seconds! 
+ Memory usage: current 3.46e+04/360.4/3.46e+04MB, peak 3.46e+04/360.4/3.46e+04MB
+
+ puncture position: no. 0 = (-3.96458 1.65286 2.4436e-05)
+ puncture position: no. 1 = (4.96417 -1.93394 2.33317e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 121: integrating to time: 50.4167    Computer used 16.578 seconds! 
+ Memory usage: current 3.481e+04/362.6/3.481e+04MB, peak 3.481e+04/362.6/3.481e+04MB
+
+ puncture position: no. 0 = (-3.98226 1.60689 2.46321e-05)
+ puncture position: no. 1 = (4.98495 -1.87637 2.31207e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 122: integrating to time: 50.8333    Computer used 16.6504 seconds! 
+ Memory usage: current 3.513e+04/366/3.513e+04MB, peak 3.513e+04/366/3.513e+04MB
+
+ puncture position: no. 0 = (-3.99945 1.56071 2.44695e-05)
+ puncture position: no. 1 = (5.00511 -1.81855 2.28755e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 123: integrating to time: 51.25    Computer used 16.5448 seconds! 
+ Memory usage: current 3.519e+04/366.6/3.519e+04MB, peak 3.519e+04/366.6/3.519e+04MB
+
+ puncture position: no. 0 = (-4.01614 1.51431 2.42339e-05)
+ puncture position: no. 1 = (5.02464 -1.76047 2.28961e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 124: integrating to time: 51.6667    Computer used 16.604 seconds! 
+ Memory usage: current 3.523e+04/367/3.523e+04MB, peak 3.523e+04/367/3.523e+04MB
+
+ puncture position: no. 0 = (-4.03233 1.4677 2.44588e-05)
+ puncture position: no. 1 = (5.04354 -1.70216 2.28982e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 125: integrating to time: 52.0833    Computer used 16.5814 seconds! 
+ Memory usage: current 3.525e+04/367.2/3.525e+04MB, peak 3.525e+04/367.2/3.525e+04MB
+
+ puncture position: no. 0 = (-4.04801 1.4209 2.405e-05)
+ puncture position: no. 1 = (5.06181 -1.64361 2.2613e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 126: integrating to time: 52.5    Computer used 16.5474 seconds! 
+ Memory usage: current 3.528e+04/367.5/3.528e+04MB, peak 3.528e+04/367.5/3.528e+04MB
+
+ puncture position: no. 0 = (-4.06318 1.3739 2.4083e-05)
+ puncture position: no. 1 = (5.07943 -1.58485 2.23567e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 127: integrating to time: 52.9167    Computer used 16.45 seconds! 
+ Memory usage: current 3.538e+04/368.5/3.538e+04MB, peak 3.538e+04/368.5/3.538e+04MB
+
+ puncture position: no. 0 = (-4.07785 1.32672 2.4056e-05)
+ puncture position: no. 1 = (5.09642 -1.52586 2.2449e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 128: integrating to time: 53.3333    Computer used 16.6092 seconds! 
+ Memory usage: current 3.54e+04/368.8/3.54e+04MB, peak 3.54e+04/368.8/3.54e+04MB
+
+ puncture position: no. 0 = (-4.092 1.27935 2.37993e-05)
+ puncture position: no. 1 = (5.11276 -1.46666 2.21337e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 129: integrating to time: 53.75    Computer used 16.4116 seconds! 
+ Memory usage: current 3.545e+04/369.3/3.545e+04MB, peak 3.545e+04/369.3/3.545e+04MB
+
+ puncture position: no. 0 = (-4.10563 1.23181 2.39463e-05)
+ puncture position: no. 1 = (5.12844 -1.40727 2.19941e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 130: integrating to time: 54.1667    Computer used 16.3868 seconds! 
+ Memory usage: current 3.547e+04/369.4/3.547e+04MB, peak 3.547e+04/369.4/3.547e+04MB
+
+ puncture position: no. 0 = (-4.11874 1.1841 2.34897e-05)
+ puncture position: no. 1 = (5.14348 -1.34767 2.18718e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 131: integrating to time: 54.5833    Computer used 16.6629 seconds! 
+ Memory usage: current 3.548e+04/369.6/3.548e+04MB, peak 3.548e+04/369.6/3.548e+04MB
+
+ puncture position: no. 0 = (-4.13134 1.13622 2.3609e-05)
+ puncture position: no. 1 = (5.15786 -1.2879 2.15149e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 132: integrating to time: 55    Computer used 16.4241 seconds! 
+ Memory usage: current 3.549e+04/369.7/3.549e+04MB, peak 3.549e+04/369.7/3.549e+04MB
+
+ puncture position: no. 0 = (-4.1434 1.08819 2.32584e-05)
+ puncture position: no. 1 = (5.17159 -1.22794 2.15434e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 133: integrating to time: 55.4167    Computer used 16.343 seconds! 
+ Memory usage: current 3.55e+04/369.8/3.55e+04MB, peak 3.55e+04/369.8/3.55e+04MB
+
+ puncture position: no. 0 = (-4.15495 1.04001 2.32721e-05)
+ puncture position: no. 1 = (5.18465 -1.16781 2.09799e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 134: integrating to time: 55.8333    Computer used 16.382 seconds! 
+ Memory usage: current 3.551e+04/369.9/3.551e+04MB, peak 3.551e+04/369.9/3.551e+04MB
+
+ puncture position: no. 0 = (-4.16596 0.991678 2.32458e-05)
+ puncture position: no. 1 = (5.19705 -1.10751 2.10885e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 135: integrating to time: 56.25    Computer used 16.3435 seconds! 
+ Memory usage: current 3.558e+04/370.6/3.558e+04MB, peak 3.558e+04/370.6/3.558e+04MB
+
+ puncture position: no. 0 = (-4.17644 0.943213 2.27709e-05)
+ puncture position: no. 1 = (5.20878 -1.04707 2.0603e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 136: integrating to time: 56.6667    Computer used 16.3905 seconds! 
+ Memory usage: current 3.565e+04/371.4/3.565e+04MB, peak 3.565e+04/371.4/3.565e+04MB
+
+ puncture position: no. 0 = (-4.18639 0.894612 2.30815e-05)
+ puncture position: no. 1 = (5.21985 -0.986468 2.04561e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 137: integrating to time: 57.0833    Computer used 16.6799 seconds! 
+ Memory usage: current 3.569e+04/371.7/3.569e+04MB, peak 3.569e+04/371.7/3.569e+04MB
+
+ puncture position: no. 0 = (-4.1958 0.845886 2.24438e-05)
+ puncture position: no. 1 = (5.23024 -0.925737 2.02932e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 138: integrating to time: 57.5    Computer used 16.5678 seconds! 
+ Memory usage: current 3.57e+04/371.9/3.57e+04MB, peak 3.57e+04/371.9/3.57e+04MB
+
+ puncture position: no. 0 = (-4.20467 0.797041 2.22788e-05)
+ puncture position: no. 1 = (5.23996 -0.864866 1.97469e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 139: integrating to time: 57.9167    Computer used 16.5857 seconds! 
+ Memory usage: current 3.577e+04/372.6/3.577e+04MB, peak 3.577e+04/372.6/3.577e+04MB
+
+ puncture position: no. 0 = (-4.213 0.748078 2.25749e-05)
+ puncture position: no. 1 = (5.24901 -0.803873 1.98007e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 140: integrating to time: 58.3333    Computer used 16.5801 seconds! 
+ Memory usage: current 3.578e+04/372.7/3.578e+04MB, peak 3.578e+04/372.7/3.578e+04MB
+
+ puncture position: no. 0 = (-4.22079 0.69901 2.19398e-05)
+ puncture position: no. 1 = (5.25737 -0.74277 1.94459e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 141: integrating to time: 58.75    Computer used 16.3015 seconds! 
+ Memory usage: current 3.579e+04/372.8/3.579e+04MB, peak 3.579e+04/372.8/3.579e+04MB
+
+ puncture position: no. 0 = (-4.22804 0.649844 2.15881e-05)
+ puncture position: no. 1 = (5.26505 -0.681547 1.88312e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 142: integrating to time: 59.1667    Computer used 16.3977 seconds! 
+ Memory usage: current 3.58e+04/372.9/3.58e+04MB, peak 3.58e+04/372.9/3.58e+04MB
+
+ puncture position: no. 0 = (-4.23474 0.600582 2.195e-05)
+ puncture position: no. 1 = (5.27206 -0.620225 1.88957e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 143: integrating to time: 59.5833    Computer used 16.5887 seconds! 
+ Memory usage: current 3.58e+04/373/3.58e+04MB, peak 3.58e+04/373/3.58e+04MB
+
+ puncture position: no. 0 = (-4.24088 0.55123 2.19764e-05)
+ puncture position: no. 1 = (5.27837 -0.55882 1.88327e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 144: integrating to time: 60    Computer used 17.217 seconds! 
+ Memory usage: current 3.581e+04/373/3.581e+04MB, peak 3.581e+04/373/3.581e+04MB
+
+ puncture position: no. 0 = (-4.24649 0.501801 2.11751e-05)
+ puncture position: no. 1 = (5.28398 -0.497328 1.82463e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 145: integrating to time: 60.4167    Computer used 16.6446 seconds! 
+ Memory usage: current 3.581e+04/373.1/3.581e+04MB, peak 3.581e+04/373.1/3.581e+04MB
+
+ puncture position: no. 0 = (-4.25154 0.452296 2.06546e-05)
+ puncture position: no. 1 = (5.28892 -0.435754 1.75645e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 146: integrating to time: 60.8333    Computer used 16.6322 seconds! 
+ Memory usage: current 3.582e+04/373.1/3.582e+04MB, peak 3.582e+04/373.1/3.582e+04MB
+
+ puncture position: no. 0 = (-4.25604 0.402718 2.07234e-05)
+ puncture position: no. 1 = (5.29319 -0.374109 1.75792e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 147: integrating to time: 61.25    Computer used 16.6573 seconds! 
+ Memory usage: current 3.582e+04/373.2/3.582e+04MB, peak 3.582e+04/373.2/3.582e+04MB
+
+ puncture position: no. 0 = (-4.25998 0.353072 2.10299e-05)
+ puncture position: no. 1 = (5.29676 -0.312413 1.76716e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 148: integrating to time: 61.6667    Computer used 16.5162 seconds! 
+ Memory usage: current 3.583e+04/373.2/3.583e+04MB, peak 3.583e+04/373.2/3.583e+04MB
+
+ puncture position: no. 0 = (-4.26336 0.303368 2.11987e-05)
+ puncture position: no. 1 = (5.29964 -0.250671 1.77444e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 149: integrating to time: 62.0833    Computer used 16.3691 seconds! 
+ Memory usage: current 3.583e+04/373.2/3.583e+04MB, peak 3.583e+04/373.2/3.583e+04MB
+
+ puncture position: no. 0 = (-4.26618 0.253617 2.10889e-05)
+ puncture position: no. 1 = (5.30181 -0.188886 1.76528e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 150: integrating to time: 62.5    Computer used 16.3651 seconds! 
+ Memory usage: current 3.584e+04/373.3/3.584e+04MB, peak 3.584e+04/373.3/3.584e+04MB
+
+ puncture position: no. 0 = (-4.26846 0.203828 2.0722e-05)
+ puncture position: no. 1 = (5.30329 -0.127062 1.74147e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 151: integrating to time: 62.9167    Computer used 16.3389 seconds! 
+ Memory usage: current 3.584e+04/373.4/3.584e+04MB, peak 3.584e+04/373.4/3.584e+04MB
+
+ puncture position: no. 0 = (-4.27018 0.154011 1.99471e-05)
+ puncture position: no. 1 = (5.30406 -0.0652078 1.72127e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 152: integrating to time: 63.3333    Computer used 16.4429 seconds! 
+ Memory usage: current 3.584e+04/373.4/3.584e+04MB, peak 3.584e+04/373.4/3.584e+04MB
+
+ puncture position: no. 0 = (-4.27135 0.104167 1.93645e-05)
+ puncture position: no. 1 = (5.30414 -0.00333248 1.69753e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 153: integrating to time: 63.75    Computer used 16.3407 seconds! 
+ Memory usage: current 3.585e+04/373.4/3.585e+04MB, peak 3.585e+04/373.4/3.585e+04MB
+
+ puncture position: no. 0 = (-4.27195 0.0543014 1.89517e-05)
+ puncture position: no. 1 = (5.30352 0.0585557 1.68288e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 154: integrating to time: 64.1667    Computer used 16.602 seconds! 
+ Memory usage: current 3.585e+04/373.5/3.585e+04MB, peak 3.585e+04/373.5/3.585e+04MB
+
+ puncture position: no. 0 = (-4.27199 0.00441719 1.86457e-05)
+ puncture position: no. 1 = (5.3022 0.120447 1.68373e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 155: integrating to time: 64.5833    Computer used 16.3262 seconds! 
+ Memory usage: current 3.585e+04/373.5/3.585e+04MB, peak 3.585e+04/373.5/3.585e+04MB
+
+ puncture position: no. 0 = (-4.27146 -0.0454796 1.8416e-05)
+ puncture position: no. 1 = (5.30019 0.182335 1.69075e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 156: integrating to time: 65    Computer used 16.5405 seconds! 
+ Memory usage: current 3.586e+04/373.5/3.586e+04MB, peak 3.586e+04/373.5/3.586e+04MB
+
+ puncture position: no. 0 = (-4.27037 -0.0953819 1.82393e-05)
+ puncture position: no. 1 = (5.29749 0.244211 1.70964e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 157: integrating to time: 65.4167    Computer used 16.4953 seconds! 
+ Memory usage: current 3.586e+04/373.6/3.586e+04MB, peak 3.586e+04/373.6/3.586e+04MB
+
+ puncture position: no. 0 = (-4.2687 -0.145282 1.81195e-05)
+ puncture position: no. 1 = (5.29409 0.306065 1.72538e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 158: integrating to time: 65.8333    Computer used 16.2948 seconds! 
+ Memory usage: current 3.587e+04/373.6/3.587e+04MB, peak 3.587e+04/373.6/3.587e+04MB
+
+ puncture position: no. 0 = (-4.26647 -0.195174 1.84446e-05)
+ puncture position: no. 1 = (5.28999 0.367885 1.72522e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 159: integrating to time: 66.25    Computer used 16.3038 seconds! 
+ Memory usage: current 3.587e+04/373.6/3.587e+04MB, peak 3.587e+04/373.6/3.587e+04MB
+
+ puncture position: no. 0 = (-4.26368 -0.245047 1.89742e-05)
+ puncture position: no. 1 = (5.28517 0.429659 1.68401e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 160: integrating to time: 66.6667    Computer used 16.6071 seconds! 
+ Memory usage: current 3.587e+04/373.7/3.587e+04MB, peak 3.587e+04/373.7/3.587e+04MB
+
+ puncture position: no. 0 = (-4.26033 -0.294892 1.9586e-05)
+ puncture position: no. 1 = (5.27964 0.491384 1.66743e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 161: integrating to time: 67.0833    Computer used 16.6099 seconds! 
+ Memory usage: current 3.588e+04/373.7/3.588e+04MB, peak 3.588e+04/373.7/3.588e+04MB
+
+ puncture position: no. 0 = (-4.25642 -0.344702 2.01238e-05)
+ puncture position: no. 1 = (5.27341 0.553061 1.70296e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 162: integrating to time: 67.5    Computer used 17.0753 seconds! 
+ Memory usage: current 3.588e+04/373.8/3.588e+04MB, peak 3.588e+04/373.8/3.588e+04MB
+
+ puncture position: no. 0 = (-4.25195 -0.394471 2.03076e-05)
+ puncture position: no. 1 = (5.26649 0.614684 1.75391e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 163: integrating to time: 67.9167    Computer used 16.6551 seconds! 
+ Memory usage: current 3.59e+04/374/3.59e+04MB, peak 3.59e+04/374/3.59e+04MB
+
+ puncture position: no. 0 = (-4.24691 -0.444194 2.00075e-05)
+ puncture position: no. 1 = (5.25887 0.67623 1.74252e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 164: integrating to time: 68.3333    Computer used 17.145 seconds! 
+ Memory usage: current 3.592e+04/374.2/3.592e+04MB, peak 3.592e+04/374.2/3.592e+04MB
+
+ puncture position: no. 0 = (-4.24129 -0.493868 1.96518e-05)
+ puncture position: no. 1 = (5.25053 0.737688 1.75365e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 165: integrating to time: 68.75    Computer used 16.6528 seconds! 
+ Memory usage: current 3.593e+04/374.3/3.593e+04MB, peak 3.593e+04/374.3/3.593e+04MB
+
+ puncture position: no. 0 = (-4.23511 -0.543484 2.01649e-05)
+ puncture position: no. 1 = (5.2415 0.799062 1.81449e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 166: integrating to time: 69.1667    Computer used 16.7223 seconds! 
+ Memory usage: current 3.593e+04/374.3/3.593e+04MB, peak 3.593e+04/374.3/3.593e+04MB
+
+ puncture position: no. 0 = (-4.22838 -0.593032 2.07726e-05)
+ puncture position: no. 1 = (5.23178 0.860335 1.81408e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 167: integrating to time: 69.5833    Computer used 16.6601 seconds! 
+ Memory usage: current 3.594e+04/374.4/3.594e+04MB, peak 3.594e+04/374.4/3.594e+04MB
+
+ puncture position: no. 0 = (-4.22108 -0.642513 2.06408e-05)
+ puncture position: no. 1 = (5.22134 0.921502 1.84709e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 168: integrating to time: 70    Computer used 16.7278 seconds! 
+ Memory usage: current 3.594e+04/374.4/3.594e+04MB, peak 3.594e+04/374.4/3.594e+04MB
+
+ puncture position: no. 0 = (-4.2132 -0.691926 2.04355e-05)
+ puncture position: no. 1 = (5.21022 0.982571 1.8975e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 169: integrating to time: 70.4167    Computer used 16.785 seconds! 
+ Memory usage: current 3.595e+04/374.5/3.595e+04MB, peak 3.595e+04/374.5/3.595e+04MB
+
+ puncture position: no. 0 = (-4.20475 -0.741254 2.11034e-05)
+ puncture position: no. 1 = (5.19838 1.04352 1.89662e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 170: integrating to time: 70.8333    Computer used 16.4918 seconds! 
+ Memory usage: current 3.598e+04/374.8/3.598e+04MB, peak 3.598e+04/374.8/3.598e+04MB
+
+ puncture position: no. 0 = (-4.19575 -0.790483 2.12241e-05)
+ puncture position: no. 1 = (5.18585 1.10435 1.95846e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 171: integrating to time: 71.25    Computer used 16.4949 seconds! 
+ Memory usage: current 3.599e+04/374.9/3.599e+04MB, peak 3.599e+04/374.9/3.599e+04MB
+
+ puncture position: no. 0 = (-4.18617 -0.839614 2.10702e-05)
+ puncture position: no. 1 = (5.17261 1.16504 1.96048e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 172: integrating to time: 71.6667    Computer used 16.6945 seconds! 
+ Memory usage: current 3.599e+04/374.9/3.599e+04MB, peak 3.599e+04/374.9/3.599e+04MB
+
+ puncture position: no. 0 = (-4.17604 -0.888631 2.17724e-05)
+ puncture position: no. 1 = (5.15867 1.22557 2.01395e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 173: integrating to time: 72.0833    Computer used 16.4158 seconds! 
+ Memory usage: current 3.604e+04/375.4/3.604e+04MB, peak 3.604e+04/375.4/3.604e+04MB
+
+ puncture position: no. 0 = (-4.16535 -0.937534 2.15805e-05)
+ puncture position: no. 1 = (5.14404 1.28594 2.02197e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 174: integrating to time: 72.5    Computer used 16.6326 seconds! 
+ Memory usage: current 3.604e+04/375.5/3.604e+04MB, peak 3.604e+04/375.5/3.604e+04MB
+
+ puncture position: no. 0 = (-4.1541 -0.986323 2.20718e-05)
+ puncture position: no. 1 = (5.12872 1.34614 2.05768e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 175: integrating to time: 72.9167    Computer used 16.635 seconds! 
+ Memory usage: current 3.605e+04/375.5/3.605e+04MB, peak 3.605e+04/375.5/3.605e+04MB
+
+ puncture position: no. 0 = (-4.14229 -1.03498 2.21846e-05)
+ puncture position: no. 1 = (5.11271 1.40616 2.09263e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 176: integrating to time: 73.3333    Computer used 16.4793 seconds! 
+ Memory usage: current 3.61e+04/376/3.61e+04MB, peak 3.61e+04/376/3.61e+04MB
+
+ puncture position: no. 0 = (-4.12991 -1.08352 2.23312e-05)
+ puncture position: no. 1 = (5.09601 1.46601 2.10004e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 177: integrating to time: 73.75    Computer used 16.4671 seconds! 
+ Memory usage: current 3.618e+04/376.9/3.618e+04MB, peak 3.618e+04/376.9/3.618e+04MB
+
+ puncture position: no. 0 = (-4.11699 -1.1319 2.25813e-05)
+ puncture position: no. 1 = (5.07862 1.52568 2.14574e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 178: integrating to time: 74.1667    Computer used 16.6483 seconds! 
+ Memory usage: current 3.622e+04/377.3/3.622e+04MB, peak 3.622e+04/377.3/3.622e+04MB
+
+ puncture position: no. 0 = (-4.10349 -1.18015 2.26721e-05)
+ puncture position: no. 1 = (5.06054 1.58516 2.17058e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 179: integrating to time: 74.5833    Computer used 16.6296 seconds! 
+ Memory usage: current 3.624e+04/377.5/3.624e+04MB, peak 3.624e+04/377.5/3.624e+04MB
+
+ puncture position: no. 0 = (-4.08945 -1.22823 2.28866e-05)
+ puncture position: no. 1 = (5.04177 1.64444 2.17419e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 180: integrating to time: 75    Computer used 17.3578 seconds! 
+ Memory usage: current 3.626e+04/377.7/3.626e+04MB, peak 3.626e+04/377.7/3.626e+04MB
+
+ puncture position: no. 0 = (-4.07484 -1.27616 2.32235e-05)
+ puncture position: no. 1 = (5.02232 1.70351 2.20147e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 181: integrating to time: 75.4167    Computer used 16.5641 seconds! 
+ Memory usage: current 3.63e+04/378.2/3.63e+04MB, peak 3.63e+04/378.2/3.63e+04MB
+
+ puncture position: no. 0 = (-4.05969 -1.32392 2.31122e-05)
+ puncture position: no. 1 = (5.00219 1.76235 2.2411e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 182: integrating to time: 75.8333    Computer used 16.7019 seconds! 
+ Memory usage: current 3.632e+04/378.3/3.632e+04MB, peak 3.632e+04/378.3/3.632e+04MB
+
+ puncture position: no. 0 = (-4.04398 -1.37152 2.3636e-05)
+ puncture position: no. 1 = (4.98137 1.82096 2.25622e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 183: integrating to time: 76.25    Computer used 16.6708 seconds! 
+ Memory usage: current 3.633e+04/378.4/3.633e+04MB, peak 3.633e+04/378.4/3.633e+04MB
+
+ puncture position: no. 0 = (-4.02772 -1.41895 2.34732e-05)
+ puncture position: no. 1 = (4.95988 1.87933 2.26318e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 184: integrating to time: 76.6667    Computer used 16.5544 seconds! 
+ Memory usage: current 3.636e+04/378.8/3.636e+04MB, peak 3.636e+04/378.8/3.636e+04MB
+
+ puncture position: no. 0 = (-4.01092 -1.46618 2.36725e-05)
+ puncture position: no. 1 = (4.9377 1.93745 2.27743e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 185: integrating to time: 77.0833    Computer used 16.6355 seconds! 
+ Memory usage: current 3.637e+04/378.9/3.637e+04MB, peak 3.637e+04/378.9/3.637e+04MB
+
+ puncture position: no. 0 = (-3.99357 -1.51322 2.40163e-05)
+ puncture position: no. 1 = (4.91486 1.99532 2.2939e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 186: integrating to time: 77.5    Computer used 16.5703 seconds! 
+ Memory usage: current 3.638e+04/379/3.638e+04MB, peak 3.638e+04/379/3.638e+04MB
+
+ puncture position: no. 0 = (-3.97567 -1.56006 2.39675e-05)
+ puncture position: no. 1 = (4.89134 2.05292 2.30961e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 187: integrating to time: 77.9167    Computer used 16.4665 seconds! 
+ Memory usage: current 3.638e+04/379/3.638e+04MB, peak 3.638e+04/379/3.638e+04MB
+
+ puncture position: no. 0 = (-3.95724 -1.60669 2.40561e-05)
+ puncture position: no. 1 = (4.86716 2.11026 2.32416e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 188: integrating to time: 78.3333    Computer used 16.6843 seconds! 
+ Memory usage: current 3.639e+04/379.1/3.639e+04MB, peak 3.639e+04/379.1/3.639e+04MB
+
+ puncture position: no. 0 = (-3.93826 -1.6531 2.43523e-05)
+ puncture position: no. 1 = (4.84231 2.16732 2.33847e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 189: integrating to time: 78.75    Computer used 16.6774 seconds! 
+ Memory usage: current 3.646e+04/379.8/3.646e+04MB, peak 3.646e+04/379.8/3.646e+04MB
+
+ puncture position: no. 0 = (-3.91874 -1.6993 2.43565e-05)
+ puncture position: no. 1 = (4.8168 2.2241 2.35429e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 190: integrating to time: 79.1667    Computer used 16.7033 seconds! 
+ Memory usage: current 3.65e+04/380.2/3.65e+04MB, peak 3.65e+04/380.2/3.65e+04MB
+
+ puncture position: no. 0 = (-3.89869 -1.74528 2.43386e-05)
+ puncture position: no. 1 = (4.79063 2.28058 2.36738e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 191: integrating to time: 79.5833    Computer used 16.7233 seconds! 
+ Memory usage: current 3.654e+04/380.6/3.654e+04MB, peak 3.654e+04/380.6/3.654e+04MB
+
+ puncture position: no. 0 = (-3.8781 -1.79102 2.4454e-05)
+ puncture position: no. 1 = (4.7638 2.33676 2.37675e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 192: integrating to time: 80    Computer used 16.8655 seconds! 
+ Memory usage: current 3.655e+04/380.7/3.655e+04MB, peak 3.655e+04/380.7/3.655e+04MB
+
+ puncture position: no. 0 = (-3.85698 -1.83653 2.46673e-05)
+ puncture position: no. 1 = (4.73632 2.39262 2.38309e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 193: integrating to time: 80.4167    Computer used 16.4678 seconds! 
+ Memory usage: current 3.656e+04/380.8/3.656e+04MB, peak 3.656e+04/380.8/3.656e+04MB
+
+ puncture position: no. 0 = (-3.83532 -1.8818 2.4785e-05)
+ puncture position: no. 1 = (4.70818 2.44817 2.38788e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 194: integrating to time: 80.8333    Computer used 16.6597 seconds! 
+ Memory usage: current 3.657e+04/380.9/3.657e+04MB, peak 3.657e+04/380.9/3.657e+04MB
+
+ puncture position: no. 0 = (-3.81315 -1.92681 2.49081e-05)
+ puncture position: no. 1 = (4.6794 2.50339 2.39346e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 195: integrating to time: 81.25    Computer used 16.5748 seconds! 
+ Memory usage: current 3.658e+04/381.1/3.658e+04MB, peak 3.658e+04/381.1/3.658e+04MB
+
+ puncture position: no. 0 = (-3.79044 -1.97156 2.49144e-05)
+ puncture position: no. 1 = (4.64997 2.55828 2.40518e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 196: integrating to time: 81.6667    Computer used 16.6107 seconds! 
+ Memory usage: current 3.659e+04/381.1/3.659e+04MB, peak 3.659e+04/381.1/3.659e+04MB
+
+ puncture position: no. 0 = (-3.76722 -2.01605 2.48122e-05)
+ puncture position: no. 1 = (4.6199 2.61282 2.41879e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 197: integrating to time: 82.0833    Computer used 16.575 seconds! 
+ Memory usage: current 3.659e+04/381.1/3.659e+04MB, peak 3.659e+04/381.1/3.659e+04MB
+
+ puncture position: no. 0 = (-3.74348 -2.06027 2.48441e-05)
+ puncture position: no. 1 = (4.5892 2.66702 2.43309e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 198: integrating to time: 82.5    Computer used 17.3115 seconds! 
+ Memory usage: current 3.661e+04/381.3/3.661e+04MB, peak 3.661e+04/381.3/3.661e+04MB
+
+ puncture position: no. 0 = (-3.71922 -2.10421 2.49455e-05)
+ puncture position: no. 1 = (4.55787 2.72086 2.43811e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 199: integrating to time: 82.9167    Computer used 16.6246 seconds! 
+ Memory usage: current 3.661e+04/381.4/3.661e+04MB, peak 3.661e+04/381.4/3.661e+04MB
+
+ puncture position: no. 0 = (-3.69445 -2.14787 2.49471e-05)
+ puncture position: no. 1 = (4.5259 2.77434 2.43795e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 200: integrating to time: 83.3333    Computer used 16.5416 seconds! 
+ Memory usage: current 3.662e+04/381.4/3.662e+04MB, peak 3.662e+04/381.4/3.662e+04MB
+
+ puncture position: no. 0 = (-3.66917 -2.19125 2.50023e-05)
+ puncture position: no. 1 = (4.49331 2.82744 2.44702e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 201: integrating to time: 83.75    Computer used 17.0815 seconds! 
+ Memory usage: current 3.662e+04/381.5/3.662e+04MB, peak 3.662e+04/381.5/3.662e+04MB
+
+ puncture position: no. 0 = (-3.64338 -2.23433 2.51089e-05)
+ puncture position: no. 1 = (4.4601 2.88016 2.46021e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 202: integrating to time: 84.1667    Computer used 16.4498 seconds! 
+ Memory usage: current 3.662e+04/381.5/3.662e+04MB, peak 3.662e+04/381.5/3.662e+04MB
+
+ puncture position: no. 0 = (-3.61709 -2.2771 2.50936e-05)
+ puncture position: no. 1 = (4.42627 2.93249 2.4632e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 203: integrating to time: 84.5833    Computer used 16.4695 seconds! 
+ Memory usage: current 3.663e+04/381.5/3.663e+04MB, peak 3.663e+04/381.5/3.663e+04MB
+
+ puncture position: no. 0 = (-3.5903 -2.31957 2.51342e-05)
+ puncture position: no. 1 = (4.39182 2.98443 2.46592e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 204: integrating to time: 85    Computer used 16.4353 seconds! 
+ Memory usage: current 3.663e+04/381.6/3.663e+04MB, peak 3.663e+04/381.6/3.663e+04MB
+
+ puncture position: no. 0 = (-3.563 -2.36173 2.52217e-05)
+ puncture position: no. 1 = (4.35677 3.03597 2.47819e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 205: integrating to time: 85.4167    Computer used 16.6793 seconds! 
+ Memory usage: current 3.663e+04/381.6/3.663e+04MB, peak 3.663e+04/381.6/3.663e+04MB
+
+ puncture position: no. 0 = (-3.53522 -2.40356 2.51873e-05)
+ puncture position: no. 1 = (4.32111 3.08709 2.47909e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 206: integrating to time: 85.8333    Computer used 16.5666 seconds! 
+ Memory usage: current 3.664e+04/381.6/3.664e+04MB, peak 3.664e+04/381.6/3.664e+04MB
+
+ puncture position: no. 0 = (-3.50694 -2.44507 2.5351e-05)
+ puncture position: no. 1 = (4.28485 3.1378 2.48127e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 207: integrating to time: 86.25    Computer used 16.7368 seconds! 
+ Memory usage: current 3.665e+04/381.8/3.665e+04MB, peak 3.665e+04/381.8/3.665e+04MB
+
+ puncture position: no. 0 = (-3.47818 -2.48625 2.53464e-05)
+ puncture position: no. 1 = (4.24799 3.18808 2.49136e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 208: integrating to time: 86.6667    Computer used 16.7458 seconds! 
+ Memory usage: current 3.666e+04/381.8/3.666e+04MB, peak 3.666e+04/381.8/3.666e+04MB
+
+ puncture position: no. 0 = (-3.44893 -2.5271 2.54855e-05)
+ puncture position: no. 1 = (4.21054 3.23793 2.48327e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 209: integrating to time: 87.0833    Computer used 16.6808 seconds! 
+ Memory usage: current 3.667e+04/382/3.667e+04MB, peak 3.667e+04/382/3.667e+04MB
+
+ puncture position: no. 0 = (-3.4192 -2.56759 2.55152e-05)
+ puncture position: no. 1 = (4.17251 3.28734 2.4962e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 210: integrating to time: 87.5    Computer used 16.5248 seconds! 
+ Memory usage: current 3.667e+04/382/3.667e+04MB, peak 3.667e+04/382/3.667e+04MB
+
+ puncture position: no. 0 = (-3.389 -2.60774 2.55197e-05)
+ puncture position: no. 1 = (4.13389 3.33631 2.48984e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 211: integrating to time: 87.9167    Computer used 16.6835 seconds! 
+ Memory usage: current 3.668e+04/382/3.668e+04MB, peak 3.668e+04/382/3.668e+04MB
+
+ puncture position: no. 0 = (-3.35832 -2.64754 2.54267e-05)
+ puncture position: no. 1 = (4.09469 3.38482 2.50887e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 212: integrating to time: 88.3333    Computer used 16.6455 seconds! 
+ Memory usage: current 3.668e+04/382.1/3.668e+04MB, peak 3.668e+04/382.1/3.668e+04MB
+
+ puncture position: no. 0 = (-3.32718 -2.68697 2.53507e-05)
+ puncture position: no. 1 = (4.05493 3.43287 2.50277e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 213: integrating to time: 88.75    Computer used 16.596 seconds! 
+ Memory usage: current 3.668e+04/382.1/3.668e+04MB, peak 3.668e+04/382.1/3.668e+04MB
+
+ puncture position: no. 0 = (-3.29557 -2.72604 2.56177e-05)
+ puncture position: no. 1 = (4.01459 3.48045 2.5157e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 214: integrating to time: 89.1667    Computer used 16.5581 seconds! 
+ Memory usage: current 3.669e+04/382.2/3.669e+04MB, peak 3.669e+04/382.2/3.669e+04MB
+
+ puncture position: no. 0 = (-3.2635 -2.76473 2.55736e-05)
+ puncture position: no. 1 = (3.9737 3.52756 2.51167e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 215: integrating to time: 89.5833    Computer used 16.6684 seconds! 
+ Memory usage: current 3.669e+04/382.2/3.669e+04MB, peak 3.669e+04/382.2/3.669e+04MB
+
+ puncture position: no. 0 = (-3.23097 -2.80305 2.55293e-05)
+ puncture position: no. 1 = (3.93224 3.57419 2.51542e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 216: integrating to time: 90    Computer used 16.7437 seconds! 
+ Memory usage: current 3.669e+04/382.2/3.669e+04MB, peak 3.669e+04/382.2/3.669e+04MB
+
+ puncture position: no. 0 = (-3.19799 -2.84098 2.54276e-05)
+ puncture position: no. 1 = (3.89024 3.62032 2.51612e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 217: integrating to time: 90.4167    Computer used 16.7713 seconds! 
+ Memory usage: current 3.67e+04/382.3/3.67e+04MB, peak 3.67e+04/382.3/3.67e+04MB
+
+ puncture position: no. 0 = (-3.16457 -2.87852 2.56255e-05)
+ puncture position: no. 1 = (3.84769 3.66597 2.51608e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 218: integrating to time: 90.8333    Computer used 16.6047 seconds! 
+ Memory usage: current 3.671e+04/382.4/3.671e+04MB, peak 3.671e+04/382.4/3.671e+04MB
+
+ puncture position: no. 0 = (-3.13069 -2.91567 2.57987e-05)
+ puncture position: no. 1 = (3.8046 3.71111 2.52237e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 219: integrating to time: 91.25    Computer used 16.6983 seconds! 
+ Memory usage: current 3.673e+04/382.6/3.673e+04MB, peak 3.673e+04/382.6/3.673e+04MB
+
+ puncture position: no. 0 = (-3.09638 -2.95242 2.55672e-05)
+ puncture position: no. 1 = (3.76097 3.75574 2.51353e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 220: integrating to time: 91.6667    Computer used 16.6931 seconds! 
+ Memory usage: current 3.674e+04/382.7/3.674e+04MB, peak 3.674e+04/382.7/3.674e+04MB
+
+ puncture position: no. 0 = (-3.06164 -2.98876 2.57184e-05)
+ puncture position: no. 1 = (3.71682 3.79986 2.51579e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 221: integrating to time: 92.0833    Computer used 16.7634 seconds! 
+ Memory usage: current 3.675e+04/382.8/3.675e+04MB, peak 3.675e+04/382.8/3.675e+04MB
+
+ puncture position: no. 0 = (-3.02646 -3.02469 2.5641e-05)
+ puncture position: no. 1 = (3.67214 3.84345 2.5247e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 222: integrating to time: 92.5    Computer used 16.5849 seconds! 
+ Memory usage: current 3.677e+04/383/3.677e+04MB, peak 3.677e+04/383/3.677e+04MB
+
+ puncture position: no. 0 = (-2.99086 -3.06021 2.54792e-05)
+ puncture position: no. 1 = (3.62695 3.88651 2.51828e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 223: integrating to time: 92.9167    Computer used 16.7564 seconds! 
+ Memory usage: current 3.678e+04/383.1/3.678e+04MB, peak 3.678e+04/383.1/3.678e+04MB
+
+ puncture position: no. 0 = (-2.95483 -3.0953 2.56871e-05)
+ puncture position: no. 1 = (3.58124 3.92904 2.52033e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 224: integrating to time: 93.3333    Computer used 16.7412 seconds! 
+ Memory usage: current 3.68e+04/383.4/3.68e+04MB, peak 3.68e+04/383.4/3.68e+04MB
+
+ puncture position: no. 0 = (-2.91839 -3.12997 2.55337e-05)
+ puncture position: no. 1 = (3.53503 3.97103 2.51824e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 225: integrating to time: 93.75    Computer used 16.6291 seconds! 
+ Memory usage: current 3.681e+04/383.4/3.681e+04MB, peak 3.681e+04/383.4/3.681e+04MB
+
+ puncture position: no. 0 = (-2.88154 -3.1642 2.55634e-05)
+ puncture position: no. 1 = (3.48832 4.01248 2.52078e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 226: integrating to time: 94.1667    Computer used 16.8497 seconds! 
+ Memory usage: current 3.682e+04/383.5/3.682e+04MB, peak 3.682e+04/383.5/3.682e+04MB
+
+ puncture position: no. 0 = (-2.84428 -3.198 2.5848e-05)
+ puncture position: no. 1 = (3.44111 4.05337 2.53572e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 227: integrating to time: 94.5833    Computer used 16.6851 seconds! 
+ Memory usage: current 3.683e+04/383.7/3.683e+04MB, peak 3.683e+04/383.7/3.683e+04MB
+
+ puncture position: no. 0 = (-2.80661 -3.23135 2.56581e-05)
+ puncture position: no. 1 = (3.39341 4.0937 2.52254e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 228: integrating to time: 95    Computer used 16.7187 seconds! 
+ Memory usage: current 3.684e+04/383.8/3.684e+04MB, peak 3.684e+04/383.8/3.684e+04MB
+
+ puncture position: no. 0 = (-2.76855 -3.26426 2.56659e-05)
+ puncture position: no. 1 = (3.34524 4.13346 2.52709e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 229: integrating to time: 95.4167    Computer used 16.4622 seconds! 
+ Memory usage: current 3.685e+04/383.8/3.685e+04MB, peak 3.685e+04/383.8/3.685e+04MB
+
+ puncture position: no. 0 = (-2.7301 -3.29672 2.55247e-05)
+ puncture position: no. 1 = (3.29659 4.17265 2.51756e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 230: integrating to time: 95.8333    Computer used 16.6593 seconds! 
+ Memory usage: current 3.685e+04/383.9/3.685e+04MB, peak 3.685e+04/383.9/3.685e+04MB
+
+ puncture position: no. 0 = (-2.69126 -3.32871 2.57096e-05)
+ puncture position: no. 1 = (3.24747 4.21127 2.52264e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 231: integrating to time: 96.25    Computer used 16.8249 seconds! 
+ Memory usage: current 3.686e+04/384/3.686e+04MB, peak 3.686e+04/384/3.686e+04MB
+
+ puncture position: no. 0 = (-2.65204 -3.36025 2.55842e-05)
+ puncture position: no. 1 = (3.19789 4.2493 2.51188e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 232: integrating to time: 96.6667    Computer used 16.6236 seconds! 
+ Memory usage: current 3.687e+04/384.1/3.687e+04MB, peak 3.687e+04/384.1/3.687e+04MB
+
+ puncture position: no. 0 = (-2.61245 -3.39132 2.55619e-05)
+ puncture position: no. 1 = (3.14786 4.28674 2.51964e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 233: integrating to time: 97.0833    Computer used 16.6095 seconds! 
+ Memory usage: current 3.688e+04/384.2/3.688e+04MB, peak 3.688e+04/384.2/3.688e+04MB
+
+ puncture position: no. 0 = (-2.57248 -3.42192 2.54022e-05)
+ puncture position: no. 1 = (3.09738 4.32359 2.51137e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 234: integrating to time: 97.5    Computer used 16.6614 seconds! 
+ Memory usage: current 3.689e+04/384.2/3.689e+04MB, peak 3.689e+04/384.2/3.689e+04MB
+
+ puncture position: no. 0 = (-2.53214 -3.45205 2.56494e-05)
+ puncture position: no. 1 = (3.04646 4.35983 2.51181e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 235: integrating to time: 97.9167    Computer used 16.812 seconds! 
+ Memory usage: current 3.69e+04/384.4/3.69e+04MB, peak 3.69e+04/384.4/3.69e+04MB
+
+ puncture position: no. 0 = (-2.49145 -3.48169 2.55203e-05)
+ puncture position: no. 1 = (2.9951 4.39547 2.5158e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 236: integrating to time: 98.3333    Computer used 16.7572 seconds! 
+ Memory usage: current 3.691e+04/384.5/3.691e+04MB, peak 3.691e+04/384.5/3.691e+04MB
+
+ puncture position: no. 0 = (-2.4504 -3.51085 2.564e-05)
+ puncture position: no. 1 = (2.94332 4.4305 2.49917e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 237: integrating to time: 98.75    Computer used 16.8691 seconds! 
+ Memory usage: current 3.692e+04/384.6/3.692e+04MB, peak 3.692e+04/384.6/3.692e+04MB
+
+ puncture position: no. 0 = (-2.409 -3.53951 2.5561e-05)
+ puncture position: no. 1 = (2.89111 4.46491 2.50246e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 238: integrating to time: 99.1667    Computer used 17.008 seconds! 
+ Memory usage: current 3.692e+04/384.6/3.692e+04MB, peak 3.692e+04/384.6/3.692e+04MB
+
+ puncture position: no. 0 = (-2.36726 -3.56769 2.5455e-05)
+ puncture position: no. 1 = (2.83849 4.4987 2.50395e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+
+ Timestep # 239: integrating to time: 99.5833    Computer used 16.6627 seconds! 
+ Memory usage: current 3.693e+04/384.7/3.693e+04MB, peak 3.693e+04/384.7/3.693e+04MB
+
+ puncture position: no. 0 = (-2.32518 -3.59537 2.54435e-05)
+ puncture position: no. 1 = (2.78547 4.53187 2.49038e-05)
+
+ If you think the physical evolution time is enough for this simulation, please input 'stop' in the terminal to stop the MPI processes in the next evolution step ! 
+Can't open binary_output/Lev00-00_phi0_00240.bin for output.
+--------------------------------------------------------------------------
+MPI_ABORT was invoked on rank 0 in communicator MPI_COMM_WORLD
+  Proc: [[62588,1],0]
+  Errorcode: 1
+
+NOTE: invoking MPI_ABORT causes Open MPI to kill all MPI processes.
+You may or may not see output from other processes, depending on
+exactly when Open MPI kills them.
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+prterun has exited due to process rank 0 with PID 0 on node a3-longjobs-0 calling
+"abort". This may have caused other processes in the application to be
+terminated by signals sent by prterun (as reported here).
+--------------------------------------------------------------------------
+ 
+ The ABE/ABEGPU simulation is finished 
+
