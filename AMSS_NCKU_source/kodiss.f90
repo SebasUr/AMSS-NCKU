@@ -134,7 +134,9 @@ real*8,intent(in) :: eps
 real*8,dimension(-2:ex(1),-2:ex(2),-2:ex(3))   :: fh
 integer :: imin,jmin,kmin,imax,jmax,kmax
 integer :: i,j,k
+integer :: ilo,ihi,jlo,jhi,klo,khi
 real*8  :: dX,dY,dZ
+real*8  :: ecof, rdX, rdY, rdZ
 real*8, parameter :: ONE=1.d0,SIX=6.d0,FIT=1.5d1,TWT=2.d1
 real*8,parameter::cof=6.4d1   ! 2^6
 integer, parameter :: NO_SYMM=0, OCTANT=2
@@ -157,55 +159,44 @@ integer, parameter :: NO_SYMM=0, OCTANT=2
   if(Symmetry == OCTANT .and. dabs(X(1)) < dX) imin = -2
   if(Symmetry == OCTANT .and. dabs(Y(1)) < dY) jmin = -2
 
+  ! Pre-compute valid loop bounds to eliminate per-point branch
+  ilo = max(1, imin + 3)
+  ihi = min(ex(1), imax - 3)
+  jlo = max(1, jmin + 3)
+  jhi = min(ex(2), jmax - 3)
+  klo = max(1, kmin + 3)
+  khi = min(ex(3), kmax - 3)
+
+  ! Early exit if no valid interior points
+  if(ilo > ihi .or. jlo > jhi .or. klo > khi) return
+
+  ! Pre-compute constants outside the loop
+  ecof = eps / cof
+  rdX = ONE / dX
+  rdY = ONE / dY
+  rdZ = ONE / dZ
+
   call symmetry_bd(3,ex,f,fh,SoA)
 
-  do k=1,ex(3)
-  do j=1,ex(2)
-  do i=1,ex(1)
+  do k=klo,khi
+  do j=jlo,jhi
+  do i=ilo,ihi
 
-  if(i-3 >= imin .and. i+3 <= imax .and. &
-     j-3 >= jmin .and. j+3 <= jmax .and. &
-     k-3 >= kmin .and. k+3 <= kmax) then
-#if 0     
-! x direction
-   f_rhs(i,j,k)       = f_rhs(i,j,k) + eps/dX/cof * (     &
+   f_rhs(i,j,k)       = f_rhs(i,j,k) + ecof *( (     &
                               (fh(i-3,j,k)+fh(i+3,j,k)) - &
                           SIX*(fh(i-2,j,k)+fh(i+2,j,k)) + &
                           FIT*(fh(i-1,j,k)+fh(i+1,j,k)) - &
-                          TWT* fh(i,j,k)            )
-! y direction
-
-   f_rhs(i,j,k)       = f_rhs(i,j,k) + eps/dY/cof * (     &
-                              (fh(i,j-3,k)+fh(i,j+3,k)) - &
-                          SIX*(fh(i,j-2,k)+fh(i,j+2,k)) + &
-                          FIT*(fh(i,j-1,k)+fh(i,j+1,k)) - &
-                          TWT* fh(i,j,k)            )
-! z direction
-
-   f_rhs(i,j,k)       = f_rhs(i,j,k) + eps/dZ/cof * (     &
-                              (fh(i,j,k-3)+fh(i,j,k+3)) - &
-                          SIX*(fh(i,j,k-2)+fh(i,j,k+2)) + &
-                          FIT*(fh(i,j,k-1)+fh(i,j,k+1)) - &
-                          TWT* fh(i,j,k)            )
-#else
-! calculation order if important ?
-   f_rhs(i,j,k)       = f_rhs(i,j,k) + eps/cof *( (     &
-                              (fh(i-3,j,k)+fh(i+3,j,k)) - &
-                          SIX*(fh(i-2,j,k)+fh(i+2,j,k)) + &
-                          FIT*(fh(i-1,j,k)+fh(i+1,j,k)) - &
-                          TWT* fh(i,j,k)            )/dX + &
+                          TWT* fh(i,j,k)            )*rdX + &
                                                   (     &
                               (fh(i,j-3,k)+fh(i,j+3,k)) - &
                           SIX*(fh(i,j-2,k)+fh(i,j+2,k)) + &
                           FIT*(fh(i,j-1,k)+fh(i,j+1,k)) - &
-                          TWT* fh(i,j,k)            )/dY + &
+                          TWT* fh(i,j,k)            )*rdY + &
                                                   (     &
                               (fh(i,j,k-3)+fh(i,j,k+3)) - &
                           SIX*(fh(i,j,k-2)+fh(i,j,k+2)) + &
                           FIT*(fh(i,j,k-1)+fh(i,j,k+1)) - &
-                          TWT* fh(i,j,k)            )/dZ )
-#endif
-  endif
+                          TWT* fh(i,j,k)            )*rdZ )
 
   enddo
   enddo

@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "/home/sauriber2/AMSS-NCKU/AMSS_NCKU_Program.py", line 236, in <module>
+    makefile_and_run.makefile_ABE()
+  File "/home/sauriber2/AMSS-NCKU/makefile_and_run.py", line 48, in makefile_ABE
+    raise subprocess.CalledProcessError(makefile_return_code, makefile_command)
+subprocess.CalledProcessError: Command 'make -j4 ABE' returned non-zero exit status 2.

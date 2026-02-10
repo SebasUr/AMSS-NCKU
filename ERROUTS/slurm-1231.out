@@ -1,0 +1,248 @@
+
+------------------------------------------------------------------------------------------
+
+     Numerical Relativity AMSS-NCKU  
+
+     Author of AMSS-NCKU Code: Zhou-Jian Cao et al. 
+     Author of AMSS-NCKU Python Interface: Xiao Qu 
+
+     AMSS-NCKU is an open source numerical relativity code 
+     It can be used to simulate the dynamical evolution on mergering process of black hole systems, 
+ calculating the variation of gravitational field, black holes' trajectories, and gravitational wave 
+ emissions through directly solving the Einstein field equations  
+
+     This AMSS-NCKU code uses the finite-difference method to evaluate the numerical simulation. The 
+ finite-difference schemes can be chosen as: 2nd order, 4th order, 6th order, 8th order. 
+     The computation equation form in AMSS-NCKU code can be chosen as: BSSN equations, Z4C equations, 
+ BSSN equations coupled with scalars (in f(R) theory), BSSN equations coupled with electromagnetic 
+ fields. 
+     The numerical grid system in this code includes: patch AMR grid, shell-patch AMR grid. 
+
+     Furthermore, This code has fulfilled the CPU and GPU hybrid calculation. 
+
+------------------------------------------------------------------------------------------
+
+ Output directory name = GW150914_1231_mega
+
+ Output directory has been generated 
+
+------------------------------------------------------------------------------------------
+
+ Printing the basic parameter and setting in the AMSS-NCKU simulation 
+
+ The number of MPI processes in the AMSS-NCKU simulation =  128
+
+ The form of computational equation  =  BSSN
+ The initial data in this simulation =  Ansorg-TwoPuncture
+
+ Starting evolution time   =  0.0
+ Final evolution time      =  1000.0
+ Maximal iteration number  =  10000000
+ Courant factor            =  0.5
+ Strength of dissipation   =  0.15
+ Symmetry of system        =  equatorial-symmetry
+ The Runge-Kutta scheme in the time evolution   =  runge-kutta-45
+ The finite-difference scheme in the simulation =  4th-order
+
+ The static AMR grid type =  Linear
+ The moving AMR grid type =  Linear
+
+ The number of static AMR grid levels =  5
+ The number of moving AMR grid levels =  4
+ The number of total  AMR grid levels =  9
+
+ The grid number of each static AMR grid level =  96
+ The grid number of each moving AMR grid level =  48
+
+ The scale for largest  static AMR grid in X direction =  [-320.  320.]
+ The scale for largest  static AMR grid in Y direction =  [-320.  320.]
+ The scale for largest  static AMR grid in Z direction =  [-320.  320.]
+ The scale for smallest static AMR grid in X direction =  [-20.  20.]
+ The scale for smallest static AMR grid in Y direction =  [-20.  20.]
+ The scale for smallest static AMR grid in Z direction =  [-20.  20.]
+
+ The scale for largest  moving AMR grid =  [-5.  5.]
+ The scale for smallest moving AMR grid =  [-0.625  0.625]
+
+ The coarest resolution for static AMR grid =  6.666666666666667
+ The finest  resolution for static AMR grid =  0.4166666666666667
+ The coarest resolution for moving AMR grid =  0.20833333333333334
+ The finest  resolution for moving AMR grid =  0.026041666666666668
+
+ The time refinement starts from AMR grid level =  4
+ The time interval in each step for coarest AMR grid during time evaluation =  0.4166666666666667
+
+ This simulation only uses the Patch AMR grid structure, the Shell-Patch is not used 
+
+------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------
+
+ Printing the puncture information 
+
+ The information for 1 puncture 
+ Mass(1) =   0.553846,  Charge(1) =   0.000000,  a(1)  =   0.310000
+ X(1)    =   0.000000,  Y(1)      =   4.461538,  Z(1)  =   0.000000
+ Px(1)   =  -0.095302,  Py(1)     =  -0.000845,  Pz(1) =   0.000000
+ Jx(1)   =   0.000000,  Jy(1)     =   0.000000,  Jz(1) =   0.095091
+
+ The information for 2 puncture 
+ Mass(2) =   0.446154,  Charge(2) =   0.000000,  a(2)  =  -0.460000
+ X(2)    =   0.000000,  Y(2)      =  -5.538462,  Z(2)  =   0.000000
+ Px(2)   =   0.095302,  Py(2)     =   0.000845,  Pz(2) =   0.000000
+ Jx(2)   =   0.000000,  Jy(2)     =   0.000000,  Jz(2) =  -0.091564
+
+------------------------------------------------------------------------------------------
+
+ Generating the AMSS-NCKU input parfile for the ABE executable. 
+
+
+ Setting Puncture's position and momentum 
+
+
+ Wirte Down The Grid Information 
+
+ Number of Total Grid Level =  9
+ Number of Static Grid Level =  5
+ Number of Moving Grid Level =  4
+
+
+ Setting the demanded numerical grid 
+
+ adjusting the static gird points, making the original point (0,0,0) to the static gird points 
+
+
+ adjusting the moving gird points, ensuring the alliance of moving grids points and static grids points 
+
+ adjust_puncture[5,0,0] = 0.0 
+ adjust_puncture[5,0,1] = 4.375000000000002 
+ adjust_puncture[5,0,2] = 0.0 
+ adjust_puncture[5,1,0] = 0.0 
+ adjust_puncture[5,1,1] = -5.624999999999999 
+ adjust_puncture[5,1,2] = 0.0 
+ adjust_puncture[6,0,0] = 0.0 
+ adjust_puncture[6,0,1] = 4.479166666666669 
+ adjust_puncture[6,0,2] = 0.0 
+ adjust_puncture[6,1,0] = 0.0 
+ adjust_puncture[6,1,1] = -5.520833333333333 
+ adjust_puncture[6,1,2] = 0.0 
+ adjust_puncture[7,0,0] = 0.0 
+ adjust_puncture[7,0,1] = 4.479166666666669 
+ adjust_puncture[7,0,2] = 0.0 
+ adjust_puncture[7,1,0] = 0.0 
+ adjust_puncture[7,1,1] = -5.520833333333332 
+ adjust_puncture[7,1,2] = 0.0 
+ adjust_puncture[8,0,0] = 0.0 
+ adjust_puncture[8,0,1] = 4.453125000000002 
+ adjust_puncture[8,0,2] = 0.0 
+ adjust_puncture[8,1,0] = 0.0 
+ adjust_puncture[8,1,1] = -5.546874999999998 
+ adjust_puncture[8,1,2] = 0.0 
+
+ The moving grid puncture position adjustment is done 
+
+
+ The input parfile for AMSS-NCKU C++ executable file ABE has been generated. 
+ However, the input relevant to TwoPuncture need to be appended later. 
+
+
+ Schematically plot the numerical grid structure. 
+
+
+ Automatically generating the macro file for AMSS-NCKU C++ executable file ABE 
+ (Based on the finite-difference numerical scheme) 
+
+ AMSS-NCKU macro file macrodef.h has been generated. 
+ AMSS-NCKU macro file macrodef.fh has been generated. 
+
+ Preparing to compile and run the AMSS-NCKU code as requested 
+ Compiling the AMSS-NCKU code based on the generated macro files 
+
+
+ Compiling the AMSS-NCKU executable file ABE/ABEGPU 
+
+mpic++ -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -fipa-pta -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -Wno-deprecated -Dfortran3 -Dnewc -fopenmp -c ABE.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o ABE.o
+mpic++ -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -fipa-pta -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -Wno-deprecated -Dfortran3 -Dnewc -fopenmp -c Ansorg.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o Ansorg.o
+mpic++ -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -fipa-pta -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -Wno-deprecated -Dfortran3 -Dnewc -fopenmp -c Block.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o Block.o
+mpifort -c zbesh.for -o zbesh.o
+mpic++ -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -fipa-pta -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -Wno-deprecated -Dfortran3 -Dnewc -fopenmp -c monitor.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o monitor.o
+mpic++ -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -fipa-pta -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -Wno-deprecated -Dfortran3 -Dnewc -fopenmp -c Parallel.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o Parallel.o
+mpic++ -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -fipa-pta -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -Wno-deprecated -Dfortran3 -Dnewc -fopenmp -c MPatch.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o MPatch.o
+mpic++ -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -fipa-pta -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -Wno-deprecated -Dfortran3 -Dnewc -fopenmp -c var.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o var.o
+mpic++ -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -fipa-pta -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -Wno-deprecated -Dfortran3 -Dnewc -fopenmp -c cgh.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o cgh.o
+mpic++ -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -fipa-pta -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -Wno-deprecated -Dfortran3 -Dnewc -fopenmp -c bssn_class.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o bssn_class.o
+mpic++ -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -fipa-pta -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -Wno-deprecated -Dfortran3 -Dnewc -fopenmp -c surface_integral.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o surface_integral.o
+mpic++ -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -fipa-pta -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -Wno-deprecated -Dfortran3 -Dnewc -fopenmp -c ShellPatch.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o ShellPatch.o
+bssn_class.C: In member function ‘virtual void bssn_class::Read_Ansorg()’:
+bssn_class.C:1865:24: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+ 1865 |     Ansorg read_ansorg("Ansorg.psid", order);
+      |                        ^~~~~~~~~~~~~
+mpic++ -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -fipa-pta -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -Wno-deprecated -Dfortran3 -Dnewc -fopenmp -c bssnEScalar_class.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o bssnEScalar_class.o
+mpic++ -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -fipa-pta -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -Wno-deprecated -Dfortran3 -Dnewc -fopenmp -c perf.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o perf.o
+mpic++ -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -fipa-pta -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -Wno-deprecated -Dfortran3 -Dnewc -fopenmp -c Z4c_class.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o Z4c_class.o
+bssnEScalar_class.C: In member function ‘virtual void bssnEScalar_class::Read_Ansorg()’:
+bssnEScalar_class.C:335:24: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+  335 |     Ansorg read_ansorg("Ansorg.psid", order);
+      |                        ^~~~~~~~~~~~~
+mpic++ -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -fipa-pta -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -Wno-deprecated -Dfortran3 -Dnewc -fopenmp -c NullShellPatch.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o NullShellPatch.o
+mpic++ -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -fipa-pta -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -Wno-deprecated -Dfortran3 -Dnewc -fopenmp -c bssnEM_class.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o bssnEM_class.o
+mpic++ -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -fipa-pta -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -Wno-deprecated -Dfortran3 -Dnewc -fopenmp -c cpbc_util.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o cpbc_util.o
+Z4c_class.C: In member function ‘void Z4c_class::Check_extrop()’:
+Z4c_class.C:2396:28: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+ 2396 |   SH->Dump_Data(StateList, "extrop", 0, 1);
+      |                            ^~~~~~~~
+mpic++ -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -fipa-pta -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -Wno-deprecated -Dfortran3 -Dnewc -fopenmp -c z4c_rhs_point.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o z4c_rhs_point.o
+bssnEM_class.C: In member function ‘virtual void bssnEM_class::Read_Ansorg()’:
+bssnEM_class.C:486:24: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+  486 |     Ansorg read_ansorg("Ansorg.psid", order);
+      |                        ^~~~~~~~~~~~~
+mpic++ -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -fipa-pta -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -Wno-deprecated -Dfortran3 -Dnewc -fopenmp -c checkpoint.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o checkpoint.o
+mpic++ -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -fipa-pta -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -Wno-deprecated -Dfortran3 -Dnewc -fopenmp -c Parallel_bam.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o Parallel_bam.o
+mpic++ -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -fipa-pta -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -Wno-deprecated -Dfortran3 -Dnewc -fopenmp -c scalar_class.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o scalar_class.o
+mpic++ -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -fipa-pta -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -Wno-deprecated -Dfortran3 -Dnewc -fopenmp -c transpbh.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o transpbh.o
+mpic++ -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -fipa-pta -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -Wno-deprecated -Dfortran3 -Dnewc -fopenmp -c NullShellPatch2.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o NullShellPatch2.o
+mpic++ -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -fipa-pta -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -Wno-deprecated -Dfortran3 -Dnewc -fopenmp -c NullShellPatch2_Evo.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o NullShellPatch2_Evo.o
+mpic++ -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -fipa-pta -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -Wno-deprecated -Dfortran3 -Dnewc -fopenmp -c writefile_f.C -I/opt/ohpc/pub/mpi/openmpi5-gnu14/5.0.7/include -I/opt/ohpc/pub/apps/cuda/include -I/opt/ohpc/pub/apps/cuda/include -o writefile_f.o
+mpifort -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -ftree-vectorize -x f95-cpp-input -fopenmp -c enforce_algebra.f90 -o enforce_algebra.o
+mpifort -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -ftree-vectorize -x f95-cpp-input -fopenmp -c fmisc.f90 -o fmisc.o
+mpifort -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -ftree-vectorize -x f95-cpp-input -fopenmp -c initial_puncture.f90 -o initial_puncture.o
+mpifort -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -ftree-vectorize -x f95-cpp-input -fopenmp -c prolongrestrict.f90 -o prolongrestrict.o
+mpifort -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -ftree-vectorize -x f95-cpp-input -fopenmp -c prolongrestrict_cell.f90 -o prolongrestrict_cell.o
+mpifort -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -ftree-vectorize -x f95-cpp-input -fopenmp -c prolongrestrict_vertex.f90 -o prolongrestrict_vertex.o
+mpifort -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -ftree-vectorize -x f95-cpp-input -fopenmp -c rungekutta4_rout.f90 -o rungekutta4_rout.o
+mpifort -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -ftree-vectorize -x f95-cpp-input -fopenmp -c bssn_rhs.f90 -o bssn_rhs.o
+mpifort -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -ftree-vectorize -x f95-cpp-input -fopenmp -c diff_new.f90 -o diff_new.o
+mpifort -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -ftree-vectorize -x f95-cpp-input -fopenmp -c kodiss.f90 -o kodiss.o
+mpifort -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -ftree-vectorize -x f95-cpp-input -fopenmp -c kodiss_sh.f90 -o kodiss_sh.o
+mpifort -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -ftree-vectorize -x f95-cpp-input -fopenmp -c lopsidediff.f90 -o lopsidediff.o
+mpifort -O3 -march=native -mtune=native -ffast-math -funroll-loops -flto -fno-signed-zeros -fno-trapping-math -ftree-loop-vectorize -ftree-slp-vectorize -fvect-cost-model=unlimited -fprefetch-loop-arrays -ftree-vectorize -x f95-cpp-input -fopenmp -c sommerfeld_rout.f90 -o sommerfeld_rout.o
+lopsidediff.f90:507:0:
+
+  507 | #elif (ghost_width == 4)
+Error: #elif without #if
+lopsidediff.f90:716:0:
+
+  716 | #elif (ghost_width == 5)
+Error: #elif without #if
+lopsidediff.f90:919:0:
+
+  919 | #endif
+Error: #endif without #if
+lopsidediff.f90:523:19:
+
+  186 | subroutine lopsided(ex,X,Y,Z,f,f_rhs,Sfx,Sfy,Sfz,Symmetry,SoA)
+      |                   2
+......
+  523 | subroutine lopsided(ex,X,Y,Z,f,f_rhs,Sfx,Sfy,Sfz,Symmetry,SoA)
+      |                   1
+Error: Global name ‘lopsided’ at (1) is already being used as a SUBROUTINE at (2)
+lopsidediff.f90:734:19:
+
+  186 | subroutine lopsided(ex,X,Y,Z,f,f_rhs,Sfx,Sfy,Sfz,Symmetry,SoA)
+      |                   2
+......
+  734 | subroutine lopsided(ex,X,Y,Z,f,f_rhs,Sfx,Sfy,Sfz,Symmetry,SoA)
+      |                   1
+Error: Global name ‘lopsided’ at (1) is already being used as a SUBROUTINE at (2)
+make: *** [makefile:8: lopsidediff.o] Error 1
+make: *** Waiting for unfinished jobs....
