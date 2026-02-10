@@ -3515,15 +3515,22 @@ void Parallel::transfer(MyList<Parallel::gridseg> **src, MyList<Parallel::gridse
 
   int node;
 
-  MPI_Request *reqs;
-  MPI_Status *stats;
-  reqs = new MPI_Request[2 * cpusize];
-  stats = new MPI_Status[2 * cpusize];
+  // opt5: use static bookkeeping arrays to avoid repeated allocation
+  static MPI_Request *reqs = nullptr;
+  static MPI_Status  *stats = nullptr;
+  static double **send_data = nullptr;
+  static double **rec_data = nullptr;
+  static int alloc_size = 0;
+  if (cpusize > alloc_size) {
+    delete[] reqs; delete[] stats; delete[] send_data; delete[] rec_data;
+    reqs = new MPI_Request[2 * cpusize];
+    stats = new MPI_Status[2 * cpusize];
+    send_data = new double *[cpusize];
+    rec_data = new double *[cpusize];
+    alloc_size = cpusize;
+  }
   int req_no = 0;
 
-  double **send_data, **rec_data;
-  send_data = new double *[cpusize];
-  rec_data = new double *[cpusize];
   int length;
 
   for (node = 0; node < cpusize; node++)
@@ -3584,10 +3591,7 @@ void Parallel::transfer(MyList<Parallel::gridseg> **src, MyList<Parallel::gridse
       delete[] rec_data[node];
   }
 
-  delete[] reqs;
-  delete[] stats;
-  delete[] send_data;
-  delete[] rec_data;
+  // opt5: reqs, stats, send_data, rec_data are static — not freed here
 }
 //
 void Parallel::transfermix(MyList<Parallel::gridseg> **src, MyList<Parallel::gridseg> **dst,
@@ -3600,15 +3604,22 @@ void Parallel::transfermix(MyList<Parallel::gridseg> **src, MyList<Parallel::gri
 
   int node;
 
-  MPI_Request *reqs;
-  MPI_Status *stats;
-  reqs = new MPI_Request[2 * cpusize];
-  stats = new MPI_Status[2 * cpusize];
+  // opt5: use static bookkeeping arrays to avoid repeated allocation
+  static MPI_Request *reqs = nullptr;
+  static MPI_Status  *stats = nullptr;
+  static double **send_data = nullptr;
+  static double **rec_data = nullptr;
+  static int alloc_size = 0;
+  if (cpusize > alloc_size) {
+    delete[] reqs; delete[] stats; delete[] send_data; delete[] rec_data;
+    reqs = new MPI_Request[2 * cpusize];
+    stats = new MPI_Status[2 * cpusize];
+    send_data = new double *[cpusize];
+    rec_data = new double *[cpusize];
+    alloc_size = cpusize;
+  }
   int req_no = 0;
 
-  double **send_data, **rec_data;
-  send_data = new double *[cpusize];
-  rec_data = new double *[cpusize];
   int length;
 
   for (node = 0; node < cpusize; node++)
@@ -3669,10 +3680,7 @@ void Parallel::transfermix(MyList<Parallel::gridseg> **src, MyList<Parallel::gri
       delete[] rec_data[node];
   }
 
-  delete[] reqs;
-  delete[] stats;
-  delete[] send_data;
-  delete[] rec_data;
+  // opt5: reqs, stats, send_data, rec_data are static — not freed here
 }
 void Parallel::Sync(Patch *Pat, MyList<var> *VarList, int Symmetry)
 {
@@ -3680,10 +3688,18 @@ void Parallel::Sync(Patch *Pat, MyList<var> *VarList, int Symmetry)
   MPI_Comm_size(MPI_COMM_WORLD, &cpusize);
 
   MyList<Parallel::gridseg> *dst;
-  MyList<Parallel::gridseg> **src, **transfer_src, **transfer_dst;
-  src = new MyList<Parallel::gridseg> *[cpusize];
-  transfer_src = new MyList<Parallel::gridseg> *[cpusize];
-  transfer_dst = new MyList<Parallel::gridseg> *[cpusize];
+  // opt5: use static pointer arrays to avoid repeated allocation
+  static MyList<Parallel::gridseg> **src = nullptr;
+  static MyList<Parallel::gridseg> **transfer_src = nullptr;
+  static MyList<Parallel::gridseg> **transfer_dst = nullptr;
+  static int sync1_alloc = 0;
+  if (cpusize > sync1_alloc) {
+    delete[] src; delete[] transfer_src; delete[] transfer_dst;
+    src = new MyList<Parallel::gridseg> *[cpusize];
+    transfer_src = new MyList<Parallel::gridseg> *[cpusize];
+    transfer_dst = new MyList<Parallel::gridseg> *[cpusize];
+    sync1_alloc = cpusize;
+  }
 
   dst = build_ghost_gsl(Pat); // ghost region only
   for (int node = 0; node < cpusize; node++)
@@ -3707,9 +3723,7 @@ void Parallel::Sync(Patch *Pat, MyList<var> *VarList, int Symmetry)
       transfer_dst[node]->destroyList();
   }
 
-  delete[] src;
-  delete[] transfer_src;
-  delete[] transfer_dst;
+  // opt5: src, transfer_src, transfer_dst are static — not freed here
 }
 void Parallel::Sync(MyList<Patch> *PatL, MyList<var> *VarList, int Symmetry)
 {
@@ -3726,10 +3740,18 @@ void Parallel::Sync(MyList<Patch> *PatL, MyList<var> *VarList, int Symmetry)
   MPI_Comm_size(MPI_COMM_WORLD, &cpusize);
 
   MyList<Parallel::gridseg> *dst;
-  MyList<Parallel::gridseg> **src, **transfer_src, **transfer_dst;
-  src = new MyList<Parallel::gridseg> *[cpusize];
-  transfer_src = new MyList<Parallel::gridseg> *[cpusize];
-  transfer_dst = new MyList<Parallel::gridseg> *[cpusize];
+  // opt5: use static pointer arrays to avoid repeated allocation
+  static MyList<Parallel::gridseg> **src = nullptr;
+  static MyList<Parallel::gridseg> **transfer_src = nullptr;
+  static MyList<Parallel::gridseg> **transfer_dst = nullptr;
+  static int sync2_alloc = 0;
+  if (cpusize > sync2_alloc) {
+    delete[] src; delete[] transfer_src; delete[] transfer_dst;
+    src = new MyList<Parallel::gridseg> *[cpusize];
+    transfer_src = new MyList<Parallel::gridseg> *[cpusize];
+    transfer_dst = new MyList<Parallel::gridseg> *[cpusize];
+    sync2_alloc = cpusize;
+  }
 
   dst = build_buffer_gsl(PatL); // buffer region only
   for (int node = 0; node < cpusize; node++)
@@ -3752,9 +3774,7 @@ void Parallel::Sync(MyList<Patch> *PatL, MyList<var> *VarList, int Symmetry)
       transfer_dst[node]->destroyList();
   }
 
-  delete[] src;
-  delete[] transfer_src;
-  delete[] transfer_dst;
+  // opt5: src, transfer_src, transfer_dst are static — not freed here
 }
 // collect buffer grid segments or blocks for the periodic boundary condition of given patch
 // ---------------------------------------------------
