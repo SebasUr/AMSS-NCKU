@@ -206,6 +206,127 @@ integer, parameter :: NO_SYMM=0, OCTANT=2
 
   end subroutine kodis
 
+!---------------------------------------------------------------------------------------------
+! opt6: Batched kodis for 3 variables - saves 2 symmetry_bd overhead + fused loop
+!---------------------------------------------------------------------------------------------
+subroutine kodis3(ex,X,Y,Z,f1,f1_rhs,SoA1,f2,f2_rhs,SoA2,f3,f3_rhs,SoA3,Symmetry,eps)
+
+implicit none
+! argument variables
+integer,intent(in) :: Symmetry
+integer,dimension(3),intent(in)::ex
+real*8, dimension(1:3), intent(in) :: SoA1,SoA2,SoA3
+double precision,intent(in),dimension(ex(1))::X
+double precision,intent(in),dimension(ex(2))::Y
+double precision,intent(in),dimension(ex(3))::Z
+double precision,intent(in),dimension(ex(1),ex(2),ex(3))::f1,f2,f3
+double precision,intent(inout),dimension(ex(1),ex(2),ex(3))::f1_rhs,f2_rhs,f3_rhs
+real*8,intent(in) :: eps
+! local variables
+real*8,dimension(-2:ex(1),-2:ex(2),-2:ex(3))   :: fh1,fh2,fh3
+integer :: imin,jmin,kmin,imax,jmax,kmax
+integer :: i,j,k
+integer :: ilo,ihi,jlo,jhi,klo,khi
+real*8  :: dX,dY,dZ
+real*8  :: ecof, rdX, rdY, rdZ
+real*8, parameter :: ONE=1.d0,SIX=6.d0,FIT=1.5d1,TWT=2.d1
+real*8,parameter::cof=6.4d1   ! 2^6
+integer, parameter :: NO_SYMM=0, OCTANT=2
+
+  dX = X(2)-X(1)
+  dY = Y(2)-Y(1)
+  dZ = Z(2)-Z(1)
+
+  imax = ex(1)
+  jmax = ex(2)
+  kmax = ex(3)
+
+  imin = 1
+  jmin = 1
+  kmin = 1
+
+  if(Symmetry > NO_SYMM .and. dabs(Z(1)) < dZ) kmin = -2
+  if(Symmetry == OCTANT .and. dabs(X(1)) < dX) imin = -2
+  if(Symmetry == OCTANT .and. dabs(Y(1)) < dY) jmin = -2
+
+  ilo = max(1, imin + 3)
+  ihi = min(ex(1), imax - 3)
+  jlo = max(1, jmin + 3)
+  jhi = min(ex(2), jmax - 3)
+  klo = max(1, kmin + 3)
+  khi = min(ex(3), kmax - 3)
+
+  if(ilo > ihi .or. jlo > jhi .or. klo > khi) return
+
+  ecof = eps / cof
+  rdX = ONE / dX
+  rdY = ONE / dY
+  rdZ = ONE / dZ
+
+  call symmetry_bd(3,ex,f1,fh1,SoA1)
+  call symmetry_bd(3,ex,f2,fh2,SoA2)
+  call symmetry_bd(3,ex,f3,fh3,SoA3)
+
+  do k=klo,khi
+  do j=jlo,jhi
+  do i=ilo,ihi
+
+   f1_rhs(i,j,k)      = f1_rhs(i,j,k) + ecof *( (     &
+                              (fh1(i-3,j,k)+fh1(i+3,j,k)) - &
+                          SIX*(fh1(i-2,j,k)+fh1(i+2,j,k)) + &
+                          FIT*(fh1(i-1,j,k)+fh1(i+1,j,k)) - &
+                          TWT* fh1(i,j,k)            )*rdX + &
+                                                  (     &
+                              (fh1(i,j-3,k)+fh1(i,j+3,k)) - &
+                          SIX*(fh1(i,j-2,k)+fh1(i,j+2,k)) + &
+                          FIT*(fh1(i,j-1,k)+fh1(i,j+1,k)) - &
+                          TWT* fh1(i,j,k)            )*rdY + &
+                                                  (     &
+                              (fh1(i,j,k-3)+fh1(i,j,k+3)) - &
+                          SIX*(fh1(i,j,k-2)+fh1(i,j,k+2)) + &
+                          FIT*(fh1(i,j,k-1)+fh1(i,j,k+1)) - &
+                          TWT* fh1(i,j,k)            )*rdZ )
+
+   f2_rhs(i,j,k)      = f2_rhs(i,j,k) + ecof *( (     &
+                              (fh2(i-3,j,k)+fh2(i+3,j,k)) - &
+                          SIX*(fh2(i-2,j,k)+fh2(i+2,j,k)) + &
+                          FIT*(fh2(i-1,j,k)+fh2(i+1,j,k)) - &
+                          TWT* fh2(i,j,k)            )*rdX + &
+                                                  (     &
+                              (fh2(i,j-3,k)+fh2(i,j+3,k)) - &
+                          SIX*(fh2(i,j-2,k)+fh2(i,j+2,k)) + &
+                          FIT*(fh2(i,j-1,k)+fh2(i,j+1,k)) - &
+                          TWT* fh2(i,j,k)            )*rdY + &
+                                                  (     &
+                              (fh2(i,j,k-3)+fh2(i,j,k+3)) - &
+                          SIX*(fh2(i,j,k-2)+fh2(i,j,k+2)) + &
+                          FIT*(fh2(i,j,k-1)+fh2(i,j,k+1)) - &
+                          TWT* fh2(i,j,k)            )*rdZ )
+
+   f3_rhs(i,j,k)      = f3_rhs(i,j,k) + ecof *( (     &
+                              (fh3(i-3,j,k)+fh3(i+3,j,k)) - &
+                          SIX*(fh3(i-2,j,k)+fh3(i+2,j,k)) + &
+                          FIT*(fh3(i-1,j,k)+fh3(i+1,j,k)) - &
+                          TWT* fh3(i,j,k)            )*rdX + &
+                                                  (     &
+                              (fh3(i,j-3,k)+fh3(i,j+3,k)) - &
+                          SIX*(fh3(i,j-2,k)+fh3(i,j+2,k)) + &
+                          FIT*(fh3(i,j-1,k)+fh3(i,j+1,k)) - &
+                          TWT* fh3(i,j,k)            )*rdY + &
+                                                  (     &
+                              (fh3(i,j,k-3)+fh3(i,j,k+3)) - &
+                          SIX*(fh3(i,j,k-2)+fh3(i,j,k+2)) + &
+                          FIT*(fh3(i,j,k-1)+fh3(i,j,k+1)) - &
+                          TWT* fh3(i,j,k)            )*rdZ )
+
+  enddo
+  enddo
+  enddo
+
+  return
+
+  end subroutine kodis3
+
 #elif (ghost_width == 4)
 ! sixth order code
 !------------------------------------------------------------------------------------------------------------------------------

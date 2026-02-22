@@ -487,6 +487,160 @@ subroutine lopsided(ex,X,Y,Z,f,f_rhs,Sfx,Sfy,Sfz,Symmetry,SoA)
 
   end subroutine lopsided
 
+!---------------------------------------------------------------------------------------------
+! opt6: Batched lopsided for 3 variables sharing same shift (Sfx,Sfy,Sfz)
+! Saves 2 symmetry_bd calls + shared branch evaluation per point
+!---------------------------------------------------------------------------------------------
+subroutine lopsided3(ex,X,Y,Z,f1,f1_rhs,SoA1,f2,f2_rhs,SoA2,f3,f3_rhs,SoA3, &
+                     Sfx,Sfy,Sfz,Symmetry)
+  implicit none
+
+  integer, intent(in)  :: ex(1:3),Symmetry
+  real*8,  intent(in)  :: X(1:ex(1)),Y(1:ex(2)),Z(1:ex(3))
+  real*8,dimension(ex(1),ex(2),ex(3)),intent(in)   :: f1,f2,f3,Sfx,Sfy,Sfz
+  real*8,dimension(ex(1),ex(2),ex(3)),intent(inout):: f1_rhs,f2_rhs,f3_rhs
+  real*8,dimension(3),intent(in) :: SoA1,SoA2,SoA3
+
+  real*8,dimension(-2:ex(1),-2:ex(2),-2:ex(3))   :: fh1,fh2,fh3
+  integer :: imin,jmin,kmin,imax,jmax,kmax,i,j,k
+  real*8 :: dX,dY,dZ
+  real*8 :: d12dx,d12dy,d12dz,d2dx,d2dy,d2dz
+  real*8,  parameter :: ZEO=0.d0,ONE=1.d0, A3=3.d0
+  real*8,  parameter :: TWO=2.d0,A6=6.0d0,A18=1.8d1
+  real*8,  parameter :: A12=1.2d1, A10=1.d1,A8=8.d0
+  integer, parameter :: NO_SYMM = 0, EQ_SYMM = 1, OCTANT = 2
+
+  dX = X(2)-X(1)
+  dY = Y(2)-Y(1)
+  dZ = Z(2)-Z(1)
+
+  d12dx = ONE/A12/dX
+  d12dy = ONE/A12/dY
+  d12dz = ONE/A12/dZ
+
+  d2dx = ONE/TWO/dX
+  d2dy = ONE/TWO/dY
+  d2dz = ONE/TWO/dZ
+
+  imax = ex(1)
+  jmax = ex(2)
+  kmax = ex(3)
+
+  imin = 1
+  jmin = 1
+  kmin = 1
+  if(Symmetry > NO_SYMM .and. dabs(Z(1)) < dZ) kmin = -2
+  if(Symmetry > EQ_SYMM .and. dabs(X(1)) < dX) imin = -2
+  if(Symmetry > EQ_SYMM .and. dabs(Y(1)) < dY) jmin = -2
+
+  call symmetry_bd(3,ex,f1,fh1,SoA1)
+  call symmetry_bd(3,ex,f2,fh2,SoA2)
+  call symmetry_bd(3,ex,f3,fh3,SoA3)
+
+  do k=1,ex(3)-1
+  do j=1,ex(2)-1
+  do i=1,ex(1)-1
+! x direction
+    if(Sfx(i,j,k) > ZEO)then
+      if(i+3 <= imax)then
+     f1_rhs(i,j,k)=f1_rhs(i,j,k)+Sfx(i,j,k)*d12dx*(-A3*fh1(i-1,j,k)-A10*fh1(i,j,k)+A18*fh1(i+1,j,k)-A6*fh1(i+2,j,k)+fh1(i+3,j,k))
+     f2_rhs(i,j,k)=f2_rhs(i,j,k)+Sfx(i,j,k)*d12dx*(-A3*fh2(i-1,j,k)-A10*fh2(i,j,k)+A18*fh2(i+1,j,k)-A6*fh2(i+2,j,k)+fh2(i+3,j,k))
+     f3_rhs(i,j,k)=f3_rhs(i,j,k)+Sfx(i,j,k)*d12dx*(-A3*fh3(i-1,j,k)-A10*fh3(i,j,k)+A18*fh3(i+1,j,k)-A6*fh3(i+2,j,k)+fh3(i+3,j,k))
+     elseif(i+2 <= imax)then
+     f1_rhs(i,j,k)=f1_rhs(i,j,k)+Sfx(i,j,k)*d12dx*(fh1(i-2,j,k)-A8*fh1(i-1,j,k)+A8*fh1(i+1,j,k)-fh1(i+2,j,k))
+     f2_rhs(i,j,k)=f2_rhs(i,j,k)+Sfx(i,j,k)*d12dx*(fh2(i-2,j,k)-A8*fh2(i-1,j,k)+A8*fh2(i+1,j,k)-fh2(i+2,j,k))
+     f3_rhs(i,j,k)=f3_rhs(i,j,k)+Sfx(i,j,k)*d12dx*(fh3(i-2,j,k)-A8*fh3(i-1,j,k)+A8*fh3(i+1,j,k)-fh3(i+2,j,k))
+     elseif(i+1 <= imax)then
+     f1_rhs(i,j,k)=f1_rhs(i,j,k)-Sfx(i,j,k)*d12dx*(-A3*fh1(i+1,j,k)-A10*fh1(i,j,k)+A18*fh1(i-1,j,k)-A6*fh1(i-2,j,k)+fh1(i-3,j,k))
+     f2_rhs(i,j,k)=f2_rhs(i,j,k)-Sfx(i,j,k)*d12dx*(-A3*fh2(i+1,j,k)-A10*fh2(i,j,k)+A18*fh2(i-1,j,k)-A6*fh2(i-2,j,k)+fh2(i-3,j,k))
+     f3_rhs(i,j,k)=f3_rhs(i,j,k)-Sfx(i,j,k)*d12dx*(-A3*fh3(i+1,j,k)-A10*fh3(i,j,k)+A18*fh3(i-1,j,k)-A6*fh3(i-2,j,k)+fh3(i-3,j,k))
+     endif
+   elseif(Sfx(i,j,k) < ZEO)then
+      if(i-3 >= imin)then
+     f1_rhs(i,j,k)=f1_rhs(i,j,k)-Sfx(i,j,k)*d12dx*(-A3*fh1(i+1,j,k)-A10*fh1(i,j,k)+A18*fh1(i-1,j,k)-A6*fh1(i-2,j,k)+fh1(i-3,j,k))
+     f2_rhs(i,j,k)=f2_rhs(i,j,k)-Sfx(i,j,k)*d12dx*(-A3*fh2(i+1,j,k)-A10*fh2(i,j,k)+A18*fh2(i-1,j,k)-A6*fh2(i-2,j,k)+fh2(i-3,j,k))
+     f3_rhs(i,j,k)=f3_rhs(i,j,k)-Sfx(i,j,k)*d12dx*(-A3*fh3(i+1,j,k)-A10*fh3(i,j,k)+A18*fh3(i-1,j,k)-A6*fh3(i-2,j,k)+fh3(i-3,j,k))
+     elseif(i-2 >= imin)then
+     f1_rhs(i,j,k)=f1_rhs(i,j,k)+Sfx(i,j,k)*d12dx*(fh1(i-2,j,k)-A8*fh1(i-1,j,k)+A8*fh1(i+1,j,k)-fh1(i+2,j,k))
+     f2_rhs(i,j,k)=f2_rhs(i,j,k)+Sfx(i,j,k)*d12dx*(fh2(i-2,j,k)-A8*fh2(i-1,j,k)+A8*fh2(i+1,j,k)-fh2(i+2,j,k))
+     f3_rhs(i,j,k)=f3_rhs(i,j,k)+Sfx(i,j,k)*d12dx*(fh3(i-2,j,k)-A8*fh3(i-1,j,k)+A8*fh3(i+1,j,k)-fh3(i+2,j,k))
+     elseif(i-1 >= imin)then
+     f1_rhs(i,j,k)=f1_rhs(i,j,k)+Sfx(i,j,k)*d12dx*(-A3*fh1(i-1,j,k)-A10*fh1(i,j,k)+A18*fh1(i+1,j,k)-A6*fh1(i+2,j,k)+fh1(i+3,j,k))
+     f2_rhs(i,j,k)=f2_rhs(i,j,k)+Sfx(i,j,k)*d12dx*(-A3*fh2(i-1,j,k)-A10*fh2(i,j,k)+A18*fh2(i+1,j,k)-A6*fh2(i+2,j,k)+fh2(i+3,j,k))
+     f3_rhs(i,j,k)=f3_rhs(i,j,k)+Sfx(i,j,k)*d12dx*(-A3*fh3(i-1,j,k)-A10*fh3(i,j,k)+A18*fh3(i+1,j,k)-A6*fh3(i+2,j,k)+fh3(i+3,j,k))
+     endif
+   endif
+
+! y direction
+    if(Sfy(i,j,k) > ZEO)then
+      if(j+3 <= jmax)then
+     f1_rhs(i,j,k)=f1_rhs(i,j,k)+Sfy(i,j,k)*d12dy*(-A3*fh1(i,j-1,k)-A10*fh1(i,j,k)+A18*fh1(i,j+1,k)-A6*fh1(i,j+2,k)+fh1(i,j+3,k))
+     f2_rhs(i,j,k)=f2_rhs(i,j,k)+Sfy(i,j,k)*d12dy*(-A3*fh2(i,j-1,k)-A10*fh2(i,j,k)+A18*fh2(i,j+1,k)-A6*fh2(i,j+2,k)+fh2(i,j+3,k))
+     f3_rhs(i,j,k)=f3_rhs(i,j,k)+Sfy(i,j,k)*d12dy*(-A3*fh3(i,j-1,k)-A10*fh3(i,j,k)+A18*fh3(i,j+1,k)-A6*fh3(i,j+2,k)+fh3(i,j+3,k))
+     elseif(j+2 <= jmax)then
+     f1_rhs(i,j,k)=f1_rhs(i,j,k)+Sfy(i,j,k)*d12dy*(fh1(i,j-2,k)-A8*fh1(i,j-1,k)+A8*fh1(i,j+1,k)-fh1(i,j+2,k))
+     f2_rhs(i,j,k)=f2_rhs(i,j,k)+Sfy(i,j,k)*d12dy*(fh2(i,j-2,k)-A8*fh2(i,j-1,k)+A8*fh2(i,j+1,k)-fh2(i,j+2,k))
+     f3_rhs(i,j,k)=f3_rhs(i,j,k)+Sfy(i,j,k)*d12dy*(fh3(i,j-2,k)-A8*fh3(i,j-1,k)+A8*fh3(i,j+1,k)-fh3(i,j+2,k))
+     elseif(j+1 <= jmax)then
+     f1_rhs(i,j,k)=f1_rhs(i,j,k)-Sfy(i,j,k)*d12dy*(-A3*fh1(i,j+1,k)-A10*fh1(i,j,k)+A18*fh1(i,j-1,k)-A6*fh1(i,j-2,k)+fh1(i,j-3,k))
+     f2_rhs(i,j,k)=f2_rhs(i,j,k)-Sfy(i,j,k)*d12dy*(-A3*fh2(i,j+1,k)-A10*fh2(i,j,k)+A18*fh2(i,j-1,k)-A6*fh2(i,j-2,k)+fh2(i,j-3,k))
+     f3_rhs(i,j,k)=f3_rhs(i,j,k)-Sfy(i,j,k)*d12dy*(-A3*fh3(i,j+1,k)-A10*fh3(i,j,k)+A18*fh3(i,j-1,k)-A6*fh3(i,j-2,k)+fh3(i,j-3,k))
+     endif
+   elseif(Sfy(i,j,k) < ZEO)then
+      if(j-3 >= jmin)then
+     f1_rhs(i,j,k)=f1_rhs(i,j,k)-Sfy(i,j,k)*d12dy*(-A3*fh1(i,j+1,k)-A10*fh1(i,j,k)+A18*fh1(i,j-1,k)-A6*fh1(i,j-2,k)+fh1(i,j-3,k))
+     f2_rhs(i,j,k)=f2_rhs(i,j,k)-Sfy(i,j,k)*d12dy*(-A3*fh2(i,j+1,k)-A10*fh2(i,j,k)+A18*fh2(i,j-1,k)-A6*fh2(i,j-2,k)+fh2(i,j-3,k))
+     f3_rhs(i,j,k)=f3_rhs(i,j,k)-Sfy(i,j,k)*d12dy*(-A3*fh3(i,j+1,k)-A10*fh3(i,j,k)+A18*fh3(i,j-1,k)-A6*fh3(i,j-2,k)+fh3(i,j-3,k))
+     elseif(j-2 >= jmin)then
+     f1_rhs(i,j,k)=f1_rhs(i,j,k)+Sfy(i,j,k)*d12dy*(fh1(i,j-2,k)-A8*fh1(i,j-1,k)+A8*fh1(i,j+1,k)-fh1(i,j+2,k))
+     f2_rhs(i,j,k)=f2_rhs(i,j,k)+Sfy(i,j,k)*d12dy*(fh2(i,j-2,k)-A8*fh2(i,j-1,k)+A8*fh2(i,j+1,k)-fh2(i,j+2,k))
+     f3_rhs(i,j,k)=f3_rhs(i,j,k)+Sfy(i,j,k)*d12dy*(fh3(i,j-2,k)-A8*fh3(i,j-1,k)+A8*fh3(i,j+1,k)-fh3(i,j+2,k))
+     elseif(j-1 >= jmin)then
+     f1_rhs(i,j,k)=f1_rhs(i,j,k)+Sfy(i,j,k)*d12dy*(-A3*fh1(i,j-1,k)-A10*fh1(i,j,k)+A18*fh1(i,j+1,k)-A6*fh1(i,j+2,k)+fh1(i,j+3,k))
+     f2_rhs(i,j,k)=f2_rhs(i,j,k)+Sfy(i,j,k)*d12dy*(-A3*fh2(i,j-1,k)-A10*fh2(i,j,k)+A18*fh2(i,j+1,k)-A6*fh2(i,j+2,k)+fh2(i,j+3,k))
+     f3_rhs(i,j,k)=f3_rhs(i,j,k)+Sfy(i,j,k)*d12dy*(-A3*fh3(i,j-1,k)-A10*fh3(i,j,k)+A18*fh3(i,j+1,k)-A6*fh3(i,j+2,k)+fh3(i,j+3,k))
+     endif
+   endif
+
+! z direction
+    if(Sfz(i,j,k) > ZEO)then
+      if(k+3 <= kmax)then
+     f1_rhs(i,j,k)=f1_rhs(i,j,k)+Sfz(i,j,k)*d12dz*(-A3*fh1(i,j,k-1)-A10*fh1(i,j,k)+A18*fh1(i,j,k+1)-A6*fh1(i,j,k+2)+fh1(i,j,k+3))
+     f2_rhs(i,j,k)=f2_rhs(i,j,k)+Sfz(i,j,k)*d12dz*(-A3*fh2(i,j,k-1)-A10*fh2(i,j,k)+A18*fh2(i,j,k+1)-A6*fh2(i,j,k+2)+fh2(i,j,k+3))
+     f3_rhs(i,j,k)=f3_rhs(i,j,k)+Sfz(i,j,k)*d12dz*(-A3*fh3(i,j,k-1)-A10*fh3(i,j,k)+A18*fh3(i,j,k+1)-A6*fh3(i,j,k+2)+fh3(i,j,k+3))
+     elseif(k+2 <= kmax)then
+     f1_rhs(i,j,k)=f1_rhs(i,j,k)+Sfz(i,j,k)*d12dz*(fh1(i,j,k-2)-A8*fh1(i,j,k-1)+A8*fh1(i,j,k+1)-fh1(i,j,k+2))
+     f2_rhs(i,j,k)=f2_rhs(i,j,k)+Sfz(i,j,k)*d12dz*(fh2(i,j,k-2)-A8*fh2(i,j,k-1)+A8*fh2(i,j,k+1)-fh2(i,j,k+2))
+     f3_rhs(i,j,k)=f3_rhs(i,j,k)+Sfz(i,j,k)*d12dz*(fh3(i,j,k-2)-A8*fh3(i,j,k-1)+A8*fh3(i,j,k+1)-fh3(i,j,k+2))
+     elseif(k+1 <= kmax)then
+     f1_rhs(i,j,k)=f1_rhs(i,j,k)-Sfz(i,j,k)*d12dz*(-A3*fh1(i,j,k+1)-A10*fh1(i,j,k)+A18*fh1(i,j,k-1)-A6*fh1(i,j,k-2)+fh1(i,j,k-3))
+     f2_rhs(i,j,k)=f2_rhs(i,j,k)-Sfz(i,j,k)*d12dz*(-A3*fh2(i,j,k+1)-A10*fh2(i,j,k)+A18*fh2(i,j,k-1)-A6*fh2(i,j,k-2)+fh2(i,j,k-3))
+     f3_rhs(i,j,k)=f3_rhs(i,j,k)-Sfz(i,j,k)*d12dz*(-A3*fh3(i,j,k+1)-A10*fh3(i,j,k)+A18*fh3(i,j,k-1)-A6*fh3(i,j,k-2)+fh3(i,j,k-3))
+     endif
+   elseif(Sfz(i,j,k) < ZEO)then
+      if(k-3 >= kmin)then
+     f1_rhs(i,j,k)=f1_rhs(i,j,k)-Sfz(i,j,k)*d12dz*(-A3*fh1(i,j,k+1)-A10*fh1(i,j,k)+A18*fh1(i,j,k-1)-A6*fh1(i,j,k-2)+fh1(i,j,k-3))
+     f2_rhs(i,j,k)=f2_rhs(i,j,k)-Sfz(i,j,k)*d12dz*(-A3*fh2(i,j,k+1)-A10*fh2(i,j,k)+A18*fh2(i,j,k-1)-A6*fh2(i,j,k-2)+fh2(i,j,k-3))
+     f3_rhs(i,j,k)=f3_rhs(i,j,k)-Sfz(i,j,k)*d12dz*(-A3*fh3(i,j,k+1)-A10*fh3(i,j,k)+A18*fh3(i,j,k-1)-A6*fh3(i,j,k-2)+fh3(i,j,k-3))
+     elseif(k-2 >= kmin)then
+     f1_rhs(i,j,k)=f1_rhs(i,j,k)+Sfz(i,j,k)*d12dz*(fh1(i,j,k-2)-A8*fh1(i,j,k-1)+A8*fh1(i,j,k+1)-fh1(i,j,k+2))
+     f2_rhs(i,j,k)=f2_rhs(i,j,k)+Sfz(i,j,k)*d12dz*(fh2(i,j,k-2)-A8*fh2(i,j,k-1)+A8*fh2(i,j,k+1)-fh2(i,j,k+2))
+     f3_rhs(i,j,k)=f3_rhs(i,j,k)+Sfz(i,j,k)*d12dz*(fh3(i,j,k-2)-A8*fh3(i,j,k-1)+A8*fh3(i,j,k+1)-fh3(i,j,k+2))
+     elseif(k-1 >= kmin)then
+     f1_rhs(i,j,k)=f1_rhs(i,j,k)+Sfz(i,j,k)*d12dz*(-A3*fh1(i,j,k-1)-A10*fh1(i,j,k)+A18*fh1(i,j,k+1)-A6*fh1(i,j,k+2)+fh1(i,j,k+3))
+     f2_rhs(i,j,k)=f2_rhs(i,j,k)+Sfz(i,j,k)*d12dz*(-A3*fh2(i,j,k-1)-A10*fh2(i,j,k)+A18*fh2(i,j,k+1)-A6*fh2(i,j,k+2)+fh2(i,j,k+3))
+     f3_rhs(i,j,k)=f3_rhs(i,j,k)+Sfz(i,j,k)*d12dz*(-A3*fh3(i,j,k-1)-A10*fh3(i,j,k)+A18*fh3(i,j,k+1)-A6*fh3(i,j,k+2)+fh3(i,j,k+3))
+     endif
+   endif
+
+  enddo
+  enddo
+  enddo
+
+  return
+
+  end subroutine lopsided3
+
 #elif (ghost_width == 4)
 ! sixth order code
 ! Compute advection terms in right hand sides of field equations
